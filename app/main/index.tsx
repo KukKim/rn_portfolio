@@ -1,15 +1,26 @@
-import { Text, View } from "react-native";
+import { CommonHeader } from "@/components";
+import { Link } from "expo-router";
+import { StyleSheet, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function Main() {
+export default function Index() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Main.</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <CommonHeader leftTitle="Home" />
+      <Text>Edit app/index.tsx to edit this screen.</Text>
+      <Link href="/loginModal" style={styles.link}>
+        Open modal
+      </Link>
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  link: {
+    paddingTop: 20,
+    fontSize: 20,
+  },
+});

@@ -1,31 +1,10 @@
-import { Link } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
+import { getLocales } from "expo-localization";
+import { Redirect } from "expo-router";
+import { I18n } from "i18n-js";
+import translation from "./translation.json";
 
 export default function Index() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-      <Link href="/loginModal" style={styles.link}>
-        Open modal
-      </Link>
-    </View>
-  );
+  const i18n = new I18n(translation);
+  i18n.locale = getLocales().at(0)?.languageCode ?? "en";
+  return <Redirect href="/main" />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  link: {
-    paddingTop: 20,
-    fontSize: 20,
-  },
-});

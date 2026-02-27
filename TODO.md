@@ -1,2 +1,10 @@
+- mobile 기능
+  - camera
+  -
+- 상태관리
+  - redux
+  - zustand
 - 스플래쉬 스크린 적용
--
+- i18n 적용
+- animation
+- component

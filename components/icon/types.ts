@@ -10,7 +10,7 @@ type SizeVariant = "s" | "m" | "l";
 // };
 
 export interface IconProps extends ViewProps {
-  iconType: "setting" | "search" | "spinner" | "check";
+  iconType: "setting" | "search" | "spinner" | "check" | "back";
   type?: Variant;
   // size?: SizeVariant;
   size?: number;

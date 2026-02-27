@@ -33,4 +33,5 @@ export interface HeaderProps extends ViewProps {
   leftTitle?: string;
   rightCompnent?: typeof React.Component;
   rightTitle?: string;
+  backable?: boolean;
 }

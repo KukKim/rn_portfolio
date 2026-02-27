@@ -1,4 +1,6 @@
-import { StyleSheet, Text, View } from "react-native";
+import { CommonIcon } from "@/components/icon";
+import { useRouter } from "expo-router";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { HeaderProps } from "./types";
 
 const CommonHeader = ({
@@ -6,11 +8,21 @@ const CommonHeader = ({
   leftTitle,
   rightCompnent,
   rightTitle,
+  backable = false,
   ...props
 }: HeaderProps) => {
+  const router = useRouter();
   const LeftCompnont = () => {
     if (leftTitle) {
-      return <Text style={styles.titleText}>{leftTitle}</Text>;
+      return (
+        <View
+          style={{
+            flexDirection: "row",
+          }}
+        >
+          <Text style={styles.titleText}>{leftTitle}</Text>
+        </View>
+      );
     } else if (leftComponent) {
       return leftComponent;
     }
@@ -26,11 +38,18 @@ const CommonHeader = ({
   };
   return (
     <View style={styles.container} {...props}>
-      <View>
-        <LeftCompnont />
-      </View>
-      <View>
-        <RightComponent />
+      {backable && (
+        <Pressable onPress={() => router.back()}>
+          <CommonIcon iconType="back" size={24} />
+        </Pressable>
+      )}
+      <View style={styles.innerContainer}>
+        <View>
+          <LeftCompnont />
+        </View>
+        <View>
+          <RightComponent />
+        </View>
       </View>
     </View>
   );
@@ -38,10 +57,12 @@ const CommonHeader = ({
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
     padding: 10,
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  innerContainer: {
+    flex: 1,
   },
   titleText: {
     fontFamily: "Roboto",

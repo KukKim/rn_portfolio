@@ -1,6 +1,7 @@
 import AntDesign from "@expo/vector-icons/AntDesign";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
 import Feather from "@expo/vector-icons/Feather";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { StyleSheet, View } from "react-native";
 import { IconProps } from "./types";
 
@@ -19,6 +20,8 @@ const CommonIcon = ({
       return <AntDesign name="check" size={size} color="black" />;
     } else if (iconType === "spinner") {
       return <EvilIcons name="spinner-3" size={size} color="black" />;
+    } else if (iconType == "back") {
+      return <Ionicons name="chevron-back" size={size} color="black" />;
     }
   };
   return (
