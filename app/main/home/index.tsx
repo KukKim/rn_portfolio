@@ -1,7 +1,7 @@
 import { CommonHeader } from "@/components";
 import { ScrollView, StyleSheet, View } from "react-native";
 
-export default function Home() {
+export default function HomeScreen() {
   return (
     <ScrollView style={styles.scrollView}>
       <View

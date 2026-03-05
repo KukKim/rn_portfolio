@@ -1,13 +1,17 @@
-import {
-  StyleSheet,
-  TouchableOpacity,
-  TouchableOpacityProps,
-} from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { CommonButtonProps, fontSizeType, textType } from "./types";
 
-const CommonButton = ({ children, ...props }: TouchableOpacityProps) => {
+const CommonButton = ({
+  title,
+  type = "primary",
+  size = "m",
+  ...props
+}: CommonButtonProps) => {
   return (
     <TouchableOpacity style={styles.container} {...props}>
-      {children}
+      <Text style={[styles.innerText, fontSizeType[size], textType[type]]}>
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -19,6 +23,9 @@ const styles = StyleSheet.create({
     padding: 5,
     borderWidth: 1,
     borderRadius: 3,
+  },
+  innerText: {
+    fontFamily: "Roboto",
   },
 });
 

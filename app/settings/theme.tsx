@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default function Theme() {
+export default function ThemeScreen() {
   return (
     <View style={styles.container}>
       <Text>Theme</Text>

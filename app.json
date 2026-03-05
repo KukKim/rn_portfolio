@@ -47,6 +47,13 @@
             "android": ["en", "ko"]
           }
         }
+      ],
+      [
+        "expo-video",
+        {
+          "supportsBackgroundPlayback": true,
+          "supportsPictureInPicture": true
+        }
       ]
     ],
     "experiments": {
