@@ -1,0 +1,25 @@
+import { CommonHeader } from "@/components";
+import { Link } from "expo-router";
+import { StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+export default function NavigationScreen() {
+  return (
+    <SafeAreaView style={styles.container}>
+      <CommonHeader leftTitle="Navigation" backable />
+      <Link href="/loginModal" style={styles.link}>
+        Open modal
+      </Link>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  link: {
+    paddingTop: 20,
+    fontSize: 20,
+  },
+});

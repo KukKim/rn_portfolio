@@ -1,5 +1,5 @@
 import { CommonButton, CommonHeader } from "@/components";
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -8,9 +8,10 @@ export default function Index() {
   return (
     <SafeAreaView style={styles.container}>
       <CommonHeader leftTitle="Home" />
-      <Link href="/loginModal" style={styles.link}>
-        Open modal
-      </Link>
+      <CommonButton
+        title={"navigation"}
+        onPress={() => router.navigate("/examples/navigation")}
+      />
       <CommonButton
         title={"default animation"}
         onPress={() => router.navigate("/examples/animation")}

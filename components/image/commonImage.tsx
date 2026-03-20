@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Image, StyleSheet } from "react-native";
+import { CommonSkeleton } from "../skeleton";
 import { CommonImageProps, sizeType } from "./types";
 
 const CommonImage = ({
@@ -7,17 +8,18 @@ const CommonImage = ({
   size = "m",
   ...props
 }: CommonImageProps) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   return (
-    <Image
-      style={[styles.container, sizeType[size]]}
-      source={require("@/assets/images/defaultImage.png")}
-      onLoad={({ nativeEvent }) => {
-        console.log("Loading - ");
-        console.log(nativeEvent);
-      }}
-      {...props}
-    />
+    <CommonSkeleton isLoading={loading}>
+      <Image
+        style={[styles.container, sizeType[size]]}
+        source={require("@/assets/images/defaultImage.png")}
+        onLoad={({ nativeEvent }) => {
+          setLoading(false);
+        }}
+        {...props}
+      />
+    </CommonSkeleton>
   );
 };
 

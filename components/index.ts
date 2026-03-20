@@ -9,6 +9,7 @@ import { CommonInput } from "./input";
 import { CommonListView } from "./listView";
 import { CommonPopOver } from "./popover";
 import { CircleProgressBar, LineProgressBar } from "./progressBar";
+import { CommonSkeleton } from "./skeleton";
 import { CommonSpinner } from "./spinner";
 import { CommonToggle } from "./toggle";
 export {
@@ -23,6 +24,7 @@ export {
   CommonInput,
   CommonListView,
   CommonPopOver,
+  CommonSkeleton,
   CommonSpinner,
   CommonToggle,
   LineProgressBar,
