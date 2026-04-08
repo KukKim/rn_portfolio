@@ -9,9 +9,9 @@ export const containerType: Record<Variant, ViewStyle> = {
 };
 
 export const sizeType: Record<SizeVariant, ImageStyle> = {
-  s: { width: 128, height: 128 },
-  m: { width: 256, height: 256 },
-  l: { width: 384, height: 384 },
+  s: { width: 24, height: 24, borderRadius: 12, borderWidth: 1 },
+  m: { width: 48, height: 48, borderRadius: 24, borderWidth: 1 },
+  l: { width: 72, height: 72, borderRadius: 36, borderWidth: 1 },
 };
 
 export interface CommonImageProps extends ImageProps {

@@ -4,7 +4,7 @@ import { CommonCard } from "./card";
 import { CommonCheckBox } from "./checkBox";
 import { CommonHeader } from "./header";
 import { CommonIcon } from "./icon";
-import { CommonImage } from "./image";
+import { CommonImage, ProfileImage } from "./image";
 import { CommonInput } from "./input";
 import { CommonListView } from "./listView";
 import { CommonPopOver } from "./popover";
@@ -29,4 +29,5 @@ export {
   CommonToggle,
   LineProgressBar,
   NumberBadge,
+  ProfileImage,
 };

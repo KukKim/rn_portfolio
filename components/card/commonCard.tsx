@@ -1,38 +1,5 @@
-import {
-  StyleSheet,
-  Text,
-  TextStyle,
-  View,
-  ViewProps,
-  ViewStyle,
-} from "react-native";
-
-type Variant = "primary" | "secondary";
-
-const titleContainerType: Record<Variant, ViewStyle> = {
-  primary: { backgroundColor: "#FFC0CB" },
-  secondary: { backgroundColor: "#64748b" },
-};
-
-const contentContainerType: Record<Variant, ViewStyle> = {
-  primary: { backgroundColor: "#FFE4E1" },
-  secondary: { backgroundColor: "#64748b" },
-};
-
-const titleTextType: Record<Variant, TextStyle> = {
-  primary: { color: "#ffffff" },
-  secondary: { color: "#ffffff" },
-};
-
-const textType: Record<Variant, TextStyle> = {
-  primary: { color: "#ffffff" },
-  secondary: { color: "#ffffff" },
-};
-
-interface CardProps extends ViewProps {
-  type?: Variant;
-  title?: string;
-}
+import { StyleSheet, Text, View } from "react-native";
+import { CardProps, contentContainerType, titleContainerType } from "./types";
 
 const CommonCard = ({
   children,

@@ -1,6 +1,13 @@
 import { CommonHeader } from "@/components";
+import ProfileCard from "@/components/card/profileCard";
 import { useRouter } from "expo-router";
-import { FlatList, Pressable, StyleSheet, Text } from "react-native";
+import {
+  FlatList,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Settings() {
@@ -28,6 +35,11 @@ export default function Settings() {
   return (
     <SafeAreaView style={styles.container}>
       <CommonHeader leftTitle="Settings" />
+      <TouchableOpacity
+        onPress={() => router.navigate("/settings/updateUserInfo")}
+      >
+        <ProfileCard />
+      </TouchableOpacity>
       <FlatList
         style={styles.settingList}
         data={settingItems}
@@ -40,6 +52,14 @@ export default function Settings() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  profileContainer: {
+    borderWidth: 1,
+    padding: 5,
+  },
+  innerProfileContainer: {
+    flexDirection: "row",
+    gap: 5,
   },
   settingList: {
     flex: 1,

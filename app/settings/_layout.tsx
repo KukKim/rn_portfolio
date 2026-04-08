@@ -6,6 +6,7 @@ export default function SettingsLayout() {
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="language" options={{ headerShown: false }} />
       <Stack.Screen name="notification" options={{ headerShown: false }} />
+      <Stack.Screen name="updateUserInfo" options={{ headerShown: false }} />
     </Stack>
   );
 }

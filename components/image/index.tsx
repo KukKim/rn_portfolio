@@ -1,3 +1,4 @@
 import CommonImage from "./commonImage";
+import ProfileImage from "./profileImage";
 
-export { CommonImage };
+export { CommonImage, ProfileImage };
