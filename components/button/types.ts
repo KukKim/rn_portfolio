@@ -33,3 +33,7 @@ export interface ButtonProps extends TouchableOpacityProps {
 export interface CommonButtonProps extends ButtonProps {
   title?: string;
 }
+
+export interface SocialLoginButtonProps extends ButtonProps {
+  provider: "apple" | "facebook" | "google";
+}

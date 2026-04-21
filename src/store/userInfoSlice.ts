@@ -18,7 +18,13 @@ const userInfoSlice = createSlice({
   initialState,
   reducers: {
     updateUserInfo: (state, action) => {
-      state = action.payload;
+      // state = action.payload; => 안됨
+
+      // state.email = action.payload.email;
+      // state.name = action.payload.name;
+      // state.profileUri = action.payload.profileUri; => 됨
+
+      return action.payload;
     },
   },
 });

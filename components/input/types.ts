@@ -15,6 +15,7 @@ export const fontSizeType: Record<SizeVariant, TextStyle> = {
 };
 
 export interface InputProps extends TextInputProps {
+  title?: string;
   type?: Variant;
   size?: SizeVariant;
   textStyle?: TextStyle;

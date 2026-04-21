@@ -1,6 +1,7 @@
 import AntDesign from "@expo/vector-icons/AntDesign";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
 import Feather from "@expo/vector-icons/Feather";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { StyleSheet, View } from "react-native";
 import { IconProps } from "./types";
@@ -22,6 +23,12 @@ const CommonIcon = ({
       return <EvilIcons name="spinner-3" size={size} color="black" />;
     } else if (iconType == "back") {
       return <Ionicons name="chevron-back" size={size} color="black" />;
+    } else if (iconType == "facebook") {
+      return <FontAwesome name="facebook" size={size} color="black" />;
+    } else if (iconType == "apple") {
+      return <FontAwesome name="apple" size={size} color="black" />;
+    } else if (iconType == "google") {
+      return <FontAwesome name="google" size={24} color="black" />;
     }
   };
   return (

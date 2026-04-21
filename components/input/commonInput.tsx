@@ -1,9 +1,10 @@
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 import { InputProps } from "./types";
 
-const CommonInput = ({ ...props }: InputProps) => {
+const CommonInput = ({ title, ...props }: InputProps) => {
   return (
     <View style={styles.container}>
+      {title && <Text style={styles.title}>{title}</Text>}
       <TextInput style={styles.textInput} {...props} />
     </View>
   );
@@ -16,10 +17,14 @@ const styles = StyleSheet.create({
   },
   textInput: {
     width: "100%",
-    margin: 5,
     padding: 5,
     borderWidth: 1,
     borderRadius: 3,
+  },
+  title: {
+    fontFamily: "Roboto",
+    fontWeight: 700,
+    fontSize: 12,
   },
 });
 

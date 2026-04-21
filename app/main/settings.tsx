@@ -1,5 +1,6 @@
 import { CommonHeader } from "@/components";
 import ProfileCard from "@/components/card/profileCard";
+import { useAppSelector } from "@/src/hooks/redux";
 import { useRouter } from "expo-router";
 import {
   FlatList,
@@ -11,6 +12,8 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Settings() {
+  const userInfo = useAppSelector((state) => state.userInfo);
+
   const router = useRouter();
   const settingItems = [
     {
@@ -38,7 +41,11 @@ export default function Settings() {
       <TouchableOpacity
         onPress={() => router.navigate("/settings/updateUserInfo")}
       >
-        <ProfileCard />
+        <ProfileCard
+          email={userInfo.email}
+          name={userInfo.name}
+          photoUri={userInfo.photoUri}
+        />
       </TouchableOpacity>
       <FlatList
         style={styles.settingList}

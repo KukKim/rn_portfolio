@@ -1,17 +1,19 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import { CommonButtonProps, fontSizeType, textType } from "./types";
+import { CommonIcon } from "../icon";
+import { fontSizeType, SocialLoginButtonProps, textType } from "./types";
 
-const CommonButton = ({
-  title,
+const SocialLoginButton = ({
   type = "primary",
   size = "m",
   style,
+  provider,
   ...props
-}: CommonButtonProps) => {
+}: SocialLoginButtonProps) => {
   return (
     <TouchableOpacity style={[style, styles.container]} {...props}>
+      <CommonIcon iconType={provider} size={24} color={"black"} />
       <Text style={[styles.innerText, fontSizeType[size], textType[type]]}>
-        {title}
+        {"Login with " + provider}
       </Text>
     </TouchableOpacity>
   );
@@ -19,15 +21,17 @@ const CommonButton = ({
 
 const styles = StyleSheet.create({
   container: {
-    width: "auto",
+    flexDirection: "row",
     margin: 5,
     padding: 5,
     borderWidth: 1,
     borderRadius: 3,
+    gap: 10,
+    alignItems: "center",
   },
   innerText: {
     fontFamily: "Roboto",
   },
 });
 
-export default CommonButton;
+export default SocialLoginButton;

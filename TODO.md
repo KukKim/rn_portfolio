@@ -1,6 +1,6 @@
 - mobile 기능
   - camera
-  -
+  - fcm
 - 상태관리
   - redux
   - zustand
