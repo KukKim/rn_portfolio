@@ -8,6 +8,7 @@ export default function ExamplesLayout() {
       <Stack.Screen name="animation" options={{ headerShown: false }} />
       <Stack.Screen name="video" options={{ headerShown: false }} />
       <Stack.Screen name="image" options={{ headerShown: false }} />
+      <Stack.Screen name="fcm" options={{ headerShown: false }} />
     </Stack>
   );
 }

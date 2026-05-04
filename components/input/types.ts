@@ -4,7 +4,11 @@ type Variant = "primary" | "secondary";
 type SizeVariant = "s" | "m" | "l";
 
 export const containerType: Record<Variant, ViewStyle> = {
-  primary: { borderColor: "#2563eb" },
+  primary: { borderColor: "#333CCC" },
+  secondary: { borderColor: "0088FF" },
+};
+export const warningContainerType: Record<Variant, ViewStyle> = {
+  primary: { borderColor: "#EE0000" },
   secondary: { borderColor: "#64748b" },
 };
 
@@ -20,4 +24,5 @@ export interface InputProps extends TextInputProps {
   size?: SizeVariant;
   textStyle?: TextStyle;
   containerStyle?: ViewStyle;
+  warningText?: string;
 }

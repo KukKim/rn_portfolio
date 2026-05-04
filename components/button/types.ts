@@ -4,13 +4,23 @@ type Variant = "primary" | "secondary";
 type SizeVariant = "s" | "m" | "l";
 
 export const containerType: Record<Variant, ViewStyle> = {
-  primary: { backgroundColor: "#2563eb" },
-  secondary: { backgroundColor: "#64748b" },
+  primary: { backgroundColor: "#333CCC" },
+  secondary: { backgroundColor: "#0088FF" },
+};
+
+export const disabledContainerType: Record<Variant, ViewStyle> = {
+  primary: { backgroundColor: "#cbd5e1" },
+  secondary: { backgroundColor: "#cbd5e1" },
 };
 
 export const textType: Record<Variant, TextStyle> = {
-  primary: { color: "#000000" },
-  secondary: { color: "#000000" },
+  primary: { color: "#FFFFFF" },
+  secondary: { color: "#FFFFFF" },
+};
+
+export const disabledTextType: Record<Variant, TextStyle> = {
+  primary: { color: "#94a3b8" },
+  secondary: { color: "#94a3b8" },
 };
 
 export const sizeType: Record<SizeVariant, ViewStyle> = {

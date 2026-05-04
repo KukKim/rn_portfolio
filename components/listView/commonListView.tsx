@@ -6,11 +6,7 @@ const CommonListView = <ItemT,>(props: FlatListProps<ItemT>) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: "auto",
-    margin: 5,
-    padding: 5,
-    borderWidth: 1,
-    borderRadius: 3,
+    flex: 1,
   },
 });
 

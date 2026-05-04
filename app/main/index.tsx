@@ -24,6 +24,10 @@ export default function Index() {
         title={"image"}
         onPress={() => router.navigate("/examples/image")}
       />
+      <CommonButton
+        title={"fcm"}
+        onPress={() => router.navigate("/examples/fcm")}
+      />
     </SafeAreaView>
   );
 }

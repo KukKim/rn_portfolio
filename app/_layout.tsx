@@ -28,6 +28,12 @@ export default function RootLayout() {
               presentation: "formSheet",
             }}
           />
+          <Stack.Screen
+            name="signUpModal"
+            options={{
+              presentation: "formSheet",
+            }}
+          />
         </Stack>
       </PersistGate>
     </Provider>
