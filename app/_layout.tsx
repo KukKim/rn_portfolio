@@ -18,19 +18,21 @@ export default function RootLayout() {
     <Provider store={store.store}>
       <PersistGate loading={null} persistor={store.persistor}>
         <Stack>
-          <Stack.Screen name="index" />
+          <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen name="main" options={{ headerShown: false }} />
           <Stack.Screen name="examples" options={{ headerShown: false }} />
           <Stack.Screen name="settings" options={{ headerShown: false }} />
           <Stack.Screen
             name="loginModal"
             options={{
+              headerShown: false,
               presentation: "formSheet",
             }}
           />
           <Stack.Screen
             name="signUpModal"
             options={{
+              headerShown: false,
               presentation: "formSheet",
             }}
           />

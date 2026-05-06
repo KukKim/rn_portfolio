@@ -15,14 +15,14 @@ export default function UpdateUserInfoScreen() {
   const dispatch = useAppDispatch();
   const [name, setName] = useState(userInfo.name);
   const [email, setEmail] = useState(userInfo.email);
-  const [profileUri, setProfileUri] = useState(userInfo.profileUri);
+  const [imgUri, setImgUri] = useState(userInfo.imgUri);
 
   const onUpdateUserInfo = () => {
     dispatch(
       updateUserInfo({
         email: email,
         name: name,
-        profileUri: profileUri,
+        imgUri: imgUri,
       }),
     );
   };
@@ -33,14 +33,10 @@ export default function UpdateUserInfoScreen() {
       <ProfileImage
         size="l"
         source={{
-          uri: userInfo.profileUri,
+          uri: userInfo.imgUri,
         }}
       />
-      <CommonInput
-        title="profileUri"
-        value={profileUri}
-        onChangeText={setProfileUri}
-      />
+      <CommonInput title="imgUri" value={imgUri} onChangeText={setImgUri} />
       <CommonInput title="name" value={name} onChangeText={setName} />
       <CommonInput title="email" value={email} onChangeText={setEmail} />
       <CommonButton title="update" onPress={onUpdateUserInfo} />

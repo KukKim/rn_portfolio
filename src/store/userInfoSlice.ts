@@ -1,16 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Auth } from "../types/auth";
 
-type UserInfoState = {
-  name: string;
-  email: string;
-  profileUri: string;
-  updateDt?: Date;
-};
-
-const initialState: UserInfoState = {
+const initialState: Auth = {
   name: "",
   email: "",
-  profileUri: "",
+  imgUri: "",
+  password: "",
 };
 
 const userInfoSlice = createSlice({
@@ -27,13 +22,17 @@ const userInfoSlice = createSlice({
 
       // state.email = action.payload.email;
       // state.name = action.payload.name;
-      // state.profileUri = action.payload.profileUri; => 됨
+      // state.imgUri = action.payload.imgUri; => 됨
+      // state.password = action.payload.password; => 됨
 
       return action.payload;
+    },
+    deleteUserInfo: (state) => {
+      return initialState;
     },
   },
 });
 
-export const { updateUserInfo } = userInfoSlice.actions;
+export const { updateUserInfo, deleteUserInfo } = userInfoSlice.actions;
 
 export default userInfoSlice.reducer;
