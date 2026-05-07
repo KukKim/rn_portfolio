@@ -27,6 +27,7 @@ export default function RootLayout() {
             options={{
               headerShown: false,
               presentation: "formSheet",
+              gestureEnabled: false,
             }}
           />
           <Stack.Screen

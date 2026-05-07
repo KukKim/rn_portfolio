@@ -1,6 +1,7 @@
 import { CommonHeader } from "@/components";
 import ProfileCard from "@/components/card/profileCard";
-import { useAppSelector } from "@/src/hooks/redux";
+import { useAppDispatch, useAppSelector } from "@/src/hooks/redux";
+import { deleteUserInfo } from "@/src/store/userInfoSlice";
 import { useRouter } from "expo-router";
 import {
   FlatList,
@@ -13,7 +14,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Settings() {
   const userInfo = useAppSelector((state) => state.userInfo);
-
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const settingItems = [
     {
@@ -24,11 +25,20 @@ export default function Settings() {
       label: "notification",
       route: "/settings/notification",
     },
+    {
+      label: "Sign Out",
+      function: () => {
+        dispatch(deleteUserInfo());
+        router.replace("/");
+      },
+    },
   ];
   const settingItem = ({ item }) => {
     return (
       <Pressable
-        onPress={() => router.navigate(item.route)}
+        onPress={() =>
+          item.function ? item.function() : router.navigate(item.route)
+        }
         style={styles.settingItem}
       >
         <Text style={styles.menuText}>{item.label}</Text>

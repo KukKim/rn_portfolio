@@ -30,7 +30,7 @@ export default function Index() {
   useEffect(() => {
     if (userInfo?.token) {
       requestCheckToken(userInfo.token).then((res) => {
-        if (!res.success) {
+        if (!res?.success) {
           router.push("/loginModal");
           dispatch(deleteUserInfo());
         } else {

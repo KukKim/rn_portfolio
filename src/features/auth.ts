@@ -13,6 +13,7 @@ export const requestCheckToken = (token: string) => {
       return json;
     })
     .catch((error) => {
+      console.log("error?" + error);
       console.error(error);
     });
 };

@@ -15,7 +15,7 @@ export default function LoginModal() {
 
   const handleLogin = () => {
     requestSignin({ email, password }).then((response) => {
-      if (response.success) {
+      if (response?.success) {
         router.dismiss();
         dispatch(
           updateUserInfo({
@@ -23,6 +23,7 @@ export default function LoginModal() {
             email: email,
           }),
         );
+        router.replace("/main");
       }
     });
   };
