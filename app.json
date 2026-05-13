@@ -11,12 +11,8 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "CFBundleLocalizations": [
-          "en",
-          "ko",
-          "en",
-          "ko"
-        ]
+        "CFBundleLocalizations": ["en", "ko", "en", "ko"],
+        "ITSAppUsesNonExemptEncryption": false
       },
       "bundleIdentifier": "com.anonymous.rn-portfolio"
     },
@@ -28,7 +24,9 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.anonymous.rnportfolio",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "output": "static",
@@ -36,6 +34,7 @@
     },
     "plugins": [
       "expo-router",
+      "expo-notifications",
       [
         "expo-splash-screen",
         {
@@ -52,14 +51,8 @@
         "expo-localization",
         {
           "supportedLocales": {
-            "ios": [
-              "en",
-              "ko"
-            ],
-            "android": [
-              "en",
-              "ko"
-            ]
+            "ios": ["en", "ko"],
+            "android": ["en", "ko"]
           }
         }
       ],
@@ -74,6 +67,18 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "2d1fa56b-618e-48e3-b422-e00895fe0ccf"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/2d1fa56b-618e-48e3-b422-e00895fe0ccf"
     }
   }
 }

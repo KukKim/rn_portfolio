@@ -1,6 +1,8 @@
+import { registerForPushNotificationsAsync } from "@/src/features/notification";
 import store from "@/src/store";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
+import { useEffect } from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
@@ -14,6 +16,11 @@ SplashScreen.setOptions({
 // Icon check - SFSymbols1_0
 
 export default function RootLayout() {
+  useEffect(() => {
+    registerForPushNotificationsAsync()
+      .then((token) => console.log(token ?? ""))
+      .catch((error: any) => console.error(error));
+  }, []);
   return (
     <Provider store={store.store}>
       <PersistGate loading={null} persistor={store.persistor}>

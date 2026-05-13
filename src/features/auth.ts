@@ -38,7 +38,7 @@ export const requestSignup = (signupData: Auth) => {
 // TODO: 후에 POST 로 변경 필요. POST에서 SSL로 변경
 export const requestSignin = (signinData: Auth) => {
   return fetch(
-    `http://localhost:3000/signin?email=${signinData.email}&password=${signinData.password}`,
+    `http://127.0.0.1:3000/signin?email=${signinData.email}&password=${signinData.password}`,
     {
       method: "GET",
       headers: {
