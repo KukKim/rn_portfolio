@@ -1,5 +1,5 @@
-import { CommonHeader } from "@/components";
-import { Link } from "expo-router";
+import { CommonButton, CommonHeader } from "@/components";
+import { showToast } from "@/src/features/toast";
 import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -7,9 +7,16 @@ export default function NavigationScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <CommonHeader leftTitle="Navigation" backable />
-      <Link href="/loginModal" style={styles.link}>
-        Open modal
-      </Link>
+      <CommonButton
+        title="Show Toast"
+        onPress={() =>
+          showToast({
+            type: "success",
+            title: "Test Toast",
+            message: "This is a toast message",
+          })
+        }
+      />
     </SafeAreaView>
   );
 }

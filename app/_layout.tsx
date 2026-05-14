@@ -5,6 +5,7 @@ import * as Sentry from "@sentry/react-native";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import Toast from "react-native-toast-message";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
@@ -51,6 +52,7 @@ export default Sentry.wrap(function RootLayout() {
             }}
           />
         </Stack>
+        <Toast />
       </PersistGate>
     </Provider>
   );
