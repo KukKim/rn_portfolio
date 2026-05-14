@@ -1,5 +1,7 @@
+import { addErrorLog } from "@/src/features/logging";
 import { registerForPushNotificationsAsync } from "@/src/features/notification";
 import store from "@/src/store";
+import * as Sentry from "@sentry/react-native";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
@@ -15,11 +17,15 @@ SplashScreen.setOptions({
 // SplashScreen.preventAutoHideAsync();
 // Icon check - SFSymbols1_0
 
-export default function RootLayout() {
+export default Sentry.wrap(function RootLayout() {
   useEffect(() => {
     registerForPushNotificationsAsync()
-      .then((token) => console.log(token ?? ""))
-      .catch((error: any) => console.error(error));
+      .then((token) => {
+        // console.log(token ?? "")
+      })
+      .catch((error: any) => {
+        addErrorLog(error);
+      });
   }, []);
   return (
     <Provider store={store.store}>
@@ -48,4 +54,4 @@ export default function RootLayout() {
       </PersistGate>
     </Provider>
   );
-}
+});

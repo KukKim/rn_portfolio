@@ -4,7 +4,7 @@ import { CommonButton, CommonInput } from "@/components";
 import { requestSignup } from "@/src/features/auth";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 
 const WARNINGTYPE = {
   EMAIL_DUPLICATED: "This email is already in use",
@@ -70,7 +70,6 @@ export default function SignUpModal() {
         imgUri: "imgUri",
         password: password,
       }).then((response) => {
-        console.log("Signup response:", response);
         if (response.success) {
           router.dismiss();
         } else {
@@ -78,6 +77,7 @@ export default function SignUpModal() {
             ...prev,
             email: [WARNINGTYPE.EMAIL_DUPLICATED],
           }));
+          Alert.alert("Signup Failed", "Something wrong.");
         }
       });
     }

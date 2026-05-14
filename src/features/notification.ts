@@ -1,6 +1,7 @@
 import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
 import { Platform } from "react-native";
+import { addErrorLog } from "./logging";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -12,8 +13,7 @@ Notifications.setNotificationHandler({
 });
 
 function handleRegistrationError(errorMessage: string) {
-  alert(errorMessage);
-  throw new Error(errorMessage);
+  addErrorLog(new Error(errorMessage));
 }
 
 export async function registerForPushNotificationsAsync() {

@@ -5,7 +5,7 @@ import { useAppDispatch } from "@/src/hooks/redux";
 import { updateUserInfo } from "@/src/store/userInfoSlice";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 
 export default function LoginModal() {
   const router = useRouter();
@@ -14,18 +14,23 @@ export default function LoginModal() {
   const dispatch = useAppDispatch();
 
   const handleLogin = () => {
-    requestSignin({ email, password }).then((response) => {
-      if (response?.success) {
-        router.dismiss();
-        dispatch(
-          updateUserInfo({
-            ...response.data,
-            email: email,
-          }),
-        );
-        router.replace("/main");
-      }
-    });
+    requestSignin({ email, password })
+      .then((response) => {
+        console.log("???");
+        if (response?.success) {
+          router.dismiss();
+          dispatch(
+            updateUserInfo({
+              ...response.data,
+              email: email,
+            }),
+          );
+          router.replace("/main");
+        }
+      })
+      .catch(() => {
+        Alert.alert("Login Failed", "Something wrong");
+      });
   };
 
   const showSignupModal = () => {

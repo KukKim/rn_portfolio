@@ -1,4 +1,5 @@
 import { Auth } from "../types/auth";
+import { addErrorLog, addLog } from "./logging";
 
 export const requestCheckToken = (token: string) => {
   return fetch("http://localhost:3000/check", {
@@ -13,12 +14,12 @@ export const requestCheckToken = (token: string) => {
       return json;
     })
     .catch((error) => {
-      console.log("error?" + error);
-      console.error(error);
+      addErrorLog(error);
     });
 };
 
 export const requestSignup = (signupData: Auth) => {
+  addLog({ title: "Signup Attempt" });
   return fetch("http://localhost:3000/signup", {
     method: "POST",
     headers: {
@@ -31,12 +32,13 @@ export const requestSignup = (signupData: Auth) => {
       return json;
     })
     .catch((error) => {
-      console.error(error);
+      addErrorLog(error);
     });
 };
 
 // TODO: 후에 POST 로 변경 필요. POST에서 SSL로 변경
 export const requestSignin = (signinData: Auth) => {
+  addLog({ title: "Signin Attempt" });
   return fetch(
     `http://127.0.0.1:3000/signin?email=${signinData.email}&password=${signinData.password}`,
     {
@@ -51,6 +53,7 @@ export const requestSignin = (signinData: Auth) => {
       return json;
     })
     .catch((error) => {
-      console.error(error);
+      addErrorLog(error);
+      throw error;
     });
 };

@@ -11,7 +11,12 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "CFBundleLocalizations": ["en", "ko", "en", "ko"],
+        "CFBundleLocalizations": [
+          "en",
+          "ko",
+          "en",
+          "ko"
+        ],
         "ITSAppUsesNonExemptEncryption": false
       },
       "bundleIdentifier": "com.anonymous.rn-portfolio"
@@ -51,8 +56,14 @@
         "expo-localization",
         {
           "supportedLocales": {
-            "ios": ["en", "ko"],
-            "android": ["en", "ko"]
+            "ios": [
+              "en",
+              "ko"
+            ],
+            "android": [
+              "en",
+              "ko"
+            ]
           }
         }
       ],
@@ -61,6 +72,14 @@
         {
           "supportsBackgroundPlayback": true,
           "supportsPictureInPicture": true
+        }
+      ],
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "project": "react-native",
+          "organization": "home-gyl"
         }
       ]
     ],
