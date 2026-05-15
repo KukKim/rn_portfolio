@@ -1,3 +1,4 @@
+import { Platform } from "react-native";
 import { Auth } from "../types/auth";
 import { addErrorLog, addLog } from "./logging";
 
@@ -55,5 +56,26 @@ export const requestSignin = (signinData: Auth) => {
     .catch((error) => {
       addErrorLog(error);
       throw error;
+    });
+};
+
+export const registerPushToken = (authToken: string, pushToken: string) => {
+  return fetch("http://localhost:3000/registerpushtoken", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      authToken: authToken,
+      pushtoken: pushToken,
+      platform: Platform.OS === "ios" ? "ios" : "android",
+    }),
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      return json;
+    })
+    .catch((error) => {
+      addErrorLog(error);
     });
 };

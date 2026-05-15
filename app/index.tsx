@@ -1,4 +1,6 @@
-import { requestCheckToken } from "@/src/features/auth";
+import { registerPushToken, requestCheckToken } from "@/src/features/auth";
+import { addErrorLog } from "@/src/features/logging";
+import { registerForPushNotificationsAsync } from "@/src/features/notification";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/redux";
 import { deleteUserInfo } from "@/src/store/userInfoSlice";
 import { getLocales } from "expo-localization";
@@ -34,11 +36,20 @@ export default function Index() {
           router.push("/loginModal");
           dispatch(deleteUserInfo());
         } else {
+          registerForPushNotificationsAsync()
+            .then((token) => {
+              if (userInfo?.token && token) {
+                registerPushToken(userInfo.token, token);
+              }
+            })
+            .catch((error: any) => {
+              addErrorLog(error);
+            });
           router.replace("/main");
         }
       });
     }
-  }, []);
+  }, [userInfo?.token]);
 
   i18n.locale = getLocales().at(0)?.languageCode ?? "en";
   return <View></View>;

@@ -2,6 +2,9 @@
 
 import { CommonButton, CommonInput } from "@/components";
 import { requestSignup } from "@/src/features/auth";
+import { addErrorLog } from "@/src/features/logging";
+import { useAppDispatch } from "@/src/hooks/redux";
+import { updateUserInfo } from "@/src/store/userInfoSlice";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
@@ -17,6 +20,7 @@ const WARNINGTYPE = {
 
 export default function SignUpModal() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -70,14 +74,23 @@ export default function SignUpModal() {
         imgUri: "imgUri",
         password: password,
       }).then((response) => {
-        if (response.success) {
-          router.dismiss();
+        if (response?.success) {
+          dispatch(updateUserInfo(response.data));
         } else {
-          setErrors((prev) => ({
-            ...prev,
-            email: [WARNINGTYPE.EMAIL_DUPLICATED],
-          }));
-          Alert.alert("Signup Failed", "Something wrong.");
+          if (response?.status === 409) {
+            setErrors((prev) => ({
+              ...prev,
+              email: [WARNINGTYPE.EMAIL_DUPLICATED],
+            }));
+          } else if (response?.status === 500) {
+            addErrorLog(
+              new Error(`Server error during signup: ${response.message}`),
+            );
+            Alert.alert("Signup Failed", "Something wrong.");
+          } else {
+            addErrorLog(new Error(`Server not respond`));
+            Alert.alert("Server not respond");
+          }
         }
       });
     }
