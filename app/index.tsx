@@ -31,23 +31,29 @@ export default function Index() {
 
   useEffect(() => {
     if (userInfo?.token) {
-      requestCheckToken(userInfo.token).then((res) => {
-        if (!res?.success) {
+      requestCheckToken(userInfo.token)
+        .then((res) => {
+          if (!res?.success) {
+            router.push("/loginModal");
+            dispatch(deleteUserInfo());
+          } else {
+            registerForPushNotificationsAsync()
+              .then((token) => {
+                if (userInfo?.token && token) {
+                  registerPushToken(userInfo.token, token);
+                }
+              })
+              .catch((error: any) => {
+                addErrorLog(error);
+              });
+            router.replace("/main");
+          }
+        })
+        .catch((error) => {
+          addErrorLog(error);
           router.push("/loginModal");
           dispatch(deleteUserInfo());
-        } else {
-          registerForPushNotificationsAsync()
-            .then((token) => {
-              if (userInfo?.token && token) {
-                registerPushToken(userInfo.token, token);
-              }
-            })
-            .catch((error: any) => {
-              addErrorLog(error);
-            });
-          router.replace("/main");
-        }
-      });
+        });
     }
   }, [userInfo?.token]);
 

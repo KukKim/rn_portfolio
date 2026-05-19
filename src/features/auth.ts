@@ -16,6 +16,7 @@ export const requestCheckToken = (token: string) => {
     })
     .catch((error) => {
       addErrorLog(error);
+      throw error;
     });
 };
 
@@ -34,6 +35,7 @@ export const requestSignup = (signupData: Auth) => {
     })
     .catch((error) => {
       addErrorLog(error);
+      throw error;
     });
 };
 
@@ -77,5 +79,6 @@ export const registerPushToken = (authToken: string, pushToken: string) => {
     })
     .catch((error) => {
       addErrorLog(error);
+      throw error;
     });
 };

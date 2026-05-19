@@ -18,7 +18,8 @@ export interface IconProps extends ViewProps {
     | "back"
     | "apple"
     | "facebook"
-    | "google";
+    | "google"
+    | "close";
   type?: Variant;
   // size?: SizeVariant;
   size?: number;

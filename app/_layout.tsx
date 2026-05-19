@@ -40,6 +40,13 @@ export default Sentry.wrap(function RootLayout() {
               gestureEnabled: false,
             }}
           />
+          <Stack.Screen
+            name="alertModal"
+            options={{
+              headerShown: false,
+              presentation: "transparentModal",
+            }}
+          />
         </Stack>
         <Toast />
       </PersistGate>

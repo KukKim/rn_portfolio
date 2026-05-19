@@ -1,3 +1,4 @@
+import { CommonAlert } from "./alert";
 import { CommonBadge, NumberBadge } from "./badge";
 import { CommonButton } from "./button";
 import { CommonCard } from "./card";
@@ -14,6 +15,7 @@ import { CommonSpinner } from "./spinner";
 import { CommonToggle } from "./toggle";
 export {
   CircleProgressBar,
+  CommonAlert,
   CommonBadge,
   CommonButton,
   CommonCard,
