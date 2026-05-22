@@ -1,4 +1,4 @@
-import { CommonHeader } from "@/components";
+import { CommonHeader, CommonText } from "@/components";
 import ProfileCard from "@/components/card/profileCard";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/redux";
 import { deleteUserInfo } from "@/src/store/userInfoSlice";
@@ -7,7 +7,6 @@ import {
   FlatList,
   Pressable,
   StyleSheet,
-  Text,
   TouchableOpacity,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -26,6 +25,10 @@ export default function Settings() {
       route: "/settings/notification",
     },
     {
+      label: "theme",
+      route: "/settings/theme",
+    },
+    {
       label: "Sign Out",
       function: () => {
         dispatch(deleteUserInfo());
@@ -41,7 +44,7 @@ export default function Settings() {
         }
         style={styles.settingItem}
       >
-        <Text style={styles.menuText}>{item.label}</Text>
+        <CommonText style={styles.menuText}>{item.label}</CommonText>
       </Pressable>
     );
   };

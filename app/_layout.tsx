@@ -1,4 +1,5 @@
 import store from "@/src/store";
+import { AppThemeProvider, useAppTheme } from "@/src/styles/ThemeProvider";
 import * as Sentry from "@sentry/react-native";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -19,37 +20,54 @@ export default Sentry.wrap(function RootLayout() {
   return (
     <Provider store={store.store}>
       <PersistGate loading={null} persistor={store.persistor}>
-        <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen name="main" options={{ headerShown: false }} />
-          <Stack.Screen name="examples" options={{ headerShown: false }} />
-          <Stack.Screen name="settings" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="loginModal"
-            options={{
-              headerShown: false,
-              presentation: "formSheet",
-              gestureEnabled: false,
-            }}
-          />
-          <Stack.Screen
-            name="signUpModal"
-            options={{
-              headerShown: false,
-              presentation: "formSheet",
-              gestureEnabled: false,
-            }}
-          />
-          <Stack.Screen
-            name="alertModal"
-            options={{
-              headerShown: false,
-              presentation: "transparentModal",
-            }}
-          />
-        </Stack>
-        <Toast />
+        <AppThemeProvider>
+          <RouterLayout />
+        </AppThemeProvider>
       </PersistGate>
     </Provider>
   );
 });
+
+const RouterLayout = () => {
+  const { theme } = useAppTheme();
+  return (
+    <>
+      <Stack
+        screenOptions={{
+          contentStyle: {
+            backgroundColor: theme.colors.backgroundColor,
+          },
+        }}
+      >
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="main" options={{ headerShown: false }} />
+        <Stack.Screen name="examples" options={{ headerShown: false }} />
+        <Stack.Screen name="settings" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="loginModal"
+          options={{
+            headerShown: false,
+            presentation: "formSheet",
+            gestureEnabled: false,
+          }}
+        />
+        <Stack.Screen
+          name="signUpModal"
+          options={{
+            headerShown: false,
+            presentation: "formSheet",
+            gestureEnabled: false,
+          }}
+        />
+        <Stack.Screen
+          name="alertModal"
+          options={{
+            headerShown: false,
+            presentation: "transparentModal",
+          }}
+        />
+      </Stack>
+      <Toast />
+    </>
+  );
+};

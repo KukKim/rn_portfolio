@@ -1,6 +1,6 @@
-import { CommonIcon } from "@/components/icon";
+import { CommonIcon, CommonText } from "@/components";
 import { useRouter } from "expo-router";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import { HeaderProps } from "./types";
 
 const CommonHeader = ({
@@ -20,7 +20,7 @@ const CommonHeader = ({
             flexDirection: "row",
           }}
         >
-          <Text style={styles.titleText}>{leftTitle}</Text>
+          <CommonText size="l">{leftTitle}</CommonText>
         </View>
       );
     } else if (leftComponent) {
@@ -30,7 +30,7 @@ const CommonHeader = ({
   };
   const RightComponent = () => {
     if (rightTitle) {
-      return <Text>{rightTitle}</Text>;
+      return <CommonText size={"l"}>{rightTitle}</CommonText>;
     } else if (rightCompnent) {
       return rightCompnent;
     }
@@ -63,11 +63,6 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     flex: 1,
-  },
-  titleText: {
-    fontFamily: "Roboto",
-    fontWeight: 700,
-    fontSize: 20,
   },
 });
 

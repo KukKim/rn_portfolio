@@ -4,16 +4,6 @@ import { TextStyle, ViewProps, ViewStyle } from "react-native";
 type Variant = "primary" | "secondary";
 type SizeVariant = "s" | "m" | "l";
 
-export const containerType: Record<Variant, ViewStyle> = {
-  primary: { backgroundColor: "#2563eb" },
-  secondary: { backgroundColor: "#64748b" },
-};
-
-export const textType: Record<Variant, TextStyle> = {
-  primary: { color: "#ffffff" },
-  secondary: { color: "#ffffff" },
-};
-
 export const sizeType: Record<SizeVariant, ViewStyle> = {
   s: { width: 16, height: 16 },
   m: { width: 20, height: 20 },

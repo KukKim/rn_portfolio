@@ -1,13 +1,7 @@
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import { CommonIcon } from "../icon";
-import {
-  containerType,
-  disabledContainerType,
-  disabledTextType,
-  fontSizeType,
-  SocialLoginButtonProps,
-  textType,
-} from "./types";
+import { CommonIcon, CommonText } from "@/components";
+import { useAppTheme } from "@/src/styles/ThemeProvider";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import { fontSizeType, SocialLoginButtonProps } from "./types";
 
 const SocialLoginButton = ({
   type = "primary",
@@ -17,25 +11,31 @@ const SocialLoginButton = ({
   disabled,
   ...props
 }: SocialLoginButtonProps) => {
+  const { theme } = useAppTheme();
+
   return (
     <TouchableOpacity
       style={[
         style,
         styles.container,
-        disabled ? disabledContainerType[type] : containerType[type],
+        disabled
+          ? { backgroundColor: theme.colors[type].disabledComponentBackground }
+          : { backgroundColor: theme.colors[type].componentBackgroundColor },
       ]}
       {...props}
     >
       <CommonIcon iconType={provider} size={24} color={"black"} />
-      <Text
+      <CommonText
         style={[
           styles.innerText,
           fontSizeType[size],
-          disabled ? disabledTextType[type] : textType[type],
+          disabled
+            ? { color: theme.colors[type].textColor }
+            : { color: theme.colors[type].textColor },
         ]}
       >
         {"Login with " + provider}
-      </Text>
+      </CommonText>
     </TouchableOpacity>
   );
 };

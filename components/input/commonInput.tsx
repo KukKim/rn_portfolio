@@ -1,10 +1,11 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { CommonText } from "@/components";
+import { StyleSheet, TextInput, View } from "react-native";
 import { InputProps, containerType, warningContainerType } from "./types";
 
 const CommonInput = ({ title, warningText, ...props }: InputProps) => {
   return (
     <View style={styles.container}>
-      {title && <Text style={styles.title}>{title}</Text>}
+      {title && <CommonText style={styles.title}>{title}</CommonText>}
       <TextInput
         style={[
           styles.textInput,
@@ -15,7 +16,9 @@ const CommonInput = ({ title, warningText, ...props }: InputProps) => {
         autoCapitalize="none"
         {...props}
       />
-      {warningText && <Text style={styles.warningTitle}>{warningText}</Text>}
+      {warningText && (
+        <CommonText style={styles.warningTitle}>{warningText}</CommonText>
+      )}
     </View>
   );
 };

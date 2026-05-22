@@ -1,5 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
-import { CardProps, contentContainerType, titleContainerType } from "./types";
+import { CommonText } from "@/components";
+import { useAppTheme } from "@/src/styles/ThemeProvider";
+import { StyleSheet, View } from "react-native";
+import { CardProps } from "./types";
 
 const CommonCard = ({
   children,
@@ -7,14 +9,29 @@ const CommonCard = ({
   title,
   ...props
 }: CardProps) => {
+  const { theme } = useAppTheme();
   return (
     <View style={styles.container}>
       {title && (
-        <View style={[styles.titleContainer, titleContainerType[type]]}>
-          <Text style={styles.titleText}>{title}</Text>
+        <View
+          style={[
+            styles.titleContainer,
+            {
+              backgroundColor: theme.colors[type].componentBackgroundColor,
+            },
+          ]}
+        >
+          <CommonText style={styles.titleText}>{title}</CommonText>
         </View>
       )}
-      <View style={[styles.contentContainer, contentContainerType[type]]}>
+      <View
+        style={[
+          styles.contentContainer,
+          {
+            backgroundColor: theme.colors[type].componentBackgroundColor,
+          },
+        ]}
+      >
         {children}
       </View>
     </View>

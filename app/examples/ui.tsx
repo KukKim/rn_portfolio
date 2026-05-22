@@ -1,12 +1,11 @@
-import { CommonHeader, CommonText } from "@/components";
+import { CommonHeader } from "@/components";
 import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function NotificationScreen() {
+export default function UIScreen() {
   return (
     <SafeAreaView style={styles.container}>
-      <CommonHeader leftTitle="Notification" backable />
-      <CommonText>Notification</CommonText>
+      <CommonHeader leftTitle="UI" backable />
     </SafeAreaView>
   );
 }

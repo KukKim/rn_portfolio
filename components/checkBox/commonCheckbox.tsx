@@ -1,12 +1,7 @@
+import { useAppTheme } from "@/src/styles/ThemeProvider";
 import { Pressable, StyleSheet } from "react-native";
 import { CommonIcon } from "../icon";
-import {
-  CheckBoxProps,
-  checkType,
-  containerType,
-  iconSizeType,
-  sizeType,
-} from "./types";
+import { CheckBoxProps, checkType, iconSizeType, sizeType } from "./types";
 
 const CommonCheckBox = ({
   children,
@@ -16,6 +11,7 @@ const CommonCheckBox = ({
   size = "m",
   ...props
 }: CheckBoxProps) => {
+  const { theme } = useAppTheme();
   const handleChange = () => {
     onValueChange?.(!value);
   };
@@ -23,7 +19,11 @@ const CommonCheckBox = ({
   return (
     <Pressable
       onPress={handleChange}
-      style={[styles.container, sizeType[size], containerType[type]]}
+      style={[
+        styles.container,
+        sizeType[size],
+        { backgroundColor: theme.colors[type].componentBackgroundColor },
+      ]}
       {...props}
     >
       {value && (

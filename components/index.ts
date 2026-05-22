@@ -12,6 +12,7 @@ import { CommonPopOver } from "./popover";
 import { CircleProgressBar, LineProgressBar } from "./progressBar";
 import { CommonSkeleton } from "./skeleton";
 import { CommonSpinner } from "./spinner";
+import { CommonText } from "./text";
 import { CommonToggle } from "./toggle";
 export {
   CircleProgressBar,
@@ -28,6 +29,7 @@ export {
   CommonPopOver,
   CommonSkeleton,
   CommonSpinner,
+  CommonText,
   CommonToggle,
   LineProgressBar,
   NumberBadge,

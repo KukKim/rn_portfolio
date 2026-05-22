@@ -1,12 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
-
-import {
-  CommonBadgeProps,
-  containerType,
-  fontSizeType,
-  sizeType,
-  textType,
-} from "./types";
+import { CommonText } from "@/components";
+import { useAppTheme } from "@/src/styles/ThemeProvider";
+import { StyleSheet, View } from "react-native";
+import { CommonBadgeProps, fontSizeType, sizeType } from "./types";
 
 const CommonBadge = ({
   children,
@@ -15,15 +10,26 @@ const CommonBadge = ({
   typeText,
   ...props
 }: CommonBadgeProps) => {
+  const { theme } = useAppTheme();
   return (
     <View
-      style={[styles.container, sizeType[size], containerType[type]]}
+      style={[
+        styles.container,
+        sizeType[size],
+        { backgroundColor: theme.colors[type].componentBackgroundColor },
+      ]}
       {...props}
     >
       {typeText && (
-        <Text style={[styles.innerText, fontSizeType[size], textType[type]]}>
+        <CommonText
+          style={[
+            styles.innerText,
+            fontSizeType[size],
+            { color: theme.colors[type].textColor },
+          ]}
+        >
           {typeText}
-        </Text>
+        </CommonText>
       )}
     </View>
   );

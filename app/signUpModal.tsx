@@ -1,13 +1,13 @@
 // TODO : 모달에서 FlatList가 들어가지 않음(absolute로 잡힘) IOS.
 
-import { CommonButton, CommonInput } from "@/components";
+import { CommonButton, CommonInput, CommonText } from "@/components";
 import { requestSignup } from "@/src/features/auth";
 import { addErrorLog } from "@/src/features/logging";
 import { useAppDispatch } from "@/src/hooks/redux";
 import { updateUserInfo } from "@/src/store/userInfoSlice";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Alert, StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, View } from "react-native";
 
 const WARNINGTYPE = {
   EMAIL_DUPLICATED: "This email is already in use",
@@ -113,7 +113,7 @@ export default function SignUpModal() {
   // ];
   return (
     <View style={styles.container}>
-      <Text>Signup Modal screen</Text>
+      <CommonText>Signup Modal screen</CommonText>
       <CommonInput
         title={"E-mail"}
         value={email}

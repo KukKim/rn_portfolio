@@ -13,6 +13,10 @@ export default function Index() {
         onPress={() => router.navigate("/examples/navigation")}
       />
       <CommonButton
+        title={"ui"}
+        onPress={() => router.navigate("/examples/ui")}
+      />
+      <CommonButton
         title={"default animation"}
         onPress={() => router.navigate("/examples/animation")}
       />

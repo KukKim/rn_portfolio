@@ -1,12 +1,7 @@
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import {
-  CommonButtonProps,
-  containerType,
-  disabledContainerType,
-  disabledTextType,
-  fontSizeType,
-  textType,
-} from "./types";
+import { CommonText } from "@/components";
+import { useAppTheme } from "@/src/styles/ThemeProvider";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import { CommonButtonProps, fontSizeType } from "./types";
 
 const CommonButton = ({
   title,
@@ -16,24 +11,29 @@ const CommonButton = ({
   disabled,
   ...props
 }: CommonButtonProps) => {
+  const { theme } = useAppTheme();
   return (
     <TouchableOpacity
       style={[
         style,
         styles.container,
-        disabled ? disabledContainerType[type] : containerType[type],
+        disabled
+          ? { borderColor: theme.colors[type].disabledComponentBackground }
+          : { borderColor: theme.colors[type].componentBackgroundColor },
       ]}
       {...props}
     >
-      <Text
+      <CommonText
         style={[
           styles.innerText,
           fontSizeType[size],
-          disabled ? disabledTextType[type] : textType[type],
+          disabled
+            ? { color: theme.colors[type].textColor }
+            : { color: theme.colors[type].textColor },
         ]}
       >
         {title}
-      </Text>
+      </CommonText>
     </TouchableOpacity>
   );
 };
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 3,
+    borderWidth: 1,
   },
   innerText: {
     fontFamily: "Roboto",

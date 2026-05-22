@@ -1,12 +1,11 @@
-import { StyleSheet, Text, View } from "react-native";
-
+import { CommonText } from "@/components";
+import { useAppTheme } from "@/src/styles/ThemeProvider";
+import { StyleSheet, View } from "react-native";
 import {
   NumberBadgeProps,
-  containerType,
   expandedSizeType,
   fontSizeType,
   sizeType,
-  textType,
 } from "./types";
 
 const NumberBadge = ({
@@ -16,6 +15,7 @@ const NumberBadge = ({
   size = "m",
   ...props
 }: NumberBadgeProps) => {
+  const { theme } = useAppTheme();
   return (
     <View
       style={[
@@ -23,13 +23,19 @@ const NumberBadge = ({
         maxNumber && number > maxNumber
           ? expandedSizeType[size]
           : sizeType[size],
-        containerType[type],
+        { backgroundColor: theme.colors[type].componentBackgroundColor },
       ]}
       {...props}
     >
-      <Text style={[styles.innerText, fontSizeType[size], textType[type]]}>
+      <CommonText
+        style={[
+          styles.innerText,
+          fontSizeType[size],
+          { color: theme.colors[type].textColor },
+        ]}
+      >
         {maxNumber && number > maxNumber ? maxNumber + "++" : number}
-      </Text>
+      </CommonText>
     </View>
   );
 };

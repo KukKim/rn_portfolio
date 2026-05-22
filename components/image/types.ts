@@ -1,12 +1,7 @@
-import { ImageProps, ImageStyle, ViewStyle } from "react-native";
+import { ImageProps, ImageStyle } from "react-native";
 
 type Variant = "primary" | "secondary";
 type SizeVariant = "s" | "m" | "l";
-
-export const containerType: Record<Variant, ViewStyle> = {
-  primary: { backgroundColor: "#2563eb" },
-  secondary: { backgroundColor: "#64748b" },
-};
 
 export const sizeType: Record<SizeVariant, ImageStyle> = {
   s: { width: 24, height: 24, borderRadius: 12, borderWidth: 1 },

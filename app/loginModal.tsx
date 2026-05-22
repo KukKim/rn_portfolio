@@ -1,11 +1,11 @@
-import { CommonButton, CommonInput } from "@/components";
+import { CommonButton, CommonInput, CommonText } from "@/components";
 import SocialLoginButton from "@/components/button/socailLoginButton";
 import { requestSignin } from "@/src/features/auth";
 import { useAppDispatch } from "@/src/hooks/redux";
 import { updateUserInfo } from "@/src/store/userInfoSlice";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Alert, StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, View } from "react-native";
 
 export default function LoginModal() {
   const router = useRouter();
@@ -37,7 +37,7 @@ export default function LoginModal() {
   };
   return (
     <View style={styles.container}>
-      <Text>Login Modal screen</Text>
+      <CommonText>Login Modal screen</CommonText>
       <CommonInput title={"E-mail"} value={email} onChangeText={setEmail} />
       <CommonInput
         title={"Password"}

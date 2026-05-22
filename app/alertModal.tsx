@@ -1,6 +1,6 @@
-import { CommonButton, CommonIcon } from "@/components";
+import { CommonButton, CommonIcon, CommonText } from "@/components";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 type AlertModalParams = {
   title: string;
@@ -18,13 +18,13 @@ export default function AlertModal() {
     <View style={styles.container}>
       <View style={styles.modalContainer}>
         <View style={styles.flexDirectionRow}>
-          <Text style={styles.titleText}>{title}</Text>
+          <CommonText style={styles.titleText}>{title}</CommonText>
           <TouchableOpacity onPress={() => router.dismiss()}>
             <CommonIcon iconType="close" size={24} />
           </TouchableOpacity>
         </View>
         <View>
-          <Text style={styles.contentText}>{content}</Text>
+          <CommonText style={styles.contentText}>{content}</CommonText>
         </View>
         <View style={styles.flexDirectionRow}>
           {confirm && <CommonButton title={confirm} />}

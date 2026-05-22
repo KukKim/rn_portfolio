@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
-import { ProfileImage } from "../image";
+import { CommonText, ProfileImage } from "@/components";
+import { StyleSheet, View } from "react-native";
 import { ProfileCardProps } from "./types";
 
 const ProfileCard = ({
@@ -15,8 +15,8 @@ const ProfileCard = ({
       <View style={styles.innerProfileContainer}>
         <ProfileImage />
         <View>
-          <Text style={styles.nameText}>{name}</Text>
-          <Text style={styles.emailText}>{email}</Text>
+          <CommonText style={styles.nameText}>{name}</CommonText>
+          <CommonText style={styles.emailText}>{email}</CommonText>
         </View>
       </View>
     </View>
