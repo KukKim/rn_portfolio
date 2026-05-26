@@ -1,5 +1,5 @@
 import { CommonText } from "@/components";
-import { useAppTheme } from "@/src/styles/ThemeProvider";
+import { useAppTheme } from "@/src/hooks/theme";
 import { StyleSheet, View } from "react-native";
 import { CardProps } from "./types";
 

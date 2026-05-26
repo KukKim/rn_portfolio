@@ -1,4 +1,4 @@
-import { useAppTheme } from "@/src/styles/ThemeProvider";
+import { useAppTheme } from "@/src/hooks/theme";
 import { Stack } from "expo-router";
 
 export default function SettingsLayout() {

@@ -73,6 +73,7 @@ export default function SignUpModal() {
         name: name,
         imgUri: "imgUri",
         password: password,
+        accountType: "EMAIL",
       }).then((response) => {
         if (response?.success) {
           dispatch(updateUserInfo(response.data));

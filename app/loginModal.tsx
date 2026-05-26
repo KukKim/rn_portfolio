@@ -1,6 +1,7 @@
 import { CommonButton, CommonInput, CommonText } from "@/components";
 import SocialLoginButton from "@/components/button/socailLoginButton";
-import { requestSignin } from "@/src/features/auth";
+import { requestSignin, requestSignup } from "@/src/features/auth";
+import { addErrorLog } from "@/src/features/logging";
 import { useAppDispatch } from "@/src/hooks/redux";
 import { updateUserInfo } from "@/src/store/userInfoSlice";
 import { useRouter } from "expo-router";
@@ -17,7 +18,7 @@ export default function LoginModal() {
     requestSignin({ email, password })
       .then((response) => {
         if (response?.success) {
-          router.dismiss();
+          // router.dismiss();
           dispatch(
             updateUserInfo({
               ...response.data,
@@ -29,6 +30,26 @@ export default function LoginModal() {
       .catch(() => {
         Alert.alert("Login Failed", "Something wrong");
       });
+  };
+  const handleGuestLogin = () => {
+    requestSignup({
+      accountType: "GUEST",
+    }).then((response) => {
+      if (response?.success) {
+        // router.dismiss();
+        dispatch(updateUserInfo(response.data));
+      } else {
+        if (response?.status === 500) {
+          addErrorLog(
+            new Error(`Server error during signup: ${response.message}`),
+          );
+          Alert.alert("Signup Failed", "Something wrong.");
+        } else {
+          addErrorLog(new Error(`Server not respond`));
+          Alert.alert("Server not respond");
+        }
+      }
+    });
   };
 
   const showSignupModal = () => {
@@ -53,6 +74,7 @@ export default function LoginModal() {
         />
         <CommonButton title="Sign Up" onPress={showSignupModal} />
       </View>
+      <CommonButton title="Guest Login" onPress={handleGuestLogin} />
       <SocialLoginButton provider="apple" />
       <SocialLoginButton provider="facebook" />
       <SocialLoginButton provider="google" />

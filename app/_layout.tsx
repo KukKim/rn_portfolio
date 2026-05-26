@@ -1,5 +1,5 @@
+import { useAppTheme } from "@/src/hooks/theme";
 import store from "@/src/store";
-import { AppThemeProvider, useAppTheme } from "@/src/styles/ThemeProvider";
 import * as Sentry from "@sentry/react-native";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -20,9 +20,7 @@ export default Sentry.wrap(function RootLayout() {
   return (
     <Provider store={store.store}>
       <PersistGate loading={null} persistor={store.persistor}>
-        <AppThemeProvider>
-          <RouterLayout />
-        </AppThemeProvider>
+        <RouterLayout />
       </PersistGate>
     </Provider>
   );

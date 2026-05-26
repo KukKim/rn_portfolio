@@ -1,4 +1,4 @@
-import { useAppTheme } from "@/src/styles/ThemeProvider";
+import { useAppTheme } from "@/src/hooks/theme";
 import { Pressable, StyleSheet } from "react-native";
 import { CommonIcon } from "../icon";
 import { CheckBoxProps, checkType, iconSizeType, sizeType } from "./types";

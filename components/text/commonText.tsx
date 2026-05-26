@@ -1,4 +1,4 @@
-import { useAppTheme } from "@/src/styles/ThemeProvider";
+import { useAppTheme } from "@/src/hooks/theme";
 import { StyleSheet, Text } from "react-native";
 import { CommonTextProps, fontSizeType } from "./types";
 
@@ -6,6 +6,7 @@ const CommonText = ({
   type = "primary",
   size = "m",
   children,
+  style,
   ...props
 }: CommonTextProps) => {
   const { theme } = useAppTheme();
@@ -15,6 +16,7 @@ const CommonText = ({
         styles.innerText,
         fontSizeType[size],
         { color: theme.colors[type].textColor },
+        style,
       ]}
     >
       {children}

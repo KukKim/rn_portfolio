@@ -10,6 +10,7 @@ import { CommonInput } from "./input";
 import { CommonListView } from "./listView";
 import { CommonPopOver } from "./popover";
 import { CircleProgressBar, LineProgressBar } from "./progressBar";
+import ScreenContainer from "./screenContainer";
 import { CommonSkeleton } from "./skeleton";
 import { CommonSpinner } from "./spinner";
 import { CommonText } from "./text";
@@ -34,4 +35,5 @@ export {
   LineProgressBar,
   NumberBadge,
   ProfileImage,
+  ScreenContainer,
 };

@@ -1,10 +1,10 @@
-import { useAppTheme } from "@/src/styles/ThemeProvider";
+import { useAppTheme } from "@/src/hooks/theme";
 import { Icon, Label, NativeTabs } from "expo-router/unstable-native-tabs";
 
 export default function TabLayout() {
   const { theme } = useAppTheme();
   return (
-    <NativeTabs backgroundColor={theme.colors.backgroundColor}>
+    <NativeTabs>
       <NativeTabs.Trigger name="index">
         <Label>Home</Label>
         <Icon sf="house.fill" drawable="custom_android_drawable" />

@@ -1,7 +1,7 @@
 import { CommonIcon, CommonText } from "@/components";
-import { useAppTheme } from "@/src/styles/ThemeProvider";
+import { useAppTheme } from "@/src/hooks/theme";
 import { StyleSheet, TouchableOpacity } from "react-native";
-import { fontSizeType, SocialLoginButtonProps } from "./types";
+import { SocialLoginButtonProps } from "./types";
 
 const SocialLoginButton = ({
   type = "primary",
@@ -25,15 +25,7 @@ const SocialLoginButton = ({
       {...props}
     >
       <CommonIcon iconType={provider} size={24} color={"black"} />
-      <CommonText
-        style={[
-          styles.innerText,
-          fontSizeType[size],
-          disabled
-            ? { color: theme.colors[type].textColor }
-            : { color: theme.colors[type].textColor },
-        ]}
-      >
+      <CommonText style={{ color: theme.colors[type].innerComponentTextColor }}>
         {"Login with " + provider}
       </CommonText>
     </TouchableOpacity>
@@ -49,9 +41,6 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     gap: 10,
     alignItems: "center",
-  },
-  innerText: {
-    fontFamily: "Roboto",
   },
 });
 

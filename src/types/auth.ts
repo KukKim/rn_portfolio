@@ -1,8 +1,9 @@
 export interface Auth {
-  email: string;
+  accountType?: "GUEST" | "EMAIL";
+  email?: string;
   name?: string;
   imgUri?: string;
-  password: string;
+  password?: string;
   token?: string;
   loginDate?: Date;
 }

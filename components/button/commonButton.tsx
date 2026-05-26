@@ -1,5 +1,5 @@
 import { CommonText } from "@/components";
-import { useAppTheme } from "@/src/styles/ThemeProvider";
+import { useAppTheme } from "@/src/hooks/theme";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { CommonButtonProps, fontSizeType } from "./types";
 
@@ -24,13 +24,7 @@ const CommonButton = ({
       {...props}
     >
       <CommonText
-        style={[
-          styles.innerText,
-          fontSizeType[size],
-          disabled
-            ? { color: theme.colors[type].textColor }
-            : { color: theme.colors[type].textColor },
-        ]}
+        style={[fontSizeType[size], { color: theme.colors[type].textColor }]}
       >
         {title}
       </CommonText>
@@ -45,9 +39,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 3,
     borderWidth: 1,
-  },
-  innerText: {
-    fontFamily: "Roboto",
   },
 });
 

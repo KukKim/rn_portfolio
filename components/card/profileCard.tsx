@@ -1,4 +1,5 @@
 import { CommonText, ProfileImage } from "@/components";
+import { useAppTheme } from "@/src/hooks/theme";
 import { StyleSheet, View } from "react-native";
 import { ProfileCardProps } from "./types";
 
@@ -10,8 +11,14 @@ const ProfileCard = ({
   photoUri,
   ...props
 }: ProfileCardProps) => {
+  const { theme } = useAppTheme();
   return (
-    <View style={styles.profileContainer}>
+    <View
+      style={[
+        styles.profileContainer,
+        { borderColor: theme.colors.borderColor },
+      ]}
+    >
       <View style={styles.innerProfileContainer}>
         <ProfileImage />
         <View>

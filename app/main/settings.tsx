@@ -1,4 +1,4 @@
-import { CommonHeader, CommonText } from "@/components";
+import { CommonHeader, CommonText, ScreenContainer } from "@/components";
 import ProfileCard from "@/components/card/profileCard";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/redux";
 import { deleteUserInfo } from "@/src/store/userInfoSlice";
@@ -9,7 +9,6 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Settings() {
   const userInfo = useAppSelector((state) => state.userInfo);
@@ -49,7 +48,7 @@ export default function Settings() {
     );
   };
   return (
-    <SafeAreaView style={styles.container}>
+    <ScreenContainer>
       <CommonHeader leftTitle="Settings" />
       <TouchableOpacity
         onPress={() => router.navigate("/settings/updateUserInfo")}
@@ -65,14 +64,11 @@ export default function Settings() {
         data={settingItems}
         renderItem={settingItem}
       />
-    </SafeAreaView>
+    </ScreenContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   profileContainer: {
     borderWidth: 1,
     padding: 5,
