@@ -1,7 +1,7 @@
 import { CommonHeader } from "@/components";
 import { ScrollView, StyleSheet, View } from "react-native";
 
-export default function HomeScreen() {
+export default function MainScreen() {
   return (
     <ScrollView style={styles.scrollView}>
       <View
@@ -11,7 +11,7 @@ export default function HomeScreen() {
           alignItems: "center",
         }}
       >
-        <CommonHeader leftTitle="Home" />
+        <CommonHeader leftTitle="Main" />
       </View>
     </ScrollView>
   );

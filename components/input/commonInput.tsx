@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     // margin: 0,
     borderWidth: 1,
     borderRadius: 3,
+    backgroundColor: "#FFFFFF",
   },
   title: {
     fontFamily: "Roboto",

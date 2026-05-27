@@ -18,13 +18,16 @@ const CommonButton = ({
         style,
         styles.container,
         disabled
-          ? { borderColor: theme.colors[type].disabledComponentBackground }
-          : { borderColor: theme.colors[type].componentBackgroundColor },
+          ? { backgroundColor: theme.colors[type].disabledComponentBackground }
+          : { backgroundColor: theme.colors[type].componentBackgroundColor },
       ]}
       {...props}
     >
       <CommonText
-        style={[fontSizeType[size], { color: theme.colors[type].textColor }]}
+        style={[
+          fontSizeType[size],
+          { color: theme.colors[type].innerComponentTextColor },
+        ]}
       >
         {title}
       </CommonText>
@@ -38,7 +41,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 3,
-    borderWidth: 1,
   },
 });
 

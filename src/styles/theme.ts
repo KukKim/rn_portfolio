@@ -24,13 +24,13 @@ export const darkTheme = {
     backgroundColor: "#000000",
     borderColor: "#FFFFFF",
     primary: {
-      componentBackgroundColor: "#FFFFFF",
+      componentBackgroundColor: "#778899",
       disabledComponentBackground: "#FFFFFF",
       textColor: "#FFFFFF",
       innerComponentTextColor: "#000000",
     },
     secondary: {
-      componentBackgroundColor: "#FFFFFF",
+      componentBackgroundColor: "#4682b4",
       disabledComponentBackground: "#FFFFFF",
       textColor: "#FFFFFF",
       innerComponentTextColor: "#000000",

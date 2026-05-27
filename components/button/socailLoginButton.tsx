@@ -19,13 +19,19 @@ const SocialLoginButton = ({
         style,
         styles.container,
         disabled
-          ? { backgroundColor: theme.colors[type].disabledComponentBackground }
-          : { backgroundColor: theme.colors[type].componentBackgroundColor },
+          ? {
+              backgroundColor:
+                theme.colors["secondary"].disabledComponentBackground,
+            }
+          : {
+              backgroundColor:
+                theme.colors["secondary"].componentBackgroundColor,
+            },
       ]}
       {...props}
     >
       <CommonIcon iconType={provider} size={24} color={"black"} />
-      <CommonText style={{ color: theme.colors[type].innerComponentTextColor }}>
+      <CommonText style={{ color: theme.colors[type].textColor }}>
         {"Login with " + provider}
       </CommonText>
     </TouchableOpacity>

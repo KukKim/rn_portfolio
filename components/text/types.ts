@@ -4,9 +4,9 @@ type Variant = "primary" | "secondary";
 type SizeVariant = "s" | "m" | "l";
 
 export const fontSizeType: Record<SizeVariant, TextStyle> = {
-  s: { fontSize: 12 },
-  m: { fontSize: 16 },
-  l: { fontSize: 20 },
+  s: { fontSize: 12, fontWeight: "600" },
+  m: { fontSize: 24, fontWeight: "700" },
+  l: { fontSize: 36, fontWeight: "900" },
 };
 
 export interface CommonTextProps extends TextProps {
