@@ -1,5 +1,5 @@
-import { CommonText } from "@/components";
 import { StyleSheet, TextInput, View } from "react-native";
+import { CommonText } from "../text";
 import { InputProps, containerType, warningContainerType } from "./types";
 
 const CommonInput = ({ title, warningText, ...props }: InputProps) => {

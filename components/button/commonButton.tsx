@@ -1,6 +1,6 @@
-import { CommonText } from "@/components";
 import { useAppTheme } from "@/src/hooks/theme";
 import { StyleSheet, TouchableOpacity } from "react-native";
+import { CommonText } from "../text";
 import { CommonButtonProps, fontSizeType } from "./types";
 
 const CommonButton = ({

@@ -1,6 +1,7 @@
-import { CommonIcon, CommonText } from "@/components";
 import { useAppTheme } from "@/src/hooks/theme";
 import { StyleSheet, TouchableOpacity } from "react-native";
+import { CommonIcon } from "../icon";
+import { CommonText } from "../text";
 import { SocialLoginButtonProps } from "./types";
 
 const SocialLoginButton = ({

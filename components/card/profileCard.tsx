@@ -1,6 +1,7 @@
-import { CommonText, ProfileImage } from "@/components";
 import { useAppTheme } from "@/src/hooks/theme";
 import { StyleSheet, View } from "react-native";
+import { ProfileImage } from "../image";
+import { CommonText } from "../text";
 import { ProfileCardProps } from "./types";
 
 const ProfileCard = ({

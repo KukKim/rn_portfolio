@@ -1,6 +1,7 @@
-import { CommonIcon, CommonText } from "@/components";
 import { useRouter } from "expo-router";
 import { Pressable, StyleSheet, View } from "react-native";
+import { CommonIcon } from "../icon";
+import { CommonText } from "../text";
 import { HeaderProps } from "./types";
 
 const CommonHeader = ({

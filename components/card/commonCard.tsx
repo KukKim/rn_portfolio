@@ -1,6 +1,6 @@
-import { CommonText } from "@/components";
 import { useAppTheme } from "@/src/hooks/theme";
 import { StyleSheet, View } from "react-native";
+import { CommonText } from "../text";
 import { CardProps } from "./types";
 
 const CommonCard = ({
