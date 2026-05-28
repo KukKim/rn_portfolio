@@ -1,8 +1,6 @@
-import { useAppTheme } from "@/src/hooks/theme";
 import { Icon, Label, NativeTabs } from "expo-router/unstable-native-tabs";
 
 export default function TabLayout() {
-  const { theme } = useAppTheme();
   return (
     <NativeTabs>
       <NativeTabs.Trigger name="index">

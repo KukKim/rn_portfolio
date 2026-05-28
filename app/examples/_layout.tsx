@@ -13,6 +13,7 @@ export default function ExamplesLayout() {
     >
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="ui" options={{ headerShown: false }} />
+      <Stack.Screen name="list" options={{ headerShown: false }} />
       <Stack.Screen name="navigation" options={{ headerShown: false }} />
       <Stack.Screen name="animation" options={{ headerShown: false }} />
       <Stack.Screen name="video" options={{ headerShown: false }} />
