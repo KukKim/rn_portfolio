@@ -5,6 +5,7 @@ import { CommonTextProps, fontSizeType } from "./types";
 const CommonText = ({
   type = "primary",
   size = "m",
+  isInner,
   children,
   style,
   ...props
@@ -15,7 +16,11 @@ const CommonText = ({
       style={[
         styles.innerText,
         fontSizeType[size],
-        { color: theme.colors[type].textColor },
+        {
+          color: isInner
+            ? theme.colors[type].innerComponentTextColor
+            : theme.colors[type].textColor,
+        },
         style,
       ]}
     >

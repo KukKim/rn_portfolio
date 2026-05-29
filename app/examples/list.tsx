@@ -1,7 +1,9 @@
-import { CommonHeader, CommonListView } from "@/components";
+import { CommonHeader, CommonListView, CommonText } from "@/components";
+import { FoldableListItem } from "@/components/listItem";
+import { getCommonDateText } from "@/src/features/date";
 import { fetchFirestoreData } from "@/src/features/firebase";
 import { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function ListScreen() {
@@ -13,8 +15,18 @@ export default function ListScreen() {
     });
   }, []);
 
-  const renderItem = (item) => {
-    return <View></View>;
+  const renderItem = ({ item }: any) => {
+    const { description, name, startDt, endDt } = item;
+    return (
+      <FoldableListItem title={name}>
+        <CommonText size={"s"} isInner={true}>
+          {description}
+        </CommonText>
+        <CommonText size={"s"} isInner={true}>
+          {getCommonDateText(startDt) + "~" + getCommonDateText(endDt)}
+        </CommonText>
+      </FoldableListItem>
+    );
   };
 
   return (

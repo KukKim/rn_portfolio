@@ -23,12 +23,7 @@ const CommonButton = ({
       ]}
       {...props}
     >
-      <CommonText
-        style={[
-          fontSizeType[size],
-          { color: theme.colors[type].innerComponentTextColor },
-        ]}
-      >
+      <CommonText style={[fontSizeType[size]]} isInner={true}>
         {title}
       </CommonText>
     </TouchableOpacity>

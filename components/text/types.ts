@@ -12,4 +12,5 @@ export const fontSizeType: Record<SizeVariant, TextStyle> = {
 export interface CommonTextProps extends TextProps {
   type?: Variant;
   size?: SizeVariant;
+  isInner?: boolean;
 }
