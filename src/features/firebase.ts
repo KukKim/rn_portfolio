@@ -1,11 +1,26 @@
+import { Project } from "../types/project";
+
 import { initializeApp } from "firebase/app";
 
 // Optionally import the services that you want to use
 // import {...} from 'firebase/auth';
 // import {...} from 'firebase/database';
-import { collection, getDocs, getFirestore } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  Timestamp,
+} from "firebase/firestore";
 // import {...} from 'firebase/functions';
 // import {...} from 'firebase/storage';
+
+export interface FirestoreProject {
+  name: string;
+  description: string;
+  techStack: string[];
+  startDt: Timestamp;
+  endDt: Timestamp;
+}
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -25,5 +40,15 @@ const db = getFirestore(app);
 
 export const fetchFirestoreData = async () => {
   const querySnapshot = await getDocs(collection(db, "projects"));
-  return querySnapshot.docs.map((doc) => doc.data());
+  return querySnapshot.docs.map((doc) =>
+    toProject(doc.data() as FirestoreProject),
+  );
+};
+
+export const toProject = (data: FirestoreProject): Project => {
+  return {
+    ...data,
+    startDt: data.startDt.toDate(),
+    endDt: data.endDt.toDate(),
+  };
 };

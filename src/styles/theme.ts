@@ -2,6 +2,7 @@ export const lightTheme = {
   mode: "light",
   colors: {
     backgroundColor: "#FFFFFF",
+    whiteColor: "#FFFFFF",
     borderColor: "#000000",
     primary: {
       componentBackgroundColor: "#333CCC",
@@ -22,6 +23,7 @@ export const darkTheme = {
   mode: "dark",
   colors: {
     backgroundColor: "#000000",
+    whiteColor: "#FFFFFF",
     borderColor: "#FFFFFF",
     primary: {
       componentBackgroundColor: "#778899",

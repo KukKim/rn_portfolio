@@ -25,7 +25,7 @@ const CommonInput = ({ title, warningText, ...props }: InputProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
+    flex: 1,
     padding: 5,
   },
   textInput: {

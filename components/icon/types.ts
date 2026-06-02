@@ -19,7 +19,11 @@ export interface IconProps extends ViewProps {
     | "apple"
     | "facebook"
     | "google"
-    | "close";
+    | "close"
+    | "tune"
+    | "star_empty"
+    | "star_half"
+    | "star_full";
   type?: Variant;
   // size?: SizeVariant;
   size?: number;

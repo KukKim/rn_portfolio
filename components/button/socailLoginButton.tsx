@@ -1,5 +1,5 @@
 import { useAppTheme } from "@/src/hooks/theme";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import { CommonIcon } from "../icon";
 import { CommonText } from "../text";
 import { SocialLoginButtonProps } from "./types";
@@ -15,7 +15,7 @@ const SocialLoginButton = ({
   const { theme } = useAppTheme();
 
   return (
-    <TouchableOpacity
+    <Pressable
       style={[
         style,
         styles.container,
@@ -35,7 +35,7 @@ const SocialLoginButton = ({
       <CommonText style={{ color: theme.colors[type].textColor }}>
         {"Login with " + provider}
       </CommonText>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

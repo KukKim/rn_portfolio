@@ -2,6 +2,7 @@ import { useAppTheme } from "@/src/hooks/theme";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
 import Feather from "@expo/vector-icons/Feather";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { StyleSheet, View } from "react-native";
 import { IconProps } from "./types";
 
@@ -67,6 +68,14 @@ const CommonIcon = ({
       );
     } else if (iconType === "close") {
       return <Feather name="x" size={size} color={theme.colors.borderColor} />;
+    } else if (iconType === "tune") {
+      return <MaterialIcons name="tune" size={24} color="black" />;
+    } else if (iconType === "star_empty") {
+      return <FontAwesome name="star-o" size={24} color="black" />;
+    } else if (iconType === "star_half") {
+      return <FontAwesome name="star-half-empty" size={24} color="black" />;
+    } else if (iconType === "star_full") {
+      return <FontAwesome name="star" size={24} color="black" />;
     }
   };
   return (

@@ -3,6 +3,7 @@ import store from "@/src/store";
 import * as Sentry from "@sentry/react-native";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Toast from "react-native-toast-message";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -29,7 +30,7 @@ export default Sentry.wrap(function RootLayout() {
 const RouterLayout = () => {
   const { theme } = useAppTheme();
   return (
-    <>
+    <GestureHandlerRootView>
       <Stack
         screenOptions={{
           contentStyle: {
@@ -66,6 +67,6 @@ const RouterLayout = () => {
         />
       </Stack>
       <Toast />
-    </>
+    </GestureHandlerRootView>
   );
 };

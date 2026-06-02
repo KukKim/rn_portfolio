@@ -1,16 +1,16 @@
 import { useAppTheme } from "@/src/hooks/theme";
 import { Pressable, StyleSheet } from "react-native";
-import { CommonText } from "../text";
-import { CommonButtonProps, fontSizeType } from "./types";
+import { CommonIcon } from "../icon";
+import { IconButtonProps } from "./types";
 
-const CommonButton = ({
-  title,
+const IconButton = ({
   type = "primary",
   size = "m",
   style,
   disabled,
+  iconType,
   ...props
-}: CommonButtonProps) => {
+}: IconButtonProps) => {
   const { theme } = useAppTheme();
   return (
     <Pressable
@@ -23,9 +23,11 @@ const CommonButton = ({
       ]}
       {...props}
     >
-      <CommonText style={[fontSizeType[size]]} isInner={true}>
-        {title}
-      </CommonText>
+      <CommonIcon
+        iconType={iconType}
+        color={theme.colors[type].innerComponentTextColor}
+        size={24}
+      />
     </Pressable>
   );
 };
@@ -39,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CommonButton;
+export default IconButton;
