@@ -31,7 +31,7 @@ const NumberBadge = ({
         style={[
           styles.innerText,
           fontSizeType[size],
-          { color: theme.colors[type].textColor },
+          { color: theme.colors[type].innerComponentTextColor },
         ]}
       >
         {maxNumber && number > maxNumber ? maxNumber + "++" : number}

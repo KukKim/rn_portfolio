@@ -3,7 +3,7 @@ import { Image, StyleSheet } from "react-native";
 import { CommonSkeleton } from "../skeleton";
 import { CommonImageProps, sizeType } from "./types";
 
-const CommonImage = ({
+const Avatar = ({
   type = "primary",
   size = "m",
   ...props
@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
     margin: 5,
     padding: 5,
     borderWidth: 1,
+    borderRadius: 3,
   },
 });
 
-export default CommonImage;
+export default Avatar;

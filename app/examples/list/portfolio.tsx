@@ -42,6 +42,14 @@ export default function PortfolioListScreen() {
     );
   };
 
+  const fetchMore = () => {
+    if (listLoading) return;
+    setListLoading(true);
+    setTimeout(() => {
+      setListLoading(false);
+    }, 1000);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <CommonHeader leftTitle="List" backable />
@@ -66,13 +74,14 @@ export default function PortfolioListScreen() {
         refreshing={listLoading}
         data={projectItems}
         renderItem={renderItem}
-        ListEmptyComponent={
+        ListFooterComponent={
           listLoading ? (
             <CommonSpinner />
-          ) : (
+          ) : projectItems.length === 0 ? (
             <CommonText>데이터가 없습니다.</CommonText>
-          )
+          ) : null
         }
+        onEndReached={fetchMore}
       />
     </SafeAreaView>
   );

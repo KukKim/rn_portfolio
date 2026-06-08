@@ -21,14 +21,24 @@ const CommonCard = ({
             },
           ]}
         >
-          <CommonText style={styles.titleText}>{title}</CommonText>
+          <CommonText
+            style={[
+              styles.titleText,
+              {
+                color: theme.colors[type].innerComponentTextColor,
+              },
+            ]}
+          >
+            {title}
+          </CommonText>
         </View>
       )}
       <View
         style={[
           styles.contentContainer,
           {
-            backgroundColor: theme.colors[type].componentBackgroundColor,
+            borderWidth: 2,
+            borderColor: theme.colors[type].componentBackgroundColor,
           },
         ]}
       >
@@ -55,7 +65,6 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     borderRadius: 5,
-    // flexDirection: "row",
     padding: 10,
   },
 });

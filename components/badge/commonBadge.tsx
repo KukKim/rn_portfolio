@@ -4,7 +4,6 @@ import { CommonText } from "../text";
 import { CommonBadgeProps, fontSizeType, sizeType } from "./types";
 
 const CommonBadge = ({
-  children,
   type = "primary",
   size = "m",
   typeText,
@@ -25,7 +24,7 @@ const CommonBadge = ({
           style={[
             styles.innerText,
             fontSizeType[size],
-            { color: theme.colors[type].textColor },
+            { color: theme.colors[type].innerComponentTextColor },
           ]}
         >
           {typeText}

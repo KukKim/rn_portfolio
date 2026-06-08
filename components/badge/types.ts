@@ -4,15 +4,15 @@ type Variant = "primary" | "secondary";
 type SizeVariant = "s" | "m" | "l";
 
 export const sizeType: Record<SizeVariant, ViewStyle> = {
-  s: { width: 16, height: 16 },
-  m: { width: 20, height: 20 },
-  l: { width: 24, height: 24 },
+  s: { width: 16, height: 16, borderRadius: 8 },
+  m: { width: 20, height: 20, borderRadius: 10 },
+  l: { width: 24, height: 24, borderRadius: 12 },
 };
 
 export const expandedSizeType: Record<SizeVariant, ViewStyle> = {
-  s: { width: 28, height: 16 },
-  m: { width: 32, height: 20 },
-  l: { width: 36, height: 24 },
+  s: { width: 32, height: 16 },
+  m: { width: 36, height: 20 },
+  l: { width: 40, height: 24 },
 };
 
 export const fontSizeType: Record<SizeVariant, TextStyle> = {

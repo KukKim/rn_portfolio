@@ -2,7 +2,6 @@ import { CommonAlert } from "./alert";
 import { CommonBadge, NumberBadge } from "./badge";
 import { Checkbox, CommonButton, IconButton } from "./button";
 import { CommonCard } from "./card";
-import { CommonCheckBox } from "./checkBox";
 import { CommonHeader } from "./header";
 import { CommonIcon } from "./icon";
 import { CommonImage, ProfileImage } from "./image";
@@ -12,9 +11,11 @@ import { CommonPopOver } from "./popover";
 import { CircleProgressBar, LineProgressBar } from "./progressBar";
 import CommonRating from "./rating";
 import ScreenContainer from "./screenContainer";
+import CommonSelect from "./select/commonSelect";
 import { CommonSkeleton } from "./skeleton";
 import { CommonSlider } from "./slider";
 import { CommonSpinner } from "./spinner";
+import { CommonSwitch } from "./switch";
 import { CommonText } from "./text";
 import { CommonToggle } from "./toggle";
 export {
@@ -24,7 +25,6 @@ export {
   CommonBadge,
   CommonButton,
   CommonCard,
-  CommonCheckBox,
   CommonHeader,
   CommonIcon,
   CommonImage,
@@ -32,9 +32,11 @@ export {
   CommonListView,
   CommonPopOver,
   CommonRating,
+  CommonSelect,
   CommonSkeleton,
   CommonSlider,
   CommonSpinner,
+  CommonSwitch,
   CommonText,
   CommonToggle,
   IconButton,

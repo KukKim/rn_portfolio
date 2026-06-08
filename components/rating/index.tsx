@@ -1,22 +1,18 @@
+import { useAppTheme } from "@/src/hooks/theme";
 import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { CommonIcon } from "../icon";
-
-export interface RatingProps {
-  value: number;
-  onChange?: (rating: number) => void;
-  editable?: boolean;
-  size?: number;
-  maxRating?: number;
-}
+import { RatingProps } from "./types";
 
 const CommonRating = ({
+  type = "primary",
   value,
   onChange,
   editable = false,
   size = 24,
   maxRating = 5,
 }: RatingProps) => {
+  const { theme } = useAppTheme();
   const renderStar = (index: number) => {
     const starNumber = index + 1;
 
@@ -31,7 +27,11 @@ const CommonRating = ({
     if (!editable) {
       return (
         <View key={index}>
-          <CommonIcon iconType={iconType} size={size} />
+          <CommonIcon
+            iconType={iconType}
+            size={size}
+            color={theme.colors[type].componentBackgroundColor}
+          />
         </View>
       );
     }
@@ -47,7 +47,11 @@ const CommonRating = ({
           alignItems: "center",
         }}
       >
-        <CommonIcon iconType={iconType} size={size} />
+        <CommonIcon
+          iconType={iconType}
+          size={size}
+          color={theme.colors[type].componentBackgroundColor}
+        />
 
         {/* 왼쪽 절반 */}
         <Pressable

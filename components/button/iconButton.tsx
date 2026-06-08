@@ -15,7 +15,6 @@ const IconButton = ({
   return (
     <Pressable
       style={[
-        style,
         styles.container,
         disabled
           ? { backgroundColor: theme.colors[type].disabledComponentBackground }

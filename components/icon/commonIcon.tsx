@@ -69,13 +69,21 @@ const CommonIcon = ({
     } else if (iconType === "close") {
       return <Feather name="x" size={size} color={theme.colors.borderColor} />;
     } else if (iconType === "tune") {
-      return <MaterialIcons name="tune" size={24} color="black" />;
+      return (
+        <MaterialIcons
+          name="tune"
+          size={size}
+          color={theme.colors.borderColor}
+        />
+      );
     } else if (iconType === "star_empty") {
-      return <FontAwesome name="star-o" size={24} color="black" />;
+      return <FontAwesome name="star-o" size={size} color={color} />;
     } else if (iconType === "star_half") {
-      return <FontAwesome name="star-half-empty" size={24} color="black" />;
+      return <FontAwesome name="star-half-empty" size={size} color={color} />;
     } else if (iconType === "star_full") {
-      return <FontAwesome name="star" size={24} color="black" />;
+      return <FontAwesome name="star" size={size} color={color} />;
+    } else if (iconType === "down") {
+      return <Feather name="chevron-down" size={size} color={color} />;
     }
   };
   return (

@@ -3,11 +3,11 @@ import { TextInputProps, TextStyle, ViewStyle } from "react-native";
 type Variant = "primary" | "secondary";
 type SizeVariant = "s" | "m" | "l";
 
-export const containerType: Record<Variant, ViewStyle> = {
+export const containerType: Record<Variant, TextStyle> = {
   primary: { borderColor: "#333CCC" },
   secondary: { borderColor: "0088FF" },
 };
-export const warningContainerType: Record<Variant, ViewStyle> = {
+export const warningContainerType: Record<Variant, TextStyle> = {
   primary: { borderColor: "#EE0000" },
   secondary: { borderColor: "#64748b" },
 };

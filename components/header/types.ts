@@ -1,4 +1,4 @@
-import React from "react";
+import { ReactNode } from "react";
 import { TextStyle, ViewProps, ViewStyle } from "react-native";
 
 type Variant = "primary" | "secondary";
@@ -19,9 +19,9 @@ export const fontSizeType: Record<SizeVariant, TextStyle> = {
 export interface HeaderProps extends ViewProps {
   type?: Variant;
   size?: SizeVariant;
-  leftComponent?: typeof React.Component;
+  leftComponent?: ReactNode;
   leftTitle?: string;
-  rightCompnent?: typeof React.Component;
+  rightCompnent?: ReactNode;
   rightTitle?: string;
   backable?: boolean;
 }

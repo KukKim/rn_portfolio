@@ -5,6 +5,7 @@ import { CommonIcon } from "../icon";
 import { CommonText } from "../text";
 import { CheckboxGroupProps, CheckboxProps } from "./types";
 
+//TODO: Checkbox sizeType 적용필요
 type CheckboxGroupContextValue = {
   selectedValues: string[];
   toggleValue: (value: string) => void;
@@ -15,7 +16,6 @@ const CheckboxGroupContext = createContext<CheckboxGroupContextValue | null>(
 
 const CheckboxBase = ({
   type = "primary",
-  size = "m",
   value,
   checked,
   defaultChecked = false,
