@@ -10,7 +10,7 @@ import { CommonListView } from "./listView";
 import { CommonPopOver } from "./popover";
 import { CircleProgressBar, LineProgressBar } from "./progressBar";
 import CommonRating from "./rating";
-import ScreenContainer from "./screenContainer";
+import { SafeAreaContainer, ScrollViewContainer } from "./screenContainer";
 import CommonSelect from "./select/commonSelect";
 import { CommonSkeleton } from "./skeleton";
 import { CommonSlider } from "./slider";
@@ -43,5 +43,6 @@ export {
   LineProgressBar,
   NumberBadge,
   ProfileImage,
-  ScreenContainer,
+  SafeAreaContainer,
+  ScrollViewContainer,
 };

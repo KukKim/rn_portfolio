@@ -2,7 +2,7 @@ import { useAppTheme } from "@/src/hooks/theme";
 import { StyleSheet, ViewProps } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const ScreenContainer = ({ children }: ViewProps) => {
+const SafeAreaContainer = ({ children }: ViewProps) => {
   const { theme } = useAppTheme();
   return (
     <SafeAreaView
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ScreenContainer;
+export default SafeAreaContainer;

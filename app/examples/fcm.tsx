@@ -1,18 +1,13 @@
-import { CommonButton, CommonHeader } from "@/components";
+import { CommonButton, CommonHeader, SafeAreaContainer } from "@/components";
 import { StyleSheet } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function FcmScreen() {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaContainer>
       <CommonHeader leftTitle="Fcm" backable />
       <CommonButton title="Send Notification" />
-    </SafeAreaView>
+    </SafeAreaContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+const styles = StyleSheet.create({});

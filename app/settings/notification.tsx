@@ -1,18 +1,13 @@
-import { CommonHeader, CommonText } from "@/components";
+import { CommonHeader, CommonText, SafeAreaContainer } from "@/components";
 import { StyleSheet } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function NotificationScreen() {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaContainer>
       <CommonHeader leftTitle="Notification" backable />
       <CommonText>Notification</CommonText>
-    </SafeAreaView>
+    </SafeAreaContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+const styles = StyleSheet.create({});

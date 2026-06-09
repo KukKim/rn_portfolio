@@ -1,4 +1,4 @@
-import { CommonHeader, CommonText, ScreenContainer } from "@/components";
+import { CommonHeader, CommonText, SafeAreaContainer } from "@/components";
 import ProfileCard from "@/components/card/profileCard";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/redux";
 import { deleteUserInfo } from "@/src/store/userInfoSlice";
@@ -48,7 +48,7 @@ export default function Settings() {
     );
   };
   return (
-    <ScreenContainer>
+    <SafeAreaContainer>
       <CommonHeader leftTitle="Settings" />
       <TouchableOpacity
         onPress={() => router.navigate("/settings/updateUserInfo")}
@@ -64,7 +64,7 @@ export default function Settings() {
         data={settingItems}
         renderItem={settingItem}
       />
-    </ScreenContainer>
+    </SafeAreaContainer>
   );
 }
 

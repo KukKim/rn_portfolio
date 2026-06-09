@@ -1,11 +1,11 @@
-import { CommonButton, CommonHeader, ScreenContainer } from "@/components";
+import { CommonButton, CommonHeader, SafeAreaContainer } from "@/components";
 import { useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
 
 export default function Index() {
   const router = useRouter();
   return (
-    <ScreenContainer>
+    <SafeAreaContainer>
       <CommonHeader leftTitle="Home" />
       <CommonButton
         title={"navigation"}
@@ -35,7 +35,7 @@ export default function Index() {
         title={"fcm"}
         onPress={() => router.navigate("/examples/fcm")}
       />
-    </ScreenContainer>
+    </SafeAreaContainer>
   );
 }
 

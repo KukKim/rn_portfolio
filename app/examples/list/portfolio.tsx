@@ -5,6 +5,7 @@ import {
   CommonSpinner,
   CommonText,
   IconButton,
+  SafeAreaContainer,
 } from "@/components";
 import { FoldableListItem } from "@/components/listItem";
 import { getCommonDateText } from "@/src/features/date";
@@ -12,7 +13,6 @@ import { fetchFirestoreData } from "@/src/features/firebase";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function PortfolioListScreen() {
   const router = useRouter();
@@ -51,7 +51,7 @@ export default function PortfolioListScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaContainer>
       <CommonHeader leftTitle="List" backable />
       <View
         style={{
@@ -83,12 +83,8 @@ export default function PortfolioListScreen() {
         }
         onEndReached={fetchMore}
       />
-    </SafeAreaView>
+    </SafeAreaContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+const styles = StyleSheet.create({});

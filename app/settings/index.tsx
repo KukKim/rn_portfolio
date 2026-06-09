@@ -1,19 +1,15 @@
-import { CommonText } from "@/components";
+import { CommonText, SafeAreaContainer } from "@/components";
 import { StyleSheet } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Settings() {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaContainer style={styles.container}>
       <CommonText>Setting</CommonText>
-    </SafeAreaView>
+    </SafeAreaContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   settingList: {
     flex: 1,
   },

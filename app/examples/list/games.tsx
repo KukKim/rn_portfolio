@@ -1,20 +1,19 @@
 import {
-  CommonButton,
+  CommonBadge,
   CommonHeader,
   CommonImage,
   CommonInput,
   CommonListView,
-  CommonRating,
   CommonSpinner,
   CommonText,
   IconButton,
+  SafeAreaContainer,
 } from "@/components";
 import { FoldableListItem } from "@/components/listItem";
 import { getCommonDateText } from "@/src/features/date";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View } from "react-native";
 
 export default function GamesListScreen() {
   const router = useRouter();
@@ -46,36 +45,20 @@ export default function GamesListScreen() {
       });
   };
 
-  const fetchGamesAgeRatings = async () => {
-    return fetch(`http://127.0.0.1:3000/getgamesageratings`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        return json?.data;
-      })
-      .catch((error) => {
-        throw error;
-      });
-  };
-
   const renderItem = ({ item }: any) => {
     const {
       name,
       cover,
-      url,
+      // url,
       summary,
       created_at,
       updated_at,
-      age_rating,
+      // age_rating,
       genres,
-      involved_companies,
-      release_dates,
+      // involved_companies,
+      // release_dates,
       screenshots,
-      tags,
+      // tags,
     } = item;
     return (
       <FoldableListItem title={name}>
@@ -85,6 +68,16 @@ export default function GamesListScreen() {
           }}
           size="l"
         />
+        <View
+          style={{
+            gap: 2,
+            flexDirection: "row",
+          }}
+        >
+          {genres?.map(({ name, id }) => {
+            return <CommonBadge key={id} typeText={name} type="secondary" />;
+          })}
+        </View>
         <CommonText size={"s"} isInner={true}>
           {summary}
         </CommonText>
@@ -100,16 +93,14 @@ export default function GamesListScreen() {
           <CommonText size={"s"} isInner={true}>
             {getCommonDateText(new Date(updated_at * 1000))}
           </CommonText>
-          <CommonRating value={age_rating} />
         </View>
       </FoldableListItem>
     );
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaContainer>
       <CommonHeader leftTitle="Games" backable />
-      <CommonButton onPress={fetchGamesAgeRatings} title="test" />
       <View
         style={{
           flexDirection: "row",
@@ -139,12 +130,6 @@ export default function GamesListScreen() {
           )
         }
       />
-    </SafeAreaView>
+    </SafeAreaContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

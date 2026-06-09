@@ -1,13 +1,12 @@
-import { CommonHeader, CommonText } from "@/components";
+import { CommonHeader, CommonText, SafeAreaContainer } from "@/components";
 import { StyleSheet } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function LanguageScreen() {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaContainer>
       <CommonHeader leftTitle="Language" backable />
       <CommonText>Language</CommonText>
-    </SafeAreaView>
+    </SafeAreaContainer>
   );
 }
 
