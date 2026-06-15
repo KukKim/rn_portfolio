@@ -1,12 +1,48 @@
 import { useAppTheme } from "@/src/hooks/theme";
 import store from "@/src/store";
 import * as Sentry from "@sentry/react-native";
+import {
+  QueryClient,
+  QueryClientProvider,
+  onlineManager,
+} from "@tanstack/react-query";
+import * as Network from "expo-network";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Toast from "react-native-toast-message";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      staleTime: 1000 * 60 * 5, // 5분
+    },
+  },
+});
+
+onlineManager.setEventListener((setOnline) => {
+  let initialised = false;
+
+  const eventSubscription = Network.addNetworkStateListener((state) => {
+    initialised = true;
+    setOnline(!!state.isConnected);
+  });
+
+  Network.getNetworkStateAsync()
+    .then((state) => {
+      if (!initialised) {
+        setOnline(!!state.isConnected);
+      }
+    })
+    .catch(() => {
+      // getNetworkStateAsync can reject on some platforms/SDK versions
+    });
+
+  return eventSubscription.remove;
+});
 
 // Set the animation options. This is optional.
 SplashScreen.setOptions({
@@ -19,11 +55,13 @@ SplashScreen.setOptions({
 
 export default Sentry.wrap(function RootLayout() {
   return (
-    <Provider store={store.store}>
-      <PersistGate loading={null} persistor={store.persistor}>
-        <RouterLayout />
-      </PersistGate>
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store.store}>
+        <PersistGate loading={null} persistor={store.persistor}>
+          <RouterLayout />
+        </PersistGate>
+      </Provider>
+    </QueryClientProvider>
   );
 });
 

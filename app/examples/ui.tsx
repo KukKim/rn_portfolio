@@ -18,6 +18,7 @@ import {
   ScrollViewContainer,
 } from "@/components";
 import { useState } from "react";
+import { StyleSheet } from "react-native";
 
 export default function UIScreen() {
   const [ratingValue, setRatingValue] = useState(3);
@@ -25,7 +26,7 @@ export default function UIScreen() {
   const [inputValue, setInputValue] = useState("");
   const [showPopOver, setShowPopOver] = useState(false);
   return (
-    <ScrollViewContainer style={styles.container}>
+    <ScrollViewContainer>
       <CommonHeader leftTitle="UI" backable />
       <CommonCard title={"Badge"}>
         <CommonBadge typeText="1" size={"s"} />
@@ -81,3 +82,5 @@ export default function UIScreen() {
     </ScrollViewContainer>
   );
 }
+
+const styles = StyleSheet.create({});

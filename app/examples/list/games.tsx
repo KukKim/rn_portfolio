@@ -11,39 +11,15 @@ import {
 } from "@/components";
 import { FoldableListItem } from "@/components/listItem";
 import { getCommonDateText } from "@/src/features/date";
+import { useGames } from "@/src/hooks/fetch";
 import { useRouter } from "expo-router";
-import { useEffect, useState } from "react";
-import { View } from "react-native";
+import { useState } from "react";
+import { StyleSheet, View } from "react-native";
 
 export default function GamesListScreen() {
   const router = useRouter();
-  const [gameItems, setGameitems] = useState<any[]>([]);
+  const { data: games, isLoading, isError, refetch } = useGames();
   const [searchText, setSearchText] = useState<string>("");
-  const [listLoading, setListLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    setListLoading(true);
-    fetchGames().then((items) => {
-      setGameitems(items);
-      setListLoading(false);
-    });
-  }, []);
-
-  const fetchGames = async () => {
-    return fetch(`http://127.0.0.1:3000/getgames`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        return json?.data;
-      })
-      .catch((error) => {
-        throw error;
-      });
-  };
 
   const renderItem = ({ item }: any) => {
     const {
@@ -53,6 +29,7 @@ export default function GamesListScreen() {
       summary,
       created_at,
       updated_at,
+      platforms,
       // age_rating,
       genres,
       // involved_companies,
@@ -60,6 +37,7 @@ export default function GamesListScreen() {
       screenshots,
       // tags,
     } = item;
+
     return (
       <FoldableListItem title={name}>
         <CommonImage
@@ -70,11 +48,23 @@ export default function GamesListScreen() {
         />
         <View
           style={{
-            gap: 2,
+            marginVertical: 4,
+            gap: 4,
             flexDirection: "row",
           }}
         >
           {genres?.map(({ name, id }) => {
+            return <CommonBadge key={id} typeText={name} type="secondary" />;
+          })}
+        </View>
+        <View
+          style={{
+            marginVertical: 4,
+            gap: 2,
+            flexDirection: "row",
+          }}
+        >
+          {platforms?.map(({ name, id }) => {
             return <CommonBadge key={id} typeText={name} type="secondary" />;
           })}
         </View>
@@ -83,6 +73,7 @@ export default function GamesListScreen() {
         </CommonText>
         <View
           style={{
+            marginVertical: 4,
             flexDirection: "row",
             justifyContent: "space-between",
           }}
@@ -101,12 +92,7 @@ export default function GamesListScreen() {
   return (
     <SafeAreaContainer>
       <CommonHeader leftTitle="Games" backable />
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
+      <View style={styles.flexDirectionRow}>
         <CommonInput value={searchText} onChangeText={setSearchText} />
         <IconButton
           iconType={"tune"}
@@ -119,11 +105,11 @@ export default function GamesListScreen() {
         />
       </View>
       <CommonListView
-        refreshing={listLoading}
-        data={gameItems}
+        refreshing={isLoading}
+        data={games}
         renderItem={renderItem}
         ListEmptyComponent={
-          listLoading ? (
+          isLoading ? (
             <CommonSpinner />
           ) : (
             <CommonText>데이터가 없습니다.</CommonText>
@@ -133,3 +119,10 @@ export default function GamesListScreen() {
     </SafeAreaContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  flexDirectionRow: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+});

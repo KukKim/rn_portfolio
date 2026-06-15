@@ -4,9 +4,9 @@ type Variant = "primary" | "secondary";
 type SizeVariant = "s" | "m" | "l";
 
 export const sizeType: Record<SizeVariant, ViewStyle> = {
-  s: { minWidth: 16, height: 16, borderRadius: 8 },
-  m: { minWidth: 20, height: 20, borderRadius: 10 },
-  l: { minWidth: 24, height: 24, borderRadius: 12 },
+  s: { minWidth: 18, height: 18, borderRadius: 8, padding: 4 },
+  m: { minWidth: 20, height: 20, borderRadius: 10, padding: 4 },
+  l: { minWidth: 22, height: 22, borderRadius: 12, padding: 4 },
 };
 
 export const expandedSizeType: Record<SizeVariant, ViewStyle> = {
