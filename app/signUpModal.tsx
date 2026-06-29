@@ -1,10 +1,10 @@
 // TODO : 모달에서 FlatList가 들어가지 않음(absolute로 잡힘) IOS.
 
-import { CommonButton, CommonInput, CommonText } from "@/components";
 import { requestSignup } from "@/src/features/auth";
 import { addErrorLog } from "@/src/features/logging";
 import { useAppDispatch } from "@/src/hooks/redux";
 import { updateUserInfo } from "@/src/store/userInfoSlice";
+import { CommonInput, CommonText, TextButton } from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
@@ -152,7 +152,7 @@ export default function SignUpModal() {
         horizontal={true}
       /> */}
       <View style={{ flexDirection: "row" }}>
-        <CommonButton
+        <TextButton
           title="Sign Up"
           disabled={!email || !name || !password || password !== rePassword}
           onPress={handleSignup}

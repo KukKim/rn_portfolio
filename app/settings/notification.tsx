@@ -1,10 +1,22 @@
-import { CommonHeader, CommonText, SafeAreaContainer } from "@/components";
+import { useNavigation } from "@/src/hooks/navigation";
+import {
+  CommonHeader,
+  CommonText,
+  SafeAreaContainer,
+} from "@kukkim/react-native-ui";
 import { StyleSheet } from "react-native";
 
 export default function NotificationScreen() {
+  const { back } = useNavigation();
   return (
     <SafeAreaContainer>
-      <CommonHeader leftTitle="Notification" backable />
+      <CommonHeader
+        left={{
+          title: "Notification",
+          icon: "back",
+          onPress: back,
+        }}
+      />
       <CommonText>Notification</CommonText>
     </SafeAreaContainer>
   );

@@ -1,3 +1,3 @@
-import CommonCard from "./commonCard";
+import ProfileCard from "./profileCard";
 
-export { CommonCard };
+export { ProfileCard };

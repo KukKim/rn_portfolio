@@ -15,6 +15,7 @@ import {
 // import {...} from 'firebase/storage';
 
 export interface FirestoreProject {
+  id: string;
   name: string;
   description: string;
   techStack: string[];

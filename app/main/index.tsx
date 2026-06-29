@@ -1,4 +1,8 @@
-import { CommonButton, CommonHeader, SafeAreaContainer } from "@/components";
+import {
+  CommonHeader,
+  SafeAreaContainer,
+  TextButton,
+} from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
 
@@ -6,32 +10,36 @@ export default function Index() {
   const router = useRouter();
   return (
     <SafeAreaContainer>
-      <CommonHeader leftTitle="Home" />
-      <CommonButton
+      <CommonHeader
+        left={{
+          title: "Home",
+        }}
+      />
+      <TextButton
         title={"navigation"}
         onPress={() => router.navigate("/examples/navigation")}
       />
-      <CommonButton
+      <TextButton
         title={"ui"}
         onPress={() => router.navigate("/examples/ui")}
       />
-      <CommonButton
+      <TextButton
         title={"List"}
         onPress={() => router.navigate("/examples/list")}
       />
-      <CommonButton
+      <TextButton
         title={"default animation"}
         onPress={() => router.navigate("/examples/animation")}
       />
-      <CommonButton
+      <TextButton
         title={"video"}
         onPress={() => router.navigate("/examples/video")}
       />
-      <CommonButton
+      <TextButton
         title={"image"}
         onPress={() => router.navigate("/examples/image")}
       />
-      <CommonButton
+      <TextButton
         title={"fcm"}
         onPress={() => router.navigate("/examples/fcm")}
       />

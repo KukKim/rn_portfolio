@@ -1,4 +1,4 @@
-import { Checkbox, CommonSlider, CommonText } from "@/components";
+import { Checkbox, CommonSlider, CommonText } from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";

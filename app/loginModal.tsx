@@ -1,9 +1,13 @@
-import { CommonButton, CommonInput, CommonText } from "@/components";
-import SocialLoginButton from "@/components/button/socailLoginButton";
 import { requestSignin, requestSignup } from "@/src/features/auth";
 import { addErrorLog } from "@/src/features/logging";
 import { useAppDispatch } from "@/src/hooks/redux";
 import { updateUserInfo } from "@/src/store/userInfoSlice";
+import {
+  CommonInput,
+  CommonText,
+  SocialLoginButton,
+  TextButton,
+} from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
@@ -67,14 +71,14 @@ export default function LoginModal() {
         secureTextEntry
       />
       <View style={styles.buttonContainer}>
-        <CommonButton
+        <TextButton
           title="Login"
           disabled={!email || !password}
           onPress={handleLogin}
         />
-        <CommonButton title="Sign Up" onPress={showSignupModal} />
+        <TextButton title="Sign Up" onPress={showSignupModal} />
       </View>
-      <CommonButton title="Guest Login" onPress={handleGuestLogin} />
+      <TextButton title="Guest Login" onPress={handleGuestLogin} />
       <SocialLoginButton provider="apple" />
       <SocialLoginButton provider="facebook" />
       <SocialLoginButton provider="google" />

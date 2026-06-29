@@ -1,4 +1,5 @@
-import { CommonHeader, SafeAreaContainer } from "@/components";
+import { useNavigation } from "@/src/hooks/navigation";
+import { CommonHeader, SafeAreaContainer } from "@kukkim/react-native-ui";
 import { useEvent } from "expo";
 import { useVideoPlayer, VideoView } from "expo-video";
 import { StyleSheet } from "react-native";
@@ -7,6 +8,7 @@ const videoSource =
   "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
 
 export default function VideoScreen() {
+  const { back } = useNavigation();
   const player = useVideoPlayer(videoSource, (player) => {
     player.loop = true;
     player.play();
@@ -18,7 +20,13 @@ export default function VideoScreen() {
 
   return (
     <SafeAreaContainer>
-      <CommonHeader leftTitle="Video" backable />
+      <CommonHeader
+        left={{
+          title: "Video",
+          icon: "back",
+          onPress: back,
+        }}
+      />
       <VideoView
         style={styles.video}
         player={player}

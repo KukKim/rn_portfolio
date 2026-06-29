@@ -1,4 +1,4 @@
-import { CommonButton, CommonIcon, CommonText } from "@/components";
+import { CommonIcon, CommonText, TextButton } from "@kukkim/react-native-ui";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 
@@ -27,9 +27,9 @@ export default function AlertModal() {
           <CommonText style={styles.contentText}>{content}</CommonText>
         </View>
         <View style={styles.flexDirectionRow}>
-          {confirm && <CommonButton title={confirm} />}
+          {confirm && <TextButton title={confirm} />}
           {enableCancel && (
-            <CommonButton title="취소" onPress={() => router.dismiss()} />
+            <TextButton title="취소" onPress={() => router.dismiss()} />
           )}
         </View>
       </View>

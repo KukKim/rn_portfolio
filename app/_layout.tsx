@@ -1,5 +1,6 @@
 import { useAppTheme } from "@/src/hooks/theme";
 import store from "@/src/store";
+import { ThemeProvider } from "@kukkim/react-native-ui";
 import * as Sentry from "@sentry/react-native";
 import {
   QueryClient,
@@ -19,6 +20,7 @@ const queryClient = new QueryClient({
     queries: {
       retry: 1,
       staleTime: 1000 * 60 * 5, // 5분
+      gcTime: 1000 * 60 * 5,
     },
   },
 });
@@ -58,7 +60,9 @@ export default Sentry.wrap(function RootLayout() {
     <QueryClientProvider client={queryClient}>
       <Provider store={store.store}>
         <PersistGate loading={null} persistor={store.persistor}>
-          <RouterLayout />
+          <ThemeProvider>
+            <RouterLayout />
+          </ThemeProvider>
         </PersistGate>
       </Provider>
     </QueryClientProvider>

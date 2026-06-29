@@ -1,22 +1,26 @@
+import { showToast } from "@/src/features/toast";
+import { useNavigation } from "@/src/hooks/navigation";
 import {
-  CommonAlert,
-  CommonButton,
   CommonHeader,
   SafeAreaContainer,
-} from "@/components";
-import { showToast } from "@/src/features/toast";
+  TextButton,
+} from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
-import { useState } from "react";
 import { StyleSheet } from "react-native";
 
 export default function NavigationScreen() {
   const router = useRouter();
-  const [alertVisible, setAlertVisible] = useState(false);
+  const { back } = useNavigation();
   return (
     <SafeAreaContainer>
-      {alertVisible && <CommonAlert />}
-      <CommonHeader leftTitle="Navigation" backable />
-      <CommonButton
+      <CommonHeader
+        left={{
+          title: "Navigation",
+          icon: "back",
+          onPress: back,
+        }}
+      />
+      <TextButton
         title="Show Toast"
         onPress={() =>
           showToast({
@@ -26,7 +30,7 @@ export default function NavigationScreen() {
           })
         }
       />
-      <CommonButton
+      <TextButton
         title={"Show alert modal"}
         onPress={() => {
           router.push({
@@ -34,10 +38,6 @@ export default function NavigationScreen() {
             params: { title: "Test title", content: "Test content" },
           });
         }}
-      />
-      <CommonButton
-        title={"Show alert"}
-        onPress={() => setAlertVisible(true)}
       />
     </SafeAreaContainer>
   );

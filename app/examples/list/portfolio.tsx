@@ -1,46 +1,73 @@
-import {
-  CommonHeader,
-  CommonInput,
-  CommonListView,
-  CommonSpinner,
-  CommonText,
-  IconButton,
-  SafeAreaContainer,
-} from "@/components";
-import { FoldableListItem } from "@/components/listItem";
 import { getCommonDateText } from "@/src/features/date";
 import { fetchFirestoreData } from "@/src/features/firebase";
+import { useNavigation } from "@/src/hooks/navigation";
+import { Project } from "@/src/types/project";
+import {
+  CommonButton,
+  CommonHeader,
+  CommonIcon,
+  CommonInput,
+  CommonList,
+  CommonSpinner,
+  CommonText,
+  FoldableCard,
+  SafeAreaContainer,
+} from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 export default function PortfolioListScreen() {
+  const { back } = useNavigation();
   const router = useRouter();
-  const [projectItems, setProjectItems] = useState<any[]>([]);
+  const [projectItems, setProjectItems] = useState<Project[]>([]);
   const [searchText, setSearchText] = useState<string>("");
   const [listLoading, setListLoading] = useState<boolean>(false);
+  const [openedListItem, setOpenedListItem] = useState<string[]>([]);
 
   useEffect(() => {
-    setListLoading(true);
-    fetchFirestoreData().then((items) => {
-      setProjectItems(items);
-      setListLoading(false);
-    });
+    const loadData = async () => {
+      try {
+        setListLoading(true);
+        const items = await fetchFirestoreData();
+        setProjectItems(items);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setListLoading(false);
+      }
+    };
+    loadData();
   }, []);
 
-  const renderItem = ({ item }: any) => {
-    const { description, name, startDt, endDt } = item;
-    return (
-      <FoldableListItem title={name}>
-        <CommonText size={"s"} isInner={true}>
-          {description}
-        </CommonText>
-        <CommonText size={"s"} isInner={true}>
-          {getCommonDateText(startDt) + " ~ " + getCommonDateText(endDt)}
-        </CommonText>
-      </FoldableListItem>
-    );
-  };
+  const renderItem = useCallback(
+    ({ item }: { item: Project }) => {
+      const { description, name, startDt, endDt, id } = item;
+      const isOpen = openedListItem.includes(id);
+
+      return (
+        <FoldableCard
+          title={name}
+          value={isOpen}
+          onValueChange={(nextValue) => {
+            setOpenedListItem((prev) =>
+              nextValue
+                ? [...prev, id]
+                : prev.filter((openedId) => openedId !== id),
+            );
+          }}
+        >
+          <CommonText size="s" isInner>
+            {description}
+          </CommonText>
+          <CommonText size="s" isInner>
+            {`${getCommonDateText(startDt)} ~ ${getCommonDateText(endDt)}`}
+          </CommonText>
+        </FoldableCard>
+      );
+    },
+    [openedListItem],
+  );
 
   const fetchMore = () => {
     if (listLoading) return;
@@ -52,7 +79,13 @@ export default function PortfolioListScreen() {
 
   return (
     <SafeAreaContainer>
-      <CommonHeader leftTitle="List" backable />
+      <CommonHeader
+        left={{
+          title: "List",
+          icon: "back",
+          onPress: back,
+        }}
+      />
       <View
         style={{
           flexDirection: "row",
@@ -60,17 +93,20 @@ export default function PortfolioListScreen() {
         }}
       >
         <CommonInput value={searchText} onChangeText={setSearchText} />
-        <IconButton
-          iconType={"tune"}
+
+        <CommonButton
           onPress={() => {
             router.push({
               pathname: "/examples/list/listControlModal",
               params: { title: "Test title", content: "Test content" },
             });
           }}
-        />
+        >
+          <CommonIcon iconType={"tune"} />
+        </CommonButton>
       </View>
-      <CommonListView
+      <CommonList
+        keyExtractor={(item) => item.id}
         refreshing={listLoading}
         data={projectItems}
         renderItem={renderItem}

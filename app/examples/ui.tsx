@@ -1,8 +1,8 @@
+import { useNavigation } from "@/src/hooks/navigation";
 import {
-  Checkbox,
-  CircleProgressBar,
+  CheckBox,
+  CircularProgressBar,
   CommonBadge,
-  CommonButton,
   CommonCard,
   CommonHeader,
   CommonInput,
@@ -13,21 +13,31 @@ import {
   CommonSpinner,
   CommonSwitch,
   CommonText,
-  LineProgressBar,
+  LinearProgressBar,
   NumberBadge,
   ScrollViewContainer,
-} from "@/components";
+  SelectItem,
+  TextButton,
+} from "@kukkim/react-native-ui";
 import { useState } from "react";
 import { StyleSheet } from "react-native";
 
 export default function UIScreen() {
+  const { back } = useNavigation();
   const [ratingValue, setRatingValue] = useState(3);
   const [switchValue, setSwitchValue] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [showPopOver, setShowPopOver] = useState(false);
+  const [checkbox, setCheckbox] = useState(false);
   return (
     <ScrollViewContainer>
-      <CommonHeader leftTitle="UI" backable />
+      <CommonHeader
+        left={{
+          title: "UI",
+          icon: "back",
+          onPress: back,
+        }}
+      />
       <CommonCard title={"Badge"}>
         <CommonBadge typeText="1" size={"s"} />
         <CommonBadge type="secondary" typeText="2" size={"m"} />
@@ -38,12 +48,24 @@ export default function UIScreen() {
       </CommonCard>
 
       <CommonCard title={"Button"}>
-        <CommonButton size={"s"} title={"button"} />
-        <CommonButton size={"m"} type={"secondary"} title={"button"} />
-        <CommonButton size={"l"} title={"button"} />
-        <Checkbox size={"s"} />
-        <Checkbox size={"m"} />
-        <Checkbox size={"l"} />
+        <TextButton size={"s"} title={"button"} />
+        <TextButton size={"m"} type={"secondary"} title={"button"} />
+        <TextButton size={"l"} title={"button"} />
+        <CheckBox
+          size={"s"}
+          value={checkbox}
+          onPress={() => setCheckbox(!checkbox)}
+        />
+        <CheckBox
+          size={"m"}
+          value={checkbox}
+          onPress={() => setCheckbox(!checkbox)}
+        />
+        <CheckBox
+          size={"l"}
+          value={checkbox}
+          onPress={() => setCheckbox(!checkbox)}
+        />
       </CommonCard>
 
       <CommonCard title={"Input"}>
@@ -51,7 +73,7 @@ export default function UIScreen() {
       </CommonCard>
 
       <CommonCard title={"Pop over"}>
-        <CommonButton
+        <TextButton
           title={"Pop over"}
           onPress={() => setShowPopOver(!showPopOver)}
         />
@@ -63,8 +85,8 @@ export default function UIScreen() {
       </CommonCard>
 
       <CommonCard title={"Progress bar"}>
-        <CircleProgressBar />
-        <LineProgressBar />
+        <CircularProgressBar value={0.9} />
+        <LinearProgressBar value={0.3} />
       </CommonCard>
 
       <CommonCard title={"Spinner"}>
@@ -77,7 +99,11 @@ export default function UIScreen() {
         editable={true}
         onChange={setRatingValue}
       />
-      <CommonSelect></CommonSelect>
+      <CommonSelect>
+        <SelectItem value={"1"} label={"item 1"} />
+        <SelectItem value={"2"} label={"item 2"} />
+        <SelectItem value={"3"} label={"item 3"} />
+      </CommonSelect>
       <CommonSwitch value={switchValue} onChange={setSwitchValue} />
     </ScrollViewContainer>
   );

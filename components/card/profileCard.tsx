@@ -1,7 +1,6 @@
 import { useAppTheme } from "@/src/hooks/theme";
+import { CommonAvatar, CommonText } from "@kukkim/react-native-ui";
 import { StyleSheet, View } from "react-native";
-import { ProfileImage } from "../image";
-import { CommonText } from "../text";
 import { ProfileCardProps } from "./types";
 
 const ProfileCard = ({
@@ -21,7 +20,7 @@ const ProfileCard = ({
       ]}
     >
       <View style={styles.innerProfileContainer}>
-        <ProfileImage />
+        <CommonAvatar />
         <View>
           <CommonText style={styles.nameText}>{name}</CommonText>
           <CommonText style={styles.emailText}>{email}</CommonText>

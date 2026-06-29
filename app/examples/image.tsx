@@ -1,10 +1,22 @@
-import { CommonHeader, CommonImage, SafeAreaContainer } from "@/components";
+import { useNavigation } from "@/src/hooks/navigation";
+import {
+  CommonHeader,
+  CommonImage,
+  SafeAreaContainer,
+} from "@kukkim/react-native-ui";
 import { StyleSheet } from "react-native";
 
 export default function ImageScreen() {
+  const { back } = useNavigation();
   return (
     <SafeAreaContainer>
-      <CommonHeader leftTitle="Image" backable />
+      <CommonHeader
+        left={{
+          title: "Image",
+          icon: "back",
+          onPress: back,
+        }}
+      />
       <CommonImage
         size="m"
         source={{

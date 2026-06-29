@@ -1,28 +1,34 @@
-import {
-  CommonBadge,
-  CommonHeader,
-  CommonImage,
-  CommonInput,
-  CommonListView,
-  CommonSpinner,
-  CommonText,
-  IconButton,
-  SafeAreaContainer,
-} from "@/components";
-import { FoldableListItem } from "@/components/listItem";
 import { getCommonDateText } from "@/src/features/date";
 import { useGames } from "@/src/hooks/fetch";
+import { useNavigation } from "@/src/hooks/navigation";
+import { Game } from "@/src/types/game";
+import {
+  CommonBadge,
+  CommonButton,
+  CommonHeader,
+  CommonIcon,
+  CommonImage,
+  CommonInput,
+  CommonList,
+  CommonSpinner,
+  CommonText,
+  FoldableCard,
+  SafeAreaContainer,
+} from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 export default function GamesListScreen() {
+  const { back } = useNavigation();
   const router = useRouter();
   const { data: games, isLoading, isError, refetch } = useGames();
   const [searchText, setSearchText] = useState<string>("");
+  const [openedListItem, setOpenedListItem] = useState<number[]>([]);
 
-  const renderItem = ({ item }: any) => {
+  const renderItem = ({ item }: { item: Game }) => {
     const {
+      id,
       name,
       cover,
       // url,
@@ -37,9 +43,19 @@ export default function GamesListScreen() {
       screenshots,
       // tags,
     } = item;
-
+    const isOpen = openedListItem.includes(id);
     return (
-      <FoldableListItem title={name}>
+      <FoldableCard
+        title={name}
+        value={isOpen}
+        onValueChange={(nextValue) => {
+          setOpenedListItem((prev) =>
+            nextValue
+              ? [...prev, id]
+              : prev.filter((openedId) => openedId !== id),
+          );
+        }}
+      >
         <CommonImage
           source={{
             uri: `https:${cover?.url}`,
@@ -71,40 +87,45 @@ export default function GamesListScreen() {
         <CommonText size={"s"} isInner={true}>
           {summary}
         </CommonText>
-        <View
-          style={{
-            marginVertical: 4,
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          <CommonText size={"s"} isInner={true}>
-            {getCommonDateText(new Date(created_at * 1000))}
-          </CommonText>
-          <CommonText size={"s"} isInner={true}>
-            {getCommonDateText(new Date(updated_at * 1000))}
-          </CommonText>
+        <View style={styles.dateComponent}>
+          {created_at && (
+            <CommonText size={"s"} isInner={true}>
+              {getCommonDateText(new Date(created_at * 1000))}
+            </CommonText>
+          )}
+          {updated_at && (
+            <CommonText size={"s"} isInner={true}>
+              {getCommonDateText(new Date(updated_at * 1000))}
+            </CommonText>
+          )}
         </View>
-      </FoldableListItem>
+      </FoldableCard>
     );
   };
 
   return (
     <SafeAreaContainer>
-      <CommonHeader leftTitle="Games" backable />
+      <CommonHeader
+        left={{
+          title: "Games",
+          icon: "back",
+          onPress: back,
+        }}
+      />
       <View style={styles.flexDirectionRow}>
         <CommonInput value={searchText} onChangeText={setSearchText} />
-        <IconButton
-          iconType={"tune"}
+        <CommonButton
           onPress={() => {
             router.push({
               pathname: "/examples/list/listControlModal",
               params: { title: "Test title", content: "Test content" },
             });
           }}
-        />
+        >
+          <CommonIcon iconType={"tune"} />
+        </CommonButton>
       </View>
-      <CommonListView
+      <CommonList
         refreshing={isLoading}
         data={games}
         renderItem={renderItem}
@@ -124,5 +145,10 @@ const styles = StyleSheet.create({
   flexDirectionRow: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  dateComponent: {
+    marginVertical: 4,
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });

@@ -1,7 +1,11 @@
-import { CommonHeader, CommonText, SafeAreaContainer } from "@/components";
-import ProfileCard from "@/components/card/profileCard";
+import { ProfileCard } from "@/components";
 import { useAppDispatch, useAppSelector } from "@/src/hooks/redux";
 import { deleteUserInfo } from "@/src/store/userInfoSlice";
+import {
+  CommonHeader,
+  CommonText,
+  SafeAreaContainer,
+} from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
 import {
   FlatList,
@@ -49,7 +53,11 @@ export default function Settings() {
   };
   return (
     <SafeAreaContainer>
-      <CommonHeader leftTitle="Settings" />
+      <CommonHeader
+        left={{
+          title: "Settings",
+        }}
+      />
       <TouchableOpacity
         onPress={() => router.navigate("/settings/updateUserInfo")}
       >

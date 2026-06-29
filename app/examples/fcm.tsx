@@ -1,11 +1,23 @@
-import { CommonButton, CommonHeader, SafeAreaContainer } from "@/components";
+import { useNavigation } from "@/src/hooks/navigation";
+import {
+  CommonHeader,
+  SafeAreaContainer,
+  TextButton,
+} from "@kukkim/react-native-ui";
 import { StyleSheet } from "react-native";
 
 export default function FcmScreen() {
+  const { back } = useNavigation();
   return (
     <SafeAreaContainer>
-      <CommonHeader leftTitle="Fcm" backable />
-      <CommonButton title="Send Notification" />
+      <CommonHeader
+        left={{
+          title: "Fcm",
+          icon: "back",
+          onPress: back,
+        }}
+      />
+      <TextButton title="Send Notification" />
     </SafeAreaContainer>
   );
 }

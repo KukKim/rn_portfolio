@@ -1,18 +1,30 @@
-import { CommonButton, CommonHeader, SafeAreaContainer } from "@/components";
+import { useNavigation } from "@/src/hooks/navigation";
+import {
+  CommonHeader,
+  SafeAreaContainer,
+  TextButton,
+} from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
 
 export default function ListScreen() {
+  const { back } = useNavigation();
   const router = useRouter();
 
   return (
     <SafeAreaContainer>
-      <CommonHeader leftTitle="List" backable />
-      <CommonButton
+      <CommonHeader
+        left={{
+          title: "List",
+          icon: "back",
+          onPress: back,
+        }}
+      />
+      <TextButton
         title={"portfolio"}
         onPress={() => router.navigate("/examples/list/portfolio")}
       />
-      <CommonButton
+      <TextButton
         title={"games"}
         onPress={() => router.navigate("/examples/list/games")}
       />
