@@ -6,4 +6,5 @@ export interface Auth {
   password?: string;
   token?: string;
   loginDate?: Date;
+  photoUri?: string;
 }

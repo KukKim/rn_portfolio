@@ -7,50 +7,86 @@ import {
   SafeAreaContainer,
 } from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
-import {
-  FlatList,
-  Pressable,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { useCallback, useMemo } from "react";
+import { FlatList, Pressable, StyleSheet } from "react-native";
+
+type SettingRoute =
+  | "/settings/language"
+  | "/settings/notification"
+  | "/settings/theme";
+
+interface SettingItem {
+  label: string;
+  route?: SettingRoute;
+  onPress?: () => void;
+}
 
 export default function Settings() {
   const userInfo = useAppSelector((state) => state.userInfo);
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const settingItems = [
-    {
-      label: "language",
-      route: "/settings/language",
-    },
-    {
-      label: "notification",
-      route: "/settings/notification",
-    },
-    {
-      label: "theme",
-      route: "/settings/theme",
-    },
-    {
-      label: "Sign Out",
-      function: () => {
-        dispatch(deleteUserInfo());
-        router.replace("/");
+
+  const handleSignOut = useCallback(() => {
+    dispatch(deleteUserInfo());
+
+    router.replace("/");
+  }, [dispatch, router]);
+
+  const settingItems = useMemo<SettingItem[]>(
+    () => [
+      {
+        label: "language",
+        route: "/settings/language",
       },
+
+      {
+        label: "notification",
+        route: "/settings/notification",
+      },
+
+      {
+        label: "theme",
+        route: "/settings/theme",
+      },
+
+      {
+        label: "Sign Out",
+        onPress: handleSignOut,
+      },
+    ],
+
+    [handleSignOut],
+  );
+
+  const handlePressItem = useCallback(
+    (item: SettingItem) => {
+      if (item.onPress) {
+        item.onPress();
+
+        return;
+      }
+
+      if (item.route) {
+        router.navigate(item.route);
+      }
     },
-  ];
-  const settingItem = ({ item }) => {
-    return (
+
+    [router],
+  );
+
+  const renderItem = useCallback(
+    ({ item }: { item: SettingItem }) => (
       <Pressable
-        onPress={() =>
-          item.function ? item.function() : router.navigate(item.route)
-        }
+        onPress={() => handlePressItem(item)}
         style={styles.settingItem}
       >
         <CommonText style={styles.menuText}>{item.label}</CommonText>
       </Pressable>
-    );
-  };
+    ),
+
+    [handlePressItem],
+  );
+
   return (
     <SafeAreaContainer>
       <CommonHeader
@@ -58,33 +94,24 @@ export default function Settings() {
           title: "Settings",
         }}
       />
-      <TouchableOpacity
-        onPress={() => router.navigate("/settings/updateUserInfo")}
-      >
+      <Pressable onPress={() => router.navigate("/settings/updateUserInfo")}>
         <ProfileCard
           email={userInfo.email}
           name={userInfo.name}
-          photoUri={userInfo.photoUri}
+          photoUri={userInfo?.photoUri}
         />
-      </TouchableOpacity>
+      </Pressable>
       <FlatList
+        keyExtractor={(item) => item.label}
         style={styles.settingList}
         data={settingItems}
-        renderItem={settingItem}
+        renderItem={renderItem}
       />
     </SafeAreaContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  profileContainer: {
-    borderWidth: 1,
-    padding: 5,
-  },
-  innerProfileContainer: {
-    flexDirection: "row",
-    gap: 5,
-  },
   settingList: {
     flex: 1,
   },
