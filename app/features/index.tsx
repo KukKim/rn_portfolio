@@ -1,10 +1,10 @@
 import { CommonText, SafeAreaContainer } from "@kukkim/react-native-ui";
 import { StyleSheet } from "react-native";
 
-export default function ExamplesScreen() {
+export default function FeaturesScreen() {
   return (
     <SafeAreaContainer>
-      <CommonText>Examples</CommonText>
+      <CommonText>Features</CommonText>
     </SafeAreaContainer>
   );
 }

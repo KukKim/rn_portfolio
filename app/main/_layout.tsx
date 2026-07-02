@@ -7,6 +7,18 @@ export default function TabLayout() {
         <Label>Home</Label>
         <Icon sf="house.fill" drawable="custom_android_drawable" />
       </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="uiKit">
+        <Label>UI Kit</Label>
+        <Icon sf="puzzlepiece" drawable="custom_android_drawable" />
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="features">
+        <Label>Features</Label>
+        <Icon sf="app" drawable="custom_android_drawable" />
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="examples">
+        <Label>Examples</Label>
+        <Icon sf="iphone" drawable="custom_android_drawable" />
+      </NativeTabs.Trigger>
       <NativeTabs.Trigger name="settings">
         <Icon sf="gear" drawable="custom_settings_drawable" />
         <Label>Settings</Label>

@@ -12,8 +12,9 @@ export default function ExamplesLayout() {
       }}
     >
       <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="list" options={{ headerShown: false }} />
-      <Stack.Screen name="chatting" options={{ headerShown: false }} />
+      <Stack.Screen name="video" options={{ headerShown: false }} />
+      <Stack.Screen name="image" options={{ headerShown: false }} />
+      <Stack.Screen name="fcm" options={{ headerShown: false }} />
     </Stack>
   );
 }

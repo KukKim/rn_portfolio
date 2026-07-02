@@ -1,13 +1,13 @@
-import { useAppTheme } from "@/src/hooks/theme";
+import { useTheme } from "@kukkim/react-native-ui";
 import { Stack } from "expo-router";
 
 export default function SettingsLayout() {
-  const { theme } = useAppTheme();
+  const { theme } = useTheme();
   return (
     <Stack
       screenOptions={{
         contentStyle: {
-          backgroundColor: theme.colors.backgroundColor,
+          backgroundColor: theme.colors.background,
         },
       }}
     >

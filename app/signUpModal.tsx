@@ -97,6 +97,11 @@ export default function SignUpModal() {
     }
   };
 
+  const handleCancel = () => {
+    router.dismiss();
+    router.push("/loginModal");
+  };
+
   // const renderItem = ({ item }: { item: { uri: string } }) => (
   //   <CommonImage source={{ uri: item.uri }} />
   // );
@@ -114,7 +119,7 @@ export default function SignUpModal() {
   // ];
   return (
     <View style={styles.container}>
-      <CommonText>Signup Modal screen</CommonText>
+      <CommonText size="l">Signup Modal screen</CommonText>
       <CommonInput
         title={"E-mail"}
         value={email}
@@ -157,6 +162,7 @@ export default function SignUpModal() {
           disabled={!email || !name || !password || password !== rePassword}
           onPress={handleSignup}
         />
+        <TextButton title="Cancel" onPress={handleCancel} />
       </View>
     </View>
   );
@@ -165,7 +171,5 @@ export default function SignUpModal() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
   },
 });

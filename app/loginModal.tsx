@@ -89,8 +89,6 @@ export default function LoginModal() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
   },
   buttonContainer: {
     flexDirection: "row",

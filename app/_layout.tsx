@@ -1,6 +1,5 @@
-import { useAppTheme } from "@/src/hooks/theme";
 import store from "@/src/store";
-import { ThemeProvider } from "@kukkim/react-native-ui";
+import { ThemeProvider, useTheme } from "@kukkim/react-native-ui";
 import * as Sentry from "@sentry/react-native";
 import {
   QueryClient,
@@ -70,20 +69,22 @@ export default Sentry.wrap(function RootLayout() {
 });
 
 const RouterLayout = () => {
-  const { theme } = useAppTheme();
+  const { theme } = useTheme();
   return (
     <GestureHandlerRootView>
       <Stack
         screenOptions={{
           contentStyle: {
-            backgroundColor: theme.colors.backgroundColor,
+            backgroundColor: theme.colors.background,
           },
         }}
       >
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="main" options={{ headerShown: false }} />
-        <Stack.Screen name="examples" options={{ headerShown: false }} />
+        <Stack.Screen name="features" options={{ headerShown: false }} />
         <Stack.Screen name="settings" options={{ headerShown: false }} />
+        <Stack.Screen name="examples" options={{ headerShown: false }} />
+        <Stack.Screen name="ui" options={{ headerShown: false }} />
         <Stack.Screen
           name="loginModal"
           options={{
@@ -104,6 +105,7 @@ const RouterLayout = () => {
           name="alertModal"
           options={{
             headerShown: false,
+            //TODO: 위의 theme backgroundColor 때문에 transparent가 적용안됨.
             presentation: "transparentModal",
           }}
         />

@@ -1,5 +1,4 @@
-import { useAppTheme } from "@/src/hooks/theme";
-import { CommonAvatar, CommonText } from "@kukkim/react-native-ui";
+import { CommonAvatar, CommonText, useTheme } from "@kukkim/react-native-ui";
 import { StyleSheet, View } from "react-native";
 import { ProfileCardProps } from "./types";
 
@@ -11,13 +10,10 @@ const ProfileCard = ({
   photoUri,
   ...props
 }: ProfileCardProps) => {
-  const { theme } = useAppTheme();
+  const { theme } = useTheme();
   return (
     <View
-      style={[
-        styles.profileContainer,
-        { borderColor: theme.colors.borderColor },
-      ]}
+      style={[styles.profileContainer, { borderColor: theme.colors.border }]}
     >
       <View style={styles.innerProfileContainer}>
         <CommonAvatar />

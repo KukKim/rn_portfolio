@@ -20,7 +20,7 @@ export default function AlertModal() {
         <View style={styles.flexDirectionRow}>
           <CommonText style={styles.titleText}>{title}</CommonText>
           <TouchableOpacity onPress={() => router.dismiss()}>
-            <CommonIcon iconType="close" size={24} />
+            <CommonIcon iconType="close" />
           </TouchableOpacity>
         </View>
         <View>

@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Setting, ThemeMode } from "../types/setting";
+import { createSlice } from "@reduxjs/toolkit";
+import { Setting } from "../types/setting";
 
 const initialState: Setting = {
   notificationEnabled: true,
@@ -9,13 +9,9 @@ const initialState: Setting = {
 const settingSlice = createSlice({
   name: "setting",
   initialState,
-  reducers: {
-    updateThemeMode: (state, action: PayloadAction<ThemeMode>) => {
-      state.themeMode = action.payload;
-    },
-  },
+  reducers: {},
 });
 
-export const { updateThemeMode } = settingSlice.actions;
+export const {} = settingSlice.actions;
 
 export default settingSlice.reducer;

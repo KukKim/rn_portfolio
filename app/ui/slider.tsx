@@ -1,20 +1,24 @@
 import { useNavigation } from "@/src/hooks/navigation";
-import { CommonHeader, SafeAreaContainer } from "@kukkim/react-native-ui";
+import {
+  CommonHeader,
+  CommonSlider,
+  ScrollViewContainer,
+} from "@kukkim/react-native-ui";
 import { StyleSheet } from "react-native";
 
-export default function AnimationScreen() {
+export default function SliderScreen() {
   const { back } = useNavigation();
-
   return (
-    <SafeAreaContainer>
+    <ScrollViewContainer>
       <CommonHeader
         left={{
-          title: "Animation",
+          title: "Slider",
           icon: "back",
           onPress: back,
         }}
       />
-    </SafeAreaContainer>
+      <CommonSlider labels={[0, 5, 10]} />
+    </ScrollViewContainer>
   );
 }
 

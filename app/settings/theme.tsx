@@ -1,15 +1,15 @@
 import { useNavigation } from "@/src/hooks/navigation";
-import { useAppTheme } from "@/src/hooks/theme";
 import {
   CommonHeader,
   SafeAreaContainer,
   TextButton,
+  useTheme,
 } from "@kukkim/react-native-ui";
 import { StyleSheet } from "react-native";
 
 export default function ThemeScreen() {
   const { back } = useNavigation();
-  const { mode, updateTheme } = useAppTheme();
+  const { setMode } = useTheme();
   return (
     <SafeAreaContainer>
       <CommonHeader
@@ -19,12 +19,12 @@ export default function ThemeScreen() {
           onPress: back,
         }}
       />
-      <TextButton title="라이트 모드" onPress={() => updateTheme("light")} />
-      <TextButton title="다크 모드" onPress={() => updateTheme("dark")} />
-      <TextButton
+      <TextButton title="라이트 모드" onPress={() => setMode("light")} />
+      <TextButton title="다크 모드" onPress={() => setMode("dark")} />
+      {/* <TextButton
         title="시스템 설정 따르기"
         onPress={() => updateTheme("system")}
-      />
+      /> */}
     </SafeAreaContainer>
   );
 }
