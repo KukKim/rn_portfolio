@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Auth } from "../types/auth";
+import { Auth } from "../shared/types/auth";
 
 const initialState: Auth = {
   name: "",

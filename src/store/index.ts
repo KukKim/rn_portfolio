@@ -1,18 +1,20 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
+import chatReducer from "./chatSlice";
 import settingReducer from "./settingSlice";
 import userInfoReducer from "./userInfoSlice";
 
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
-  whitelist: ["userInfo", "setting"],
+  whitelist: ["userInfo", "setting", "chat"],
 };
 
 const reducers = combineReducers({
   userInfo: userInfoReducer,
   setting: settingReducer,
+  chat: chatReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

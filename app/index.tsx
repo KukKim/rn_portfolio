@@ -1,7 +1,7 @@
 import { registerPushToken, requestCheckToken } from "@/src/features/auth";
 import { addErrorLog } from "@/src/features/logging";
 import { registerForPushNotificationsAsync } from "@/src/features/notification";
-import { useAppDispatch, useAppSelector } from "@/src/hooks/redux";
+import { useAppDispatch, useAppSelector } from "@/src/shared/hooks/redux";
 import { deleteUserInfo } from "@/src/store/userInfoSlice";
 import { getLocales } from "expo-localization";
 import { useNavigationContainerRef, useRouter } from "expo-router";

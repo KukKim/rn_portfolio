@@ -1,4 +1,4 @@
-import { useNavigation } from "@/src/hooks/navigation";
+import { useNavigation } from "@/src/shared/hooks/navigation";
 import { CommonHeader, SafeAreaContainer } from "@kukkim/react-native-ui";
 import { useEvent } from "expo";
 import { useVideoPlayer, VideoView } from "expo-video";

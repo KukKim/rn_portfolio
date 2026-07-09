@@ -1,5 +1,5 @@
-import { ProfileCard } from "@/components";
-import { useAppDispatch, useAppSelector } from "@/src/hooks/redux";
+import { ProfileCard } from "@/src/shared/components";
+import { useAppDispatch, useAppSelector } from "@/src/shared/hooks/redux";
 import { deleteUserInfo } from "@/src/store/userInfoSlice";
 import {
   CommonHeader,

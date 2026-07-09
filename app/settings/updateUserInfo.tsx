@@ -1,5 +1,5 @@
-import { useNavigation } from "@/src/hooks/navigation";
-import { useAppDispatch, useAppSelector } from "@/src/hooks/redux";
+import { useNavigation } from "@/src/shared/hooks/navigation";
+import { useAppDispatch, useAppSelector } from "@/src/shared/hooks/redux";
 import { updateUserInfo } from "@/src/store/userInfoSlice";
 import {
   CommonAvatar,

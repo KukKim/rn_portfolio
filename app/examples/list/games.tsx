@@ -1,7 +1,7 @@
 import { getCommonDateText } from "@/src/features/date";
-import { useGames } from "@/src/hooks/fetch";
-import { useNavigation } from "@/src/hooks/navigation";
-import { Game } from "@/src/types/game";
+import { useGames } from "@/src/shared/hooks/fetch";
+import { useNavigation } from "@/src/shared/hooks/navigation";
+import { Game } from "@/src/shared/types/game";
 import {
   CommonBadge,
   CommonButton,
@@ -90,12 +90,12 @@ export default function GamesListScreen() {
         <View style={styles.dateComponent}>
           {created_at && (
             <CommonText size={"s"} isInner={true}>
-              {getCommonDateText(new Date(created_at * 1000))}
+              {getCommonDateText({ date: new Date(created_at * 1000) })}
             </CommonText>
           )}
           {updated_at && (
             <CommonText size={"s"} isInner={true}>
-              {getCommonDateText(new Date(updated_at * 1000))}
+              {getCommonDateText({ date: new Date(updated_at * 1000) })}
             </CommonText>
           )}
         </View>

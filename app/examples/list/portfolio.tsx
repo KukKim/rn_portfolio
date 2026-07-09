@@ -1,7 +1,7 @@
 import { getCommonDateText } from "@/src/features/date";
 import { fetchFirestoreData } from "@/src/features/firebase";
-import { useNavigation } from "@/src/hooks/navigation";
-import { Project } from "@/src/types/project";
+import { useNavigation } from "@/src/shared/hooks/navigation";
+import { Project } from "@/src/shared/types/project";
 import {
   CommonButton,
   CommonHeader,
@@ -61,7 +61,7 @@ export default function PortfolioListScreen() {
             {description}
           </CommonText>
           <CommonText size="s" isInner>
-            {`${getCommonDateText(startDt)} ~ ${getCommonDateText(endDt)}`}
+            {`${getCommonDateText({ date: startDt })} ~ ${getCommonDateText({ date: endDt })}`}
           </CommonText>
         </FoldableCard>
       );

@@ -1,4 +1,4 @@
-import { Project } from "../types/project";
+import { Project } from "../shared/types/project";
 
 import { initializeApp } from "firebase/app";
 

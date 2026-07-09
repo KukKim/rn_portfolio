@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Setting } from "../types/setting";
+import { Setting } from "../shared/types/setting";
 
 const initialState: Setting = {
   notificationEnabled: true,

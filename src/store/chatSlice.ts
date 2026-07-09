@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Chat, ChatState } from "../types/chat";
+import { ChatMessage, ChatMessageState } from "../shared/types/chat";
 
-const initialState: ChatState = {
+const initialState: ChatMessageState = {
   messages: [],
 };
 
@@ -9,15 +9,15 @@ const userInfoSlice = createSlice({
   name: "chat",
   initialState,
   reducers: {
-    addMessage: (state, action: PayloadAction<Chat>) => {
+    addMessage: (state, action: PayloadAction<ChatMessage>) => {
       state.messages.push(action.payload);
     },
 
-    addMessages: (state, action: PayloadAction<Chat[]>) => {
+    addMessages: (state, action: PayloadAction<ChatMessage[]>) => {
       state.messages = [...state.messages, ...action.payload];
     },
 
-    updateMessage: (state, action: PayloadAction<Chat>) => {
+    updateMessage: (state, action: PayloadAction<ChatMessage>) => {
       const index = state.messages.findIndex(
         (item) => item.id === action.payload.id,
       );

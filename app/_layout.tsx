@@ -75,7 +75,7 @@ const RouterLayout = () => {
       <Stack
         screenOptions={{
           contentStyle: {
-            backgroundColor: theme.colors.background,
+            // backgroundColor: theme.colors.background,
           },
         }}
       >
@@ -106,6 +106,13 @@ const RouterLayout = () => {
           options={{
             headerShown: false,
             //TODO: 위의 theme backgroundColor 때문에 transparent가 적용안됨.
+            presentation: "transparentModal",
+          }}
+        />
+        <Stack.Screen
+          name="keyboardModal"
+          options={{
+            headerShown: false,
             presentation: "transparentModal",
           }}
         />

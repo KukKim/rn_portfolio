@@ -1,5 +1,5 @@
 import Toast from "react-native-toast-message";
-import { ToastMessage } from "../types/toast";
+import { ToastMessage } from "../shared/types/toast";
 
 export const showToast = (toast: ToastMessage) => {
   Toast.show({

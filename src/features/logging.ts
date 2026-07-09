@@ -1,5 +1,5 @@
 import * as Sentry from "@sentry/react-native";
-import { Log } from "../types/log";
+import { Log } from "../shared/types/log";
 
 Sentry.init({
   dsn: process.env.SENTRY_DSN,

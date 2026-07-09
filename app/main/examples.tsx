@@ -18,8 +18,8 @@ export default function Examples() {
       />
       <CommonCard title={"example"}>
         <TextButton
-          title={"chatting"}
-          onPress={() => router.navigate("/examples/chatting")}
+          title={"chat"}
+          onPress={() => router.navigate("/examples/chat")}
         />
         <TextButton
           title={"portfolio"}

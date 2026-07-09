@@ -1,6 +1,6 @@
 import { requestSignin, requestSignup } from "@/src/features/auth";
 import { addErrorLog } from "@/src/features/logging";
-import { useAppDispatch } from "@/src/hooks/redux";
+import { useAppDispatch } from "@/src/shared/hooks/redux";
 import { updateUserInfo } from "@/src/store/userInfoSlice";
 import {
   CommonInput,

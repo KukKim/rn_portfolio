@@ -1,5 +1,5 @@
 import { Platform } from "react-native";
-import { Auth } from "../types/auth";
+import { Auth } from "../shared/types/auth";
 import { addErrorLog, addLog } from "./logging";
 
 export const requestCheckToken = (token: string) => {

@@ -13,7 +13,7 @@ export default function ExamplesLayout() {
     >
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="list" options={{ headerShown: false }} />
-      <Stack.Screen name="chatting" options={{ headerShown: false }} />
+      <Stack.Screen name="chat" options={{ headerShown: false }} />
     </Stack>
   );
 }

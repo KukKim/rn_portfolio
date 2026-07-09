@@ -1,4 +1,4 @@
-import { useNavigation } from "@/src/hooks/navigation";
+import { useNavigation } from "@/src/shared/hooks/navigation";
 import {
   CheckBox,
   CommonHeader,
