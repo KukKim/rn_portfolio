@@ -10,6 +10,7 @@ import * as Network from "expo-network";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { KeyboardProvider } from "react-native-keyboard-controller";
 import Toast from "react-native-toast-message";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -58,11 +59,13 @@ export default Sentry.wrap(function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store.store}>
-        <PersistGate loading={null} persistor={store.persistor}>
-          <ThemeProvider>
-            <RouterLayout />
-          </ThemeProvider>
-        </PersistGate>
+        <KeyboardProvider>
+          <PersistGate loading={null} persistor={store.persistor}>
+            <ThemeProvider>
+              <RouterLayout />
+            </ThemeProvider>
+          </PersistGate>
+        </KeyboardProvider>
       </Provider>
     </QueryClientProvider>
   );

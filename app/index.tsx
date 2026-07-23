@@ -40,7 +40,7 @@ export default function Index() {
             registerForPushNotificationsAsync()
               .then((token) => {
                 if (userInfo?.token && token) {
-                  registerPushToken(userInfo.token, token);
+                  registerPushToken(userInfo.token, token, userInfo.id);
                 }
               })
               .catch((error: any) => {

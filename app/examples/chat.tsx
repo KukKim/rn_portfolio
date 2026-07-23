@@ -1,8 +1,8 @@
 import { addChat } from "@/src/features/chat";
+import { useChats } from "@/src/shared/hooks/chat";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import { useAppDispatch, useAppSelector } from "@/src/shared/hooks/redux";
-import { ChatMessage, DisplayChatMessage } from "@/src/shared/types/chat";
-import { selectDisplayChatMessages } from "@/src/store/chatSelector";
+import { DisplayChatMessage } from "@/src/shared/types/chat";
 import { clearMessages } from "@/src/store/chatSlice";
 import {
   CommonButton,
@@ -15,12 +15,20 @@ import {
   SafeAreaContainer,
   TextButton,
 } from "@kukkim/react-native-ui";
-import { useState } from "react";
-import { Keyboard, KeyboardAvoidingView, StyleSheet, View } from "react-native";
+import { useLocalSearchParams } from "expo-router";
+import { useMemo, useState } from "react";
+import { Keyboard, StyleSheet, View } from "react-native";
+import {
+  KeyboardAvoidingView,
+  useReanimatedKeyboardAnimation,
+} from "react-native-keyboard-controller";
+import Animated, {
+  interpolate,
+  useAnimatedStyle,
+} from "react-native-reanimated";
 
 const ChatMessageComponent = (chat: DisplayChatMessage) => {
-  const { id, content, createDt, status, timeText, showTime } = chat;
-  const isMyChat = Number(id) % 2 === 0;
+  const { id, message, status, timeText, isMyChat } = chat;
   const readCount = 0;
   return (
     <View
@@ -39,7 +47,7 @@ const ChatMessageComponent = (chat: DisplayChatMessage) => {
           },
         ]}
       >
-        <CommonText size="s">{content}</CommonText>
+        <CommonText size="s">{message}</CommonText>
       </View>
 
       <View
@@ -76,26 +84,48 @@ const ChatMessageComponent = (chat: DisplayChatMessage) => {
 
 export default function ChatScreen() {
   const { back, push } = useNavigation();
-  const chatMessageList = useAppSelector(selectDisplayChatMessages);
-  const dispatch = useAppDispatch();
+  const params = useLocalSearchParams<any>();
+  const { id, title } = params;
+  const userInfo = useAppSelector((state) => state.userInfo);
+  const { data, isLoading, isError, refetch } = useChats(id);
+
+  const messages = useMemo(() => {
+    const flattenedMessages =
+      data?.pages.flatMap((page) => page.messages) ?? [];
+    const uniqueMessages = Array.from(
+      new Map(
+        flattenedMessages.map((message) => [message.id, message]),
+      ).values(),
+    );
+    return uniqueMessages.sort(
+      (a, b) => new Date(b.createDt).getTime() - new Date(a.createDt).getTime(),
+    );
+  }, [data]);
+
   const [text, setText] = useState("");
   const [keyboardMenu, setKeyboardMenu] = useState(false);
-  // const [chatMessageList, setChatMessageList] = useState<ChatMessage[]>([]);
+  const { height, progress } = useReanimatedKeyboardAnimation();
+
+  const animatedStyle = useAnimatedStyle(() => {
+    const scale = interpolate(progress.value, [0, 1], [1, 2]);
+
+    return {
+      transform: [{ translateY: height.value }, { scale }],
+    };
+  });
+
   const sendMessage = () => {
     if (text.trim() === "") {
       return;
     }
 
-    const newMessage: ChatMessage = {
-      id: Date.now().toString(),
-      content: text,
-      createDt: new Date(),
-      isRead: false,
-      sender: "me",
-      status: "sending",
+    const newMessage = {
+      roomId: id,
+      senderId: userInfo.id,
+      message: text,
     };
     // dispatch(addMessage(newMessage));
-    addChat(newMessage)(dispatch);
+    addChat(newMessage);
     setText("");
   };
   const fetchMore = () => {};
@@ -104,6 +134,10 @@ export default function ChatScreen() {
     Keyboard.dismiss();
     setKeyboardMenu(!keyboardMenu);
   };
+
+  // const chatMessageList = useAppSelector(selectDisplayChatMessages);
+  const dispatch = useAppDispatch();
+  // const [chatMessageList, setChatMessageList] = useState<ChatMessage[]>([]);
 
   return (
     <SafeAreaContainer>
@@ -120,8 +154,10 @@ export default function ChatScreen() {
       />
       <CommonList
         inverted
-        data={chatMessageList}
-        renderItem={({ item }) => <ChatMessageComponent {...item} />}
+        data={messages}
+        renderItem={({ item }) => (
+          <ChatMessageComponent isMyChat={userInfo.id === item.id} {...item} />
+        )}
         keyExtractor={(item) => item.id}
         onEndReached={fetchMore}
         onEndReachedThreshold={0.2}
@@ -139,6 +175,15 @@ export default function ChatScreen() {
         <CommonInput value={text} onChangeText={setText} />
         <TextButton title={"Input"} onPress={sendMessage} />
       </KeyboardAvoidingView>
+      {keyboardMenu && (
+        <Animated.View
+          style={{
+            height: height.value,
+          }}
+        >
+          <CommonText>KeyboardMenu</CommonText>
+        </Animated.View>
+      )}
     </SafeAreaContainer>
   );
 }
@@ -156,14 +201,5 @@ const styles = StyleSheet.create({
   },
   alignFlexEnd: {
     alignItems: "flex-end",
-  },
-  tailCircle: {
-    position: "absolute",
-    left: -4,
-    bottom: 2,
-    width: 12,
-    height: 12,
-    borderRadius: 999,
-    backgroundColor: "#fff",
   },
 });

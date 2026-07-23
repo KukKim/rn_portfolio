@@ -1,4 +1,5 @@
 export interface Auth {
+  id: string;
   accountType?: "GUEST" | "EMAIL";
   email?: string;
   name?: string;

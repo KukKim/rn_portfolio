@@ -1,15 +1,7 @@
-export const fetchGames = async () => {
-  return fetch(`http://127.0.0.1:3000/getgames`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => response.json())
-    .then((json) => {
-      return json?.data;
-    })
-    .catch((error) => {
-      throw error;
-    });
+import { apiRequest, ApiResponse } from "../features/fetch";
+
+export const fetchGames = async (): Promise<any[]> => {
+  const response = await apiRequest<ApiResponse<any[]>>("/getgames");
+
+  return response.data;
 };
