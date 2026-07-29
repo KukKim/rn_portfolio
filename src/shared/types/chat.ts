@@ -3,15 +3,22 @@ import { Auth } from "./auth";
 export interface ChatMessage {
   id: string;
   message: string;
-  createDt: Date;
+  created_at: Date;
+  updated_at?: Date;
+  room_id: number;
   isRead: boolean;
-  sender: string;
-  status: "sending" | "sent" | "failed";
+  sender_id: number;
+  status?: "sending" | "sent" | "failed";
+}
+
+export interface ChatMessagePage {
+  nextCursor: string | null;
+  messages: ChatMessage[];
 }
 
 export type DisplayChatMessage = ChatMessage & {
-  timeText: string;
-  showTime: boolean;
+  timeText?: string;
+  showTime?: boolean;
   isMyChat: boolean;
 };
 

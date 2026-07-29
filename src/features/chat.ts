@@ -1,6 +1,10 @@
 // chatApi.ts
 import type { Auth } from "@/src/shared/types/auth";
-import type { ChatMessage, ChatRoom } from "@/src/shared/types/chat";
+import type {
+  ChatMessage,
+  ChatMessagePage,
+  ChatRoom,
+} from "@/src/shared/types/chat";
 import { apiRequest, ApiResponse } from "./fetch";
 
 interface CreateChatRoomRequest {
@@ -28,11 +32,6 @@ interface AddChatRequest {
   senderId: string;
   message: string;
   messageType?: "text" | "image" | "video" | "file" | "system";
-}
-
-interface ChatResponse {
-  nextCursor?: string;
-  messages: ChatMessage[];
 }
 
 export const createChatRoom = async (
@@ -76,11 +75,15 @@ export const joinChatRoom = async (
   return response.data;
 };
 
-export const addChat = (chat: AddChatRequest) => {
-  return apiRequest("/addChat", {
-    method: "POST",
-    body: chat,
-  });
+export const addChat = async (chat: AddChatRequest): Promise<ChatMessage> => {
+  const response = await apiRequest<ApiResponse<ChatMessage>, AddChatRequest>(
+    "/addChat",
+    {
+      method: "POST",
+      body: chat,
+    },
+  );
+  return response.data;
 };
 // export const addChat = (chat: ChatMessage) => {
 //   return async (dispatch: AppDispatch) => {
@@ -125,7 +128,7 @@ export const getChats = async ({
   roomId: string;
   cursor?: string;
   limit?: number;
-}): Promise<ChatResponse> => {
+}): Promise<ChatMessagePage> => {
   const searchParams = new URLSearchParams({
     roomId,
     limit: String(limit),
@@ -135,7 +138,7 @@ export const getChats = async ({
     searchParams.set("cursor", cursor);
   }
 
-  const response = await apiRequest<ApiResponse<ChatResponse>>(
+  const response = await apiRequest<ApiResponse<ChatMessagePage>>(
     `/getChats?${searchParams.toString()}`,
   );
 

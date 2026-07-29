@@ -1,9 +1,8 @@
-import { addChat } from "@/src/features/chat";
-import { useChats } from "@/src/shared/hooks/chat";
+import { getCommonDateText } from "@/src/features/date";
+import { useChats, useSendChat } from "@/src/shared/hooks/chat";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import { useAppDispatch, useAppSelector } from "@/src/shared/hooks/redux";
 import { DisplayChatMessage } from "@/src/shared/types/chat";
-import { clearMessages } from "@/src/store/chatSlice";
 import {
   CommonButton,
   CommonHeader,
@@ -35,7 +34,7 @@ const ChatMessageComponent = (chat: DisplayChatMessage) => {
       style={[
         styles.bubbleWrapper,
         {
-          flexDirection: isMyChat ? "row" : "row-reverse",
+          flexDirection: isMyChat ? "row-reverse" : "row",
         },
       ]}
     >
@@ -54,7 +53,7 @@ const ChatMessageComponent = (chat: DisplayChatMessage) => {
         style={[
           styles.sideBubble,
           {
-            alignItems: isMyChat ? "flex-start" : "flex-end",
+            alignItems: isMyChat ? "flex-end" : "flex-start",
           },
         ]}
       >
@@ -88,18 +87,21 @@ export default function ChatScreen() {
   const { id, title } = params;
   const userInfo = useAppSelector((state) => state.userInfo);
   const { data, isLoading, isError, refetch } = useChats(id);
+  const { mutate } = useSendChat();
 
   const messages = useMemo(() => {
     const flattenedMessages =
       data?.pages.flatMap((page) => page.messages) ?? [];
-    const uniqueMessages = Array.from(
-      new Map(
-        flattenedMessages.map((message) => [message.id, message]),
-      ).values(),
-    );
-    return uniqueMessages.sort(
-      (a, b) => new Date(b.createDt).getTime() - new Date(a.createDt).getTime(),
-    );
+    return flattenedMessages;
+    // const uniqueMessages = Array.from(
+    //   new Map(
+    //     flattenedMessages.map((message) => [message.id, message]),
+    //   ).values(),
+    // );
+    // return uniqueMessages.sort(
+    //   (a, b) =>
+    //     new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+    // );
   }, [data]);
 
   const [text, setText] = useState("");
@@ -125,7 +127,7 @@ export default function ChatScreen() {
       message: text,
     };
     // dispatch(addMessage(newMessage));
-    addChat(newMessage);
+    mutate(newMessage);
     setText("");
   };
   const fetchMore = () => {};
@@ -143,20 +145,23 @@ export default function ChatScreen() {
     <SafeAreaContainer>
       <CommonHeader
         left={{
-          title: "Chatting",
+          title: title,
           icon: "back",
           onPress: back,
         }}
-      />
-      <TextButton
-        title={"Clear Message"}
-        onPress={() => dispatch(clearMessages())}
       />
       <CommonList
         inverted
         data={messages}
         renderItem={({ item }) => (
-          <ChatMessageComponent isMyChat={userInfo.id === item.id} {...item} />
+          <ChatMessageComponent
+            isMyChat={userInfo.id === item.id}
+            timeText={getCommonDateText({
+              date: item?.created_at,
+              format: "HH:mm",
+            })}
+            {...item}
+          />
         )}
         keyExtractor={(item) => item.id}
         onEndReached={fetchMore}
@@ -190,6 +195,7 @@ export default function ChatScreen() {
 const styles = StyleSheet.create({
   bubbleWrapper: {
     padding: 20,
+    gap: 5,
   },
   bubble: {
     maxWidth: "70%",
