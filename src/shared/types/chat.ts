@@ -5,9 +5,9 @@ export interface ChatMessage {
   message: string;
   created_at: Date;
   updated_at?: Date;
-  room_id: number;
+  room_id: string;
   isRead: boolean;
-  sender_id: number;
+  sender_id: string;
   status?: "sending" | "sent" | "failed";
 }
 

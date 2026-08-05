@@ -1,5 +1,5 @@
 import { getCommonDateText } from "@/src/features/date";
-import { useChats, useSendChat } from "@/src/shared/hooks/chat";
+import { useChats, useChatSocket, useSendChat } from "@/src/shared/hooks/chat";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import { useAppDispatch, useAppSelector } from "@/src/shared/hooks/redux";
 import { DisplayChatMessage } from "@/src/shared/types/chat";
@@ -28,6 +28,7 @@ import Animated, {
 
 const ChatMessageComponent = (chat: DisplayChatMessage) => {
   const { id, message, status, timeText, isMyChat } = chat;
+
   const readCount = 0;
   return (
     <View
@@ -88,7 +89,7 @@ export default function ChatScreen() {
   const userInfo = useAppSelector((state) => state.userInfo);
   const { data, isLoading, isError, refetch } = useChats(id);
   const { mutate } = useSendChat();
-
+  const test = useChatSocket(id, userInfo.id);
   const messages = useMemo(() => {
     const flattenedMessages =
       data?.pages.flatMap((page) => page.messages) ?? [];
@@ -155,7 +156,7 @@ export default function ChatScreen() {
         data={messages}
         renderItem={({ item }) => (
           <ChatMessageComponent
-            isMyChat={userInfo.id === item.id}
+            isMyChat={userInfo.id === item.sender_id}
             timeText={getCommonDateText({
               date: item?.created_at,
               format: "HH:mm",

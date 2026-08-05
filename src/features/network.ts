@@ -1,5 +1,6 @@
 import { addErrorLog } from "@/src/features/logging";
 import { Platform } from "react-native";
+import { io } from "socket.io-client";
 
 export interface ApiResponse<T> {
   success: boolean;
@@ -78,3 +79,8 @@ export async function apiRequest<TResponse, TBody = undefined>(
     throw error;
   }
 }
+
+export const socket = io(API_BASE_URL, {
+  autoConnect: false,
+  transports: ["websocket"],
+});

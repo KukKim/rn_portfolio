@@ -5,7 +5,7 @@ import type {
   ChatMessagePage,
   ChatRoom,
 } from "@/src/shared/types/chat";
-import { apiRequest, ApiResponse } from "./fetch";
+import { apiRequest, ApiResponse } from "./network";
 
 interface CreateChatRoomRequest {
   title: string;
@@ -141,6 +141,5 @@ export const getChats = async ({
   const response = await apiRequest<ApiResponse<ChatMessagePage>>(
     `/getChats?${searchParams.toString()}`,
   );
-
   return response.data;
 };

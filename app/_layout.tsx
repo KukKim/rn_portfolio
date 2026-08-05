@@ -1,3 +1,4 @@
+import { SocketProvider } from "@/src/shared/hooks/network";
 import store from "@/src/store";
 import { ThemeProvider, useTheme } from "@kukkim/react-native-ui";
 import * as Sentry from "@sentry/react-native";
@@ -59,13 +60,15 @@ export default Sentry.wrap(function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store.store}>
-        <KeyboardProvider>
-          <PersistGate loading={null} persistor={store.persistor}>
-            <ThemeProvider>
-              <RouterLayout />
-            </ThemeProvider>
-          </PersistGate>
-        </KeyboardProvider>
+        <SocketProvider>
+          <KeyboardProvider>
+            <PersistGate loading={null} persistor={store.persistor}>
+              <ThemeProvider>
+                <RouterLayout />
+              </ThemeProvider>
+            </PersistGate>
+          </KeyboardProvider>
+        </SocketProvider>
       </Provider>
     </QueryClientProvider>
   );

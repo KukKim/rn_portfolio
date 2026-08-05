@@ -1,5 +1,5 @@
 import { Platform } from "react-native";
-import { apiRequest } from "../features/fetch";
+import { apiRequest } from "../features/network";
 import type { Auth } from "../shared/types/auth";
 import { addLog } from "./logging";
 

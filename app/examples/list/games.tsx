@@ -1,6 +1,6 @@
 import { getCommonDateText } from "@/src/features/date";
-import { useGames } from "@/src/shared/hooks/fetch";
 import { useNavigation } from "@/src/shared/hooks/navigation";
+import { useGames } from "@/src/shared/hooks/network";
 import { Game } from "@/src/shared/types/game";
 import {
   CommonBadge,
