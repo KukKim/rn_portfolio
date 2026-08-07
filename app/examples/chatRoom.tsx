@@ -1,23 +1,31 @@
 import { createChatRoom, joinChatRoom } from "@/src/features/chat";
+import { CommonOverlay } from "@/src/shared/components";
 import { useChatRooms } from "@/src/shared/hooks/chat";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import { useAppSelector } from "@/src/shared/hooks/redux";
+import { ChatRoom } from "@/src/shared/types/chat";
 import {
   CommonCard,
   CommonHeader,
   CommonList,
   CommonText,
   SafeAreaContainer,
+  TextButton,
 } from "@kukkim/react-native-ui";
 import { router } from "expo-router";
-import { Pressable, StyleSheet } from "react-native";
+import { useState } from "react";
+import { Pressable, View } from "react-native";
+import { TextInput } from "react-native-gesture-handler";
 
-const ChatRoomComponent = ({ title, members, routeChat }: any) => {
+interface ChatRoomProps extends ChatRoom {
+  routeChat: () => void;
+}
+const ChatRoomComponent = ({ title, members, routeChat }: ChatRoomProps) => {
   return (
     <Pressable onPress={routeChat}>
       <CommonCard title={title}>
-        {members.map(({ id }) => (
-          <CommonText>{id}</CommonText>
+        {members.map(({ id }, index) => (
+          <CommonText key={index}>{id}</CommonText>
         ))}
       </CommonCard>
     </Pressable>
@@ -28,10 +36,15 @@ export default function ChatRoomScreen() {
   const userInfo = useAppSelector((state) => state.userInfo);
   const { back, push } = useNavigation();
   const { data: chatRooms, isLoading, isError, refetch } = useChatRooms();
+
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [chatRoomTitle, setChatRoomTitle] = useState("");
+
   const fetchMore = () => {};
   const addChatRoom = () => {
-    createChatRoom(userInfo).then(() => {
+    createChatRoom({ title: chatRoomTitle, userId: userInfo.id }).then(() => {
       refetch();
+      setChatRoomTitle("");
     });
   };
 
@@ -44,7 +57,7 @@ export default function ChatRoomScreen() {
         params: item,
       });
     } else {
-      joinChatRoom(userInfo.id, id).then(() => {
+      joinChatRoom({ userId: userInfo.id, roomId: id }).then(() => {
         router.navigate({
           pathname: "/examples/chat",
           params: item,
@@ -55,6 +68,46 @@ export default function ChatRoomScreen() {
 
   return (
     <SafeAreaContainer>
+      <CommonOverlay
+        visible={showOverlay}
+        onRequestClose={() => setShowOverlay(false)}
+      >
+        <View
+          style={{
+            backgroundColor: "white",
+            padding: 20,
+            borderRadius: 10,
+            gap: 10,
+          }}
+        >
+          <CommonText size="s">Do you want to create a chat room?</CommonText>
+          <TextInput
+            style={{
+              borderWidth: 1,
+              borderColor: "gray",
+              padding: 8,
+              marginVertical: 8,
+            }}
+            placeholder="Enter chat room title"
+            value={chatRoomTitle}
+            onChangeText={setChatRoomTitle}
+          />
+          <View
+            style={{
+              flexDirection: "row",
+            }}
+          >
+            <TextButton
+              title="Create"
+              onPress={() => {
+                addChatRoom();
+                setShowOverlay(false);
+              }}
+            />
+            <TextButton title="Cancel" onPress={() => setShowOverlay(false)} />
+          </View>
+        </View>
+      </CommonOverlay>
       <CommonHeader
         left={{
           title: "Chatroom",
@@ -63,7 +116,7 @@ export default function ChatRoomScreen() {
         }}
         right={{
           icon: "plus", //TODO: library에 plus아이콘 추가.
-          onPress: addChatRoom,
+          onPress: () => setShowOverlay(true),
         }}
       />
       <CommonList
@@ -84,4 +137,3 @@ export default function ChatRoomScreen() {
     </SafeAreaContainer>
   );
 }
-const styles = StyleSheet.create({});

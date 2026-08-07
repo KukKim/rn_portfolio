@@ -1,2 +1,3 @@
 import { ProfileCard } from "./card";
-export { ProfileCard };
+import { CommonOverlay } from "./overlay";
+export { CommonOverlay, ProfileCard };

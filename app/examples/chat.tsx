@@ -1,5 +1,11 @@
+import { ChatReadState } from "@/src/features/chat";
 import { getCommonDateText } from "@/src/features/date";
-import { useChats, useChatSocket, useSendChat } from "@/src/shared/hooks/chat";
+import {
+  useChatReadStates,
+  useChats,
+  useChatSocket,
+  useSendChat,
+} from "@/src/shared/hooks/chat";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import { useAppDispatch, useAppSelector } from "@/src/shared/hooks/redux";
 import { DisplayChatMessage } from "@/src/shared/types/chat";
@@ -27,9 +33,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 const ChatMessageComponent = (chat: DisplayChatMessage) => {
-  const { id, message, status, timeText, isMyChat } = chat;
-
-  const readCount = 0;
+  const { id, message, status, timeText, isMyChat, unreadCount } = chat;
   return (
     <View
       style={[
@@ -58,7 +62,7 @@ const ChatMessageComponent = (chat: DisplayChatMessage) => {
           },
         ]}
       >
-        <CommonText size="s">{readCount}</CommonText>
+        <CommonText size="s">{unreadCount}</CommonText>
         <View
           style={[
             styles.alignFlexEnd,
@@ -89,7 +93,9 @@ export default function ChatScreen() {
   const userInfo = useAppSelector((state) => state.userInfo);
   const { data, isLoading, isError, refetch } = useChats(id);
   const { mutate } = useSendChat();
-  const test = useChatSocket(id, userInfo.id);
+
+  const { data: readStates = [] } = useChatReadStates(id);
+  useChatSocket(id, userInfo.id);
   const messages = useMemo(() => {
     const flattenedMessages =
       data?.pages.flatMap((page) => page.messages) ?? [];
@@ -133,6 +139,34 @@ export default function ChatScreen() {
   };
   const fetchMore = () => {};
 
+  const getUnreadCount = ({
+    messageId,
+    senderId,
+    createdAt,
+    readStates,
+  }: {
+    messageId: string;
+    senderId: string;
+    createdAt: string;
+    readStates: ChatReadState[];
+  }) => {
+    return readStates.filter((state) => {
+      if (String(state.userId) === String(senderId)) {
+        return false;
+      }
+
+      if (new Date(state.joinedAt).getTime() > new Date(createdAt).getTime()) {
+        return false;
+      }
+
+      if (!state.lastReadMessageId) {
+        return true;
+      }
+
+      return BigInt(state.lastReadMessageId) < BigInt(messageId);
+    }).length;
+  };
+
   const openKeyboardModal = () => {
     Keyboard.dismiss();
     setKeyboardMenu(!keyboardMenu);
@@ -154,16 +188,25 @@ export default function ChatScreen() {
       <CommonList
         inverted
         data={messages}
-        renderItem={({ item }) => (
-          <ChatMessageComponent
-            isMyChat={userInfo.id === item.sender_id}
-            timeText={getCommonDateText({
-              date: item?.created_at,
-              format: "HH:mm",
-            })}
-            {...item}
-          />
-        )}
+        renderItem={({ item }) => {
+          const unreadCount = getUnreadCount({
+            messageId: String(item.id),
+            senderId: String(item.sender_id),
+            createdAt: item.created_at.toString(),
+            readStates,
+          });
+          return (
+            <ChatMessageComponent
+              {...item}
+              isMyChat={String(userInfo.id) === String(item.sender_id)}
+              timeText={getCommonDateText({
+                date: item.created_at,
+                format: "HH:mm",
+              })}
+              unreadCount={unreadCount}
+            />
+          );
+        }}
         keyExtractor={(item) => item.id}
         onEndReached={fetchMore}
         onEndReachedThreshold={0.2}

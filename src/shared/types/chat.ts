@@ -20,6 +20,7 @@ export type DisplayChatMessage = ChatMessage & {
   timeText?: string;
   showTime?: boolean;
   isMyChat: boolean;
+  unreadCount: number;
 };
 
 export interface ChatMessageState {
