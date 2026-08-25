@@ -1,27 +1,46 @@
-import { Icon, Label, NativeTabs } from "expo-router/unstable-native-tabs";
+import { NativeTabs } from "expo-router/unstable-native-tabs";
 
 export default function TabLayout() {
   return (
     <NativeTabs>
       <NativeTabs.Trigger name="index">
-        <Label>Home</Label>
-        <Icon sf="house.fill" drawable="custom_android_drawable" />
+        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon
+          sf="house.fill"
+          md="home"
+        />
       </NativeTabs.Trigger>
+
       <NativeTabs.Trigger name="uiKit">
-        <Label>UI Kit</Label>
-        <Icon sf="puzzlepiece" drawable="custom_android_drawable" />
+        <NativeTabs.Trigger.Label>UI Kit</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon
+          sf="puzzlepiece"
+          md="extension"
+        />
       </NativeTabs.Trigger>
+
       <NativeTabs.Trigger name="features">
-        <Label>Features</Label>
-        <Icon sf="app" drawable="custom_android_drawable" />
+        <NativeTabs.Trigger.Label>Features</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon
+          sf="app"
+          md="apps"
+        />
       </NativeTabs.Trigger>
+
       <NativeTabs.Trigger name="examples">
-        <Label>Examples</Label>
-        <Icon sf="iphone" drawable="custom_android_drawable" />
+        <NativeTabs.Trigger.Label>Examples</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon
+          sf="iphone"
+          md="smartphone"
+        />
       </NativeTabs.Trigger>
+
       <NativeTabs.Trigger name="settings">
-        <Icon sf="gear" drawable="custom_settings_drawable" />
-        <Label>Settings</Label>
+        <NativeTabs.Trigger.Label>Settings</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon
+          sf="gear"
+          md="settings"
+        />
       </NativeTabs.Trigger>
     </NativeTabs>
   );
