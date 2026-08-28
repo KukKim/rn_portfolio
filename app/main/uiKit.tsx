@@ -1,3 +1,4 @@
+import { i18n } from "@/src/i18n";
 import {
   CommonCard,
   CommonHeader,
@@ -13,52 +14,52 @@ export default function UIKit() {
     <ScrollViewContainer>
       <CommonHeader
         left={{
-          title: "UI Kit",
+          title: i18n.t("ui.title"),
         }}
       />
       <CommonCard title={"Components"}>
         <TextButton
-          title={"Button"}
+          title={i18n.t("ui.button")}
           onPress={() => router.navigate("/ui/button")}
         />
         <TextButton
-          title={"Badge"}
+          title={i18n.t("ui.badge")}
           onPress={() => router.navigate("/ui/badge")}
         />
         <TextButton
-          title={"Input"}
+          title={i18n.t("ui.input")}
           onPress={() => router.navigate("/ui/input")}
         />
         <TextButton
-          title={"Card"}
+          title={i18n.t("ui.card")}
           onPress={() => router.navigate("/ui/card")}
         />
         <TextButton
-          title={"ProgressBar"}
+          title={i18n.t("ui.progressbar")}
           onPress={() => router.navigate("/ui/progressBar")}
         />
         <TextButton
-          title={"Checkbox"}
+          title={i18n.t("ui.checkbox")}
           onPress={() => router.navigate("/ui/checkbox")}
         />
         <TextButton
-          title={"Spinner"}
+          title={i18n.t("ui.spinner")}
           onPress={() => router.navigate("/ui/spinner")}
         />
         <TextButton
-          title={"Switch"}
+          title={i18n.t("ui.switch")}
           onPress={() => router.navigate("/ui/switch")}
         />
         <TextButton
-          title={"Rating"}
+          title={i18n.t("ui.rating")}
           onPress={() => router.navigate("/ui/rating")}
         />
         <TextButton
-          title={"Select"}
+          title={i18n.t("ui.select")}
           onPress={() => router.navigate("/ui/select")}
         />
         <TextButton
-          title={"Slider"}
+          title={i18n.t("ui.slider")}
           onPress={() => router.navigate("/ui/slider")}
         />
       </CommonCard>

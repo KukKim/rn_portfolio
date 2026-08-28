@@ -1,0 +1,73 @@
+{
+  "common": {
+    "email": "이메일",
+    "name": "이름",
+    "confirm": "확인",
+    "cancel": "취소",
+    "profileImage": "프로필 이미지",
+    "save": "저장"
+  },
+  "home": {
+    "title": "홈",
+    "welcome": "안녕하세요, {{name}}님!"
+  },
+  "ui": {
+    "title": "UI",
+    "button": "버튼",
+    "badge": "배지",
+    "input": "입력",
+    "card": "카드",
+    "progressbar": "프로그레스 바",
+    "checkbox": "체크박스",
+    "spinner": "스피너",
+    "switch": "스위치",
+    "rating": "평점",
+    "select": "선택",
+    "slider": "슬라이더"
+  },
+  "feature": {
+    "title": "기능",
+    "fcm": "FCM",
+    "image": "이미지",
+    "video": "비디오",
+    "toast": "토스트",
+    "alert": "알림",
+    "naviagation": "네비게이션"
+  },
+  "example": {
+    "title": "예시",
+    "portfolio": {
+      "title": "포트폴리오"
+    }
+  },
+  "settings": {
+    "title": "설정",
+    "language": "언어",
+    "notification": "알림",
+    "theme": {
+      "title": "테마",
+      "lightMode": "라이트 모드",
+      "darkMode": "다크 모드",
+      "systemMode": "시스템 모드"
+    },
+    "profile": {
+      "title": "프로필"
+    }
+  },
+  "auth": {
+    "loginTitle": "로그인하는 모달",
+    "signupTitle": "회원가입하는 모달",
+    "login": "로그인",
+    "signup": "회원가입",
+    "signOut": "로그아웃",
+    "guestLogin": "게스트 로그인",
+    "password": "비밀번호",
+    "rePassword": "비밀번호 확인"
+  },
+  "chat": {
+    "chatRoomTitle": "채팅방",
+    "chatTitle": "채팅",
+    "send": "보내기",
+    "placeholder": "메시지를 입력하세요..."
+  }
+}

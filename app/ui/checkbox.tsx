@@ -1,3 +1,4 @@
+import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import {
   CheckBox,
@@ -14,7 +15,7 @@ export default function CheckboxScreen() {
     <ScrollViewContainer>
       <CommonHeader
         left={{
-          title: "Checkbox",
+          title: i18n.t("ui.checkbox"),
           icon: "back",
           onPress: back,
         }}

@@ -1,3 +1,4 @@
+import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import {
   CircularProgressBar,
@@ -13,7 +14,7 @@ export default function ProgressBarScreen() {
     <ScrollViewContainer>
       <CommonHeader
         left={{
-          title: "ProgressBar",
+          title: i18n.t("ui.progressBar"),
           icon: "back",
           onPress: back,
         }}

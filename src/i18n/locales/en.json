@@ -1,0 +1,73 @@
+{
+  "common": {
+    "email": "Email",
+    "name": "Name",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "profileImage": "Profile Image",
+    "save": "Save"
+  },
+  "home": {
+    "title": "Home",
+    "welcome": "Hello, {{name}}!"
+  },
+  "ui": {
+    "title": "UI",
+    "button": "Button",
+    "badge": "Badge",
+    "input": "Input",
+    "card": "Card",
+    "progressbar": "Progress Bar",
+    "checkbox": "Checkbox",
+    "spinner": "Spinner",
+    "switch": "Switch",
+    "rating": "Rating",
+    "select": "Select",
+    "slider": "Slider"
+  },
+  "feature": {
+    "title": "Feature",
+    "fcm": "FCM",
+    "image": "Image",
+    "video": "Video",
+    "toast": "Toast",
+    "alert": "Alert",
+    "naviagation": "Navigation"
+  },
+  "example": {
+    "title": "Example",
+    "portfolio": {
+      "title": "Portfolio"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "notification": "Notification",
+    "theme": {
+      "title": "Theme",
+      "lightMode": "Light Mode",
+      "darkMode": "Dark Mode",
+      "systemMode": "System Mode"
+    },
+    "profile": {
+      "title": "Profile"
+    }
+  },
+  "auth": {
+    "loginTitle": "Login Modal",
+    "signupTitle": "Signup Modal",
+    "login": "Login",
+    "signup": "Sign Up",
+    "signOut": "Sign Out",
+    "guestLogin": "Guest Login",
+    "password": "Password",
+    "rePassword": "Re-enter Password"
+  },
+  "chat": {
+    "chatRoomTitle": "ChatRoom",
+    "chatTitle": "Chat",
+    "send": "Send",
+    "placeholder": "Type a message..."
+  }
+}

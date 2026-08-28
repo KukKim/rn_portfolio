@@ -1,3 +1,4 @@
+import { i18n } from "@/src/i18n";
 import { CommonHeader, SafeAreaContainer } from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
@@ -8,7 +9,7 @@ export default function Index() {
     <SafeAreaContainer>
       <CommonHeader
         left={{
-          title: "Home",
+          title: i18n.t("home.title"),
         }}
       />
     </SafeAreaContainer>

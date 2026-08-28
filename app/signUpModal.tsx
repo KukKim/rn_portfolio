@@ -2,6 +2,7 @@
 
 import { requestSignup } from "@/src/features/auth";
 import { addErrorLog } from "@/src/features/logging";
+import { i18n } from "@/src/i18n";
 import { useAppDispatch } from "@/src/shared/hooks/redux";
 import { updateUserInfo } from "@/src/store/userInfoSlice";
 import { CommonInput, CommonText, TextButton } from "@kukkim/react-native-ui";
@@ -119,9 +120,9 @@ export default function SignUpModal() {
   // ];
   return (
     <View style={styles.container}>
-      <CommonText size="l">Signup Modal screen</CommonText>
+      <CommonText size="l">{i18n.t("auth.signupTitle")}</CommonText>
       <CommonInput
-        title={"E-mail"}
+        title={i18n.t("common.email")}
         value={email}
         onChangeText={setEmail}
         warningText={
@@ -129,7 +130,7 @@ export default function SignUpModal() {
         }
       />
       <CommonInput
-        title={"Name"}
+        title={i18n.t("common.name")}
         value={name}
         onChangeText={setName}
         warningText={
@@ -137,7 +138,7 @@ export default function SignUpModal() {
         }
       />
       <CommonInput
-        title={"Password"}
+        title={i18n.t("auth.password")}
         value={password}
         onChangeText={setPassword}
         warningText={
@@ -146,7 +147,7 @@ export default function SignUpModal() {
         secureTextEntry
       />
       <CommonInput
-        title={"Re-enter Password"}
+        title={i18n.t("auth.rePassword")}
         value={rePassword}
         onChangeText={setRePassword}
         secureTextEntry
@@ -158,11 +159,11 @@ export default function SignUpModal() {
       /> */}
       <View style={{ flexDirection: "row" }}>
         <TextButton
-          title="Sign Up"
+          title={i18n.t("auth.signup")}
           disabled={!email || !name || !password || password !== rePassword}
           onPress={handleSignup}
         />
-        <TextButton title="Cancel" onPress={handleCancel} />
+        <TextButton title={i18n.t("common.cancel")} onPress={handleCancel} />
       </View>
     </View>
   );

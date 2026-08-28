@@ -1,3 +1,4 @@
+import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import {
   CommonCard,
@@ -16,7 +17,7 @@ export default function CardScreen() {
     <ScrollViewContainer>
       <CommonHeader
         left={{
-          title: "Card",
+          title: i18n.t("ui.card"),
           icon: "back",
           onPress: back,
         }}

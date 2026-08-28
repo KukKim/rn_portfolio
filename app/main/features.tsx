@@ -1,4 +1,5 @@
 import { showToast } from "@/src/features/toast";
+import { i18n } from "@/src/i18n";
 import {
   CommonCard,
   CommonHeader,
@@ -14,26 +15,26 @@ export default function Features() {
     <SafeAreaContainer>
       <CommonHeader
         left={{
-          title: "Features",
+          title: i18n.t("feature.title"),
         }}
       />
-      <CommonCard title={"features"}>
+      <CommonCard title={i18n.t("feature.title")}>
         <TextButton
-          title={"fcm"}
+          title={i18n.t("feature.fcm")}
           onPress={() => router.navigate("/features/fcm")}
         />
         <TextButton
-          title={"image"}
+          title={i18n.t("feature.image")}
           onPress={() => router.navigate("/features/image")}
         />
         <TextButton
-          title={"video"}
+          title={i18n.t("feature.video")}
           onPress={() => router.navigate("/features/video")}
         />
       </CommonCard>
-      <CommonCard title={"Navigation"}>
+      <CommonCard title={i18n.t("feature.naviagation")}>
         <TextButton
-          title="Show Toast"
+          title={i18n.t("feature.toast")}
           onPress={() =>
             showToast({
               type: "success",
@@ -43,7 +44,7 @@ export default function Features() {
           }
         />
         <TextButton
-          title={"Show alert modal"}
+          title={i18n.t("feature.alert")}
           onPress={() => {
             router.push({
               pathname: "/alertModal",

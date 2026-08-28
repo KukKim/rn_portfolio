@@ -1,3 +1,4 @@
+import { i18n } from "@/src/i18n";
 import { ProfileCard } from "@/src/shared/components";
 import { useAppDispatch, useAppSelector } from "@/src/shared/hooks/redux";
 import { deleteUserInfo } from "@/src/store/userInfoSlice";
@@ -35,22 +36,22 @@ export default function Settings() {
   const settingItems = useMemo<SettingItem[]>(
     () => [
       {
-        label: "language",
+        label: i18n.t("settings.language"),
         route: "/settings/language",
       },
 
       {
-        label: "notification",
+        label: i18n.t("settings.notification"),
         route: "/settings/notification",
       },
 
       {
-        label: "theme",
+        label: i18n.t("settings.theme.title"),
         route: "/settings/theme",
       },
 
       {
-        label: "Sign Out",
+        label: i18n.t("auth.signOut"),
         onPress: handleSignOut,
       },
     ],
@@ -91,7 +92,7 @@ export default function Settings() {
     <SafeAreaContainer>
       <CommonHeader
         left={{
-          title: "Settings",
+          title: i18n.t("settings.title"),
         }}
       />
       <Pressable onPress={() => router.navigate("/settings/updateUserInfo")}>

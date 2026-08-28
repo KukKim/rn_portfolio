@@ -1,3 +1,4 @@
+import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import {
   CommonHeader,
@@ -14,15 +15,21 @@ export default function ThemeScreen() {
     <SafeAreaContainer>
       <CommonHeader
         left={{
-          title: "Theme",
+          title: i18n.t("settings.theme.title"),
           icon: "back",
           onPress: back,
         }}
       />
-      <TextButton title="라이트 모드" onPress={() => setMode("light")} />
-      <TextButton title="다크 모드" onPress={() => setMode("dark")} />
+      <TextButton
+        title={i18n.t("settings.theme.lightMode")}
+        onPress={() => setMode("light")}
+      />
+      <TextButton
+        title={i18n.t("settings.theme.darkMode")}
+        onPress={() => setMode("dark")}
+      />
       {/* <TextButton
-        title="시스템 설정 따르기"
+        title={i18n.t('settings.theme.systemMode')}
         onPress={() => updateTheme("system")}
       /> */}
     </SafeAreaContainer>

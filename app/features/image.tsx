@@ -1,3 +1,4 @@
+import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import {
   CommonHeader,
@@ -12,7 +13,7 @@ export default function ImageScreen() {
     <SafeAreaContainer>
       <CommonHeader
         left={{
-          title: "Image",
+          title: i18n.t("feature.image"),
           icon: "back",
           onPress: back,
         }}

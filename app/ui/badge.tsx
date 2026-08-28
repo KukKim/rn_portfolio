@@ -1,3 +1,4 @@
+import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import {
   CommonBadge,
@@ -13,7 +14,7 @@ export default function BadgeScreen() {
     <ScrollViewContainer>
       <CommonHeader
         left={{
-          title: "Badge",
+          title: i18n.t("ui.badge"),
           icon: "back",
           onPress: back,
         }}

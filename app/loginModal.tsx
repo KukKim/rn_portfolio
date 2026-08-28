@@ -1,5 +1,6 @@
 import { requestSignin, requestSignup } from "@/src/features/auth";
 import { addErrorLog } from "@/src/features/logging";
+import { i18n } from "@/src/i18n";
 import { useAppDispatch } from "@/src/shared/hooks/redux";
 import { updateUserInfo } from "@/src/store/userInfoSlice";
 import {
@@ -62,23 +63,30 @@ export default function LoginModal() {
   };
   return (
     <View style={styles.container}>
-      <CommonText>Login Modal screen</CommonText>
-      <CommonInput title={"E-mail"} value={email} onChangeText={setEmail} />
+      <CommonText>{i18n.t("auth.loginTitle")}</CommonText>
       <CommonInput
-        title={"Password"}
+        title={i18n.t("common.email")}
+        value={email}
+        onChangeText={setEmail}
+      />
+      <CommonInput
+        title={i18n.t("auth.password")}
         value={password}
         onChangeText={setPassword}
         secureTextEntry
       />
       <View style={styles.buttonContainer}>
         <TextButton
-          title="Login"
+          title={i18n.t("auth.login")}
           disabled={!email || !password}
           onPress={handleLogin}
         />
-        <TextButton title="Sign Up" onPress={showSignupModal} />
+        <TextButton title={i18n.t("auth.signup")} onPress={showSignupModal} />
       </View>
-      <TextButton title="Guest Login" onPress={handleGuestLogin} />
+      <TextButton
+        title={i18n.t("auth.guestLogin")}
+        onPress={handleGuestLogin}
+      />
       <SocialLoginButton provider="apple" />
       <SocialLoginButton provider="facebook" />
       <SocialLoginButton provider="google" />

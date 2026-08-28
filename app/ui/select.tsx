@@ -1,3 +1,4 @@
+import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import {
   CommonHeader,
@@ -16,7 +17,7 @@ export default function SelectScreen() {
     <ScrollViewContainer>
       <CommonHeader
         left={{
-          title: "Select",
+          title: i18n.t("ui.select"),
           icon: "back",
           onPress: back,
         }}

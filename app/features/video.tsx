@@ -1,3 +1,4 @@
+import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import { CommonHeader, SafeAreaContainer } from "@kukkim/react-native-ui";
 import { useEvent } from "expo";
@@ -22,7 +23,7 @@ export default function VideoScreen() {
     <SafeAreaContainer>
       <CommonHeader
         left={{
-          title: "Video",
+          title: i18n.t("feature.video"),
           icon: "back",
           onPress: back,
         }}

@@ -1,3 +1,4 @@
+import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import {
   CommonHeader,
@@ -14,7 +15,7 @@ export default function SwitchScreen() {
     <ScrollViewContainer>
       <CommonHeader
         left={{
-          title: "Switch",
+          title: i18n.t("ui.switch"),
           icon: "back",
           onPress: back,
         }}

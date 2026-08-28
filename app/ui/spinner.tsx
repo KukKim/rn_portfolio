@@ -1,3 +1,4 @@
+import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import {
   CommonHeader,
@@ -12,7 +13,7 @@ export default function SpinnerScreen() {
     <ScrollViewContainer>
       <CommonHeader
         left={{
-          title: "Spinner",
+          title: i18n.t("ui.spinner"),
           icon: "back",
           onPress: back,
         }}

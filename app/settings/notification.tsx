@@ -1,3 +1,4 @@
+import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import {
   CommonHeader,
@@ -12,12 +13,12 @@ export default function NotificationScreen() {
     <SafeAreaContainer>
       <CommonHeader
         left={{
-          title: "Notification",
+          title: i18n.t("settings.notification"),
           icon: "back",
           onPress: back,
         }}
       />
-      <CommonText>Notification</CommonText>
+      <CommonText>{i18n.t("settings.notification")}</CommonText>
     </SafeAreaContainer>
   );
 }

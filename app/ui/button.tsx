@@ -1,3 +1,4 @@
+import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import {
   CommonButton,
@@ -15,7 +16,7 @@ export default function ButtonScreen() {
     <ScrollViewContainer>
       <CommonHeader
         left={{
-          title: "Button",
+          title: i18n.t("ui.button"),
           icon: "back",
           onPress: back,
         }}

@@ -1,5 +1,6 @@
 import { getCommonDateText } from "@/src/features/date";
 import { fetchFirestoreData } from "@/src/features/firebase";
+import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import { Project } from "@/src/shared/types/project";
 import {
@@ -81,7 +82,7 @@ export default function PortfolioListScreen() {
     <SafeAreaContainer>
       <CommonHeader
         left={{
-          title: "List",
+          title: i18n.t("example.portfolio.title"),
           icon: "back",
           onPress: back,
         }}

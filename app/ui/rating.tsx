@@ -1,3 +1,4 @@
+import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import {
   CommonHeader,
@@ -14,7 +15,7 @@ export default function RatingScreen() {
     <ScrollViewContainer>
       <CommonHeader
         left={{
-          title: "Rating",
+          title: i18n.t("ui.rating"),
           icon: "back",
           onPress: back,
         }}
