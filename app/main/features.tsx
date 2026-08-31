@@ -1,5 +1,5 @@
 import { showToast } from "@/src/features/toast";
-import { i18n } from "@/src/i18n";
+import { useTranslation } from "@/src/shared/hooks/translation";
 import {
   CommonCard,
   CommonHeader,
@@ -10,31 +10,32 @@ import { useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
 
 export default function Features() {
+  const { t } = useTranslation();
   const router = useRouter();
   return (
     <SafeAreaContainer>
       <CommonHeader
         left={{
-          title: i18n.t("feature.title"),
+          title: t("feature.title"),
         }}
       />
-      <CommonCard title={i18n.t("feature.title")}>
+      <CommonCard title={t("feature.title")}>
         <TextButton
-          title={i18n.t("feature.fcm")}
+          title={t("feature.fcm")}
           onPress={() => router.navigate("/features/fcm")}
         />
         <TextButton
-          title={i18n.t("feature.image")}
+          title={t("feature.image")}
           onPress={() => router.navigate("/features/image")}
         />
         <TextButton
-          title={i18n.t("feature.video")}
+          title={t("feature.video")}
           onPress={() => router.navigate("/features/video")}
         />
       </CommonCard>
-      <CommonCard title={i18n.t("feature.naviagation")}>
+      <CommonCard title={t("feature.naviagation")}>
         <TextButton
-          title={i18n.t("feature.toast")}
+          title={t("feature.toast")}
           onPress={() =>
             showToast({
               type: "success",
@@ -44,7 +45,7 @@ export default function Features() {
           }
         />
         <TextButton
-          title={i18n.t("feature.alert")}
+          title={t("feature.alert")}
           onPress={() => {
             router.push({
               pathname: "/alertModal",

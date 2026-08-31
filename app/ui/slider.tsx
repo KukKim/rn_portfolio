@@ -1,5 +1,5 @@
-import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
+import { useTranslation } from "@/src/shared/hooks/translation";
 import {
   CommonHeader,
   CommonSlider,
@@ -8,12 +8,13 @@ import {
 import { StyleSheet } from "react-native";
 
 export default function SliderScreen() {
+  const { t } = useTranslation();
   const { back } = useNavigation();
   return (
     <ScrollViewContainer>
       <CommonHeader
         left={{
-          title: i18n.t("ui.slider"),
+          title: t("ui.slider"),
           icon: "back",
           onPress: back,
         }}

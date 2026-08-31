@@ -1,5 +1,5 @@
-import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
+import { useTranslation } from "@/src/shared/hooks/translation";
 import {
   CommonHeader,
   SafeAreaContainer,
@@ -8,12 +8,13 @@ import {
 import { StyleSheet } from "react-native";
 
 export default function FcmScreen() {
+  const { t } = useTranslation();
   const { back } = useNavigation();
   return (
     <SafeAreaContainer>
       <CommonHeader
         left={{
-          title: i18n.t("feature.fcm"),
+          title: t("feature.fcm"),
           icon: "back",
           onPress: back,
         }}

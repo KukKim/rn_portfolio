@@ -3,15 +3,11 @@ import { addErrorLog } from "@/src/features/logging";
 import { registerForPushNotificationsAsync } from "@/src/features/notification";
 import { useAppDispatch, useAppSelector } from "@/src/shared/hooks/redux";
 import { deleteUserInfo } from "@/src/store/userInfoSlice";
-import { getLocales } from "expo-localization";
 import { useNavigationContainerRef, useRouter } from "expo-router";
-import { I18n } from "i18n-js";
 import { useEffect } from "react";
 import { View } from "react-native";
-import translation from "./translation.json";
 
 export default function Index() {
-  const i18n = new I18n(translation);
   const router = useRouter();
   const navigationRef = useNavigationContainerRef();
   const dispatch = useAppDispatch();
@@ -57,6 +53,5 @@ export default function Index() {
     }
   }, [userInfo?.token]);
 
-  i18n.locale = getLocales().at(0)?.languageCode ?? "en";
   return <View></View>;
 }

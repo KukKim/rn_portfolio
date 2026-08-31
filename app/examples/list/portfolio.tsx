@@ -1,7 +1,7 @@
 import { getCommonDateText } from "@/src/features/date";
 import { fetchFirestoreData } from "@/src/features/firebase";
-import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
+import { useTranslation } from "@/src/shared/hooks/translation";
 import { Project } from "@/src/shared/types/project";
 import {
   CommonButton,
@@ -19,6 +19,7 @@ import { useCallback, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 export default function PortfolioListScreen() {
+  const { t } = useTranslation();
   const { back } = useNavigation();
   const router = useRouter();
   const [projectItems, setProjectItems] = useState<Project[]>([]);
@@ -82,7 +83,7 @@ export default function PortfolioListScreen() {
     <SafeAreaContainer>
       <CommonHeader
         left={{
-          title: i18n.t("example.portfolio.title"),
+          title: t("example.portfolio.title"),
           icon: "back",
           onPress: back,
         }}

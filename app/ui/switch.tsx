@@ -1,5 +1,5 @@
-import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
+import { useTranslation } from "@/src/shared/hooks/translation";
 import {
   CommonHeader,
   CommonSwitch,
@@ -9,13 +9,14 @@ import { useState } from "react";
 import { StyleSheet } from "react-native";
 
 export default function SwitchScreen() {
+  const { t } = useTranslation();
   const { back } = useNavigation();
   const [switchValue, setSwitchValue] = useState(false);
   return (
     <ScrollViewContainer>
       <CommonHeader
         left={{
-          title: i18n.t("ui.switch"),
+          title: t("ui.switch"),
           icon: "back",
           onPress: back,
         }}

@@ -1,6 +1,6 @@
-import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import { useAppDispatch, useAppSelector } from "@/src/shared/hooks/redux";
+import { useTranslation } from "@/src/shared/hooks/translation";
 import { updateUserInfo } from "@/src/store/userInfoSlice";
 import {
   CommonAvatar,
@@ -13,6 +13,7 @@ import { useState } from "react";
 import { StyleSheet } from "react-native";
 
 export default function UpdateUserInfoScreen() {
+  const { t } = useTranslation();
   const { back } = useNavigation();
   const userInfo = useAppSelector((state) => state.userInfo);
   const dispatch = useAppDispatch();
@@ -46,21 +47,21 @@ export default function UpdateUserInfoScreen() {
         }}
       />
       <CommonInput
-        title={i18n.t("common.profileImage")}
+        title={t("common.profileImage")}
         value={imgUri}
         onChangeText={setImgUri}
       />
       <CommonInput
-        title={i18n.t("common.name")}
+        title={t("common.name")}
         value={name}
         onChangeText={setName}
       />
       <CommonInput
-        title={i18n.t("common.email")}
+        title={t("common.email")}
         value={email}
         onChangeText={setEmail}
       />
-      <TextButton title={i18n.t("common.save")} onPress={onUpdateUserInfo} />
+      <TextButton title={t("common.save")} onPress={onUpdateUserInfo} />
     </SafeAreaContainer>
   );
 }

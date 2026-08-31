@@ -1,5 +1,5 @@
-import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
+import { useTranslation } from "@/src/shared/hooks/translation";
 import {
   CommonHeader,
   SafeAreaContainer,
@@ -9,27 +9,28 @@ import {
 import { StyleSheet } from "react-native";
 
 export default function ThemeScreen() {
+  const { t } = useTranslation();
   const { back } = useNavigation();
   const { setMode } = useTheme();
   return (
     <SafeAreaContainer>
       <CommonHeader
         left={{
-          title: i18n.t("settings.theme.title"),
+          title: t("settings.theme.title"),
           icon: "back",
           onPress: back,
         }}
       />
       <TextButton
-        title={i18n.t("settings.theme.lightMode")}
+        title={t("settings.theme.lightMode")}
         onPress={() => setMode("light")}
       />
       <TextButton
-        title={i18n.t("settings.theme.darkMode")}
+        title={t("settings.theme.darkMode")}
         onPress={() => setMode("dark")}
       />
       {/* <TextButton
-        title={i18n.t('settings.theme.systemMode')}
+        title={t('settings.theme.systemMode')}
         onPress={() => updateTheme("system")}
       /> */}
     </SafeAreaContainer>

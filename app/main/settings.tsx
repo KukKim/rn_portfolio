@@ -1,6 +1,6 @@
-import { i18n } from "@/src/i18n";
 import { ProfileCard } from "@/src/shared/components";
 import { useAppDispatch, useAppSelector } from "@/src/shared/hooks/redux";
+import { useTranslation } from "@/src/shared/hooks/translation";
 import { deleteUserInfo } from "@/src/store/userInfoSlice";
 import {
   CommonHeader,
@@ -23,6 +23,7 @@ interface SettingItem {
 }
 
 export default function Settings() {
+  const { t } = useTranslation();
   const userInfo = useAppSelector((state) => state.userInfo);
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -36,27 +37,27 @@ export default function Settings() {
   const settingItems = useMemo<SettingItem[]>(
     () => [
       {
-        label: i18n.t("settings.language"),
+        label: t("settings.language"),
         route: "/settings/language",
       },
 
       {
-        label: i18n.t("settings.notification"),
+        label: t("settings.notification"),
         route: "/settings/notification",
       },
 
       {
-        label: i18n.t("settings.theme.title"),
+        label: t("settings.theme.title"),
         route: "/settings/theme",
       },
 
       {
-        label: i18n.t("auth.signOut"),
+        label: t("auth.signOut"),
         onPress: handleSignOut,
       },
     ],
 
-    [handleSignOut],
+    [handleSignOut, t],
   );
 
   const handlePressItem = useCallback(
@@ -92,7 +93,7 @@ export default function Settings() {
     <SafeAreaContainer>
       <CommonHeader
         left={{
-          title: i18n.t("settings.title"),
+          title: t("settings.title"),
         }}
       />
       <Pressable onPress={() => router.navigate("/settings/updateUserInfo")}>

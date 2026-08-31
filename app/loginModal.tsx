@@ -1,7 +1,7 @@
 import { requestSignin, requestSignup } from "@/src/features/auth";
 import { addErrorLog } from "@/src/features/logging";
-import { i18n } from "@/src/i18n";
 import { useAppDispatch } from "@/src/shared/hooks/redux";
+import { useTranslation } from "@/src/shared/hooks/translation";
 import { updateUserInfo } from "@/src/store/userInfoSlice";
 import {
   CommonInput,
@@ -14,6 +14,7 @@ import { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
 
 export default function LoginModal() {
+  const { t } = useTranslation();
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -63,30 +64,27 @@ export default function LoginModal() {
   };
   return (
     <View style={styles.container}>
-      <CommonText>{i18n.t("auth.loginTitle")}</CommonText>
+      <CommonText>{t("auth.loginTitle")}</CommonText>
       <CommonInput
-        title={i18n.t("common.email")}
+        title={t("common.email")}
         value={email}
         onChangeText={setEmail}
       />
       <CommonInput
-        title={i18n.t("auth.password")}
+        title={t("auth.password")}
         value={password}
         onChangeText={setPassword}
         secureTextEntry
       />
       <View style={styles.buttonContainer}>
         <TextButton
-          title={i18n.t("auth.login")}
+          title={t("auth.login")}
           disabled={!email || !password}
           onPress={handleLogin}
         />
-        <TextButton title={i18n.t("auth.signup")} onPress={showSignupModal} />
+        <TextButton title={t("auth.signup")} onPress={showSignupModal} />
       </View>
-      <TextButton
-        title={i18n.t("auth.guestLogin")}
-        onPress={handleGuestLogin}
-      />
+      <TextButton title={t("auth.guestLogin")} onPress={handleGuestLogin} />
       <SocialLoginButton provider="apple" />
       <SocialLoginButton provider="facebook" />
       <SocialLoginButton provider="google" />

@@ -1,5 +1,5 @@
-import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
+import { useTranslation } from "@/src/shared/hooks/translation";
 import {
   CommonBadge,
   CommonHeader,
@@ -9,12 +9,13 @@ import {
 import { StyleSheet } from "react-native";
 
 export default function BadgeScreen() {
+  const { t } = useTranslation();
   const { back } = useNavigation();
   return (
     <ScrollViewContainer>
       <CommonHeader
         left={{
-          title: i18n.t("ui.badge"),
+          title: t("ui.badge"),
           icon: "back",
           onPress: back,
         }}

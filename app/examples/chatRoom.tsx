@@ -1,9 +1,9 @@
 import { createChatRoom, joinChatRoom } from "@/src/features/chat";
-import { i18n } from "@/src/i18n";
 import { CommonOverlay } from "@/src/shared/components";
 import { useChatRooms } from "@/src/shared/hooks/chat";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import { useAppSelector } from "@/src/shared/hooks/redux";
+import { useTranslation } from "@/src/shared/hooks/translation";
 import { ChatRoom } from "@/src/shared/types/chat";
 import {
   CommonCard,
@@ -34,6 +34,7 @@ const ChatRoomComponent = ({ title, members, routeChat }: ChatRoomProps) => {
 };
 
 export default function ChatRoomScreen() {
+  const { t } = useTranslation();
   const userInfo = useAppSelector((state) => state.userInfo);
   const { back, push } = useNavigation();
   const { data: chatRooms, isLoading, isError, refetch } = useChatRooms();
@@ -111,7 +112,7 @@ export default function ChatRoomScreen() {
       </CommonOverlay>
       <CommonHeader
         left={{
-          title: i18n.t("chat.chatRoomTitle"),
+          title: t("chat.chatRoomTitle"),
           icon: "back",
           onPress: back,
         }}

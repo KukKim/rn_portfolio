@@ -2,8 +2,8 @@
 
 import { requestSignup } from "@/src/features/auth";
 import { addErrorLog } from "@/src/features/logging";
-import { i18n } from "@/src/i18n";
 import { useAppDispatch } from "@/src/shared/hooks/redux";
+import { useTranslation } from "@/src/shared/hooks/translation";
 import { updateUserInfo } from "@/src/store/userInfoSlice";
 import { CommonInput, CommonText, TextButton } from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
@@ -20,6 +20,7 @@ const WARNINGTYPE = {
 };
 
 export default function SignUpModal() {
+  const { t } = useTranslation();
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [email, setEmail] = useState("");
@@ -120,9 +121,9 @@ export default function SignUpModal() {
   // ];
   return (
     <View style={styles.container}>
-      <CommonText size="l">{i18n.t("auth.signupTitle")}</CommonText>
+      <CommonText size="l">{t("auth.signupTitle")}</CommonText>
       <CommonInput
-        title={i18n.t("common.email")}
+        title={t("common.email")}
         value={email}
         onChangeText={setEmail}
         warningText={
@@ -130,7 +131,7 @@ export default function SignUpModal() {
         }
       />
       <CommonInput
-        title={i18n.t("common.name")}
+        title={t("common.name")}
         value={name}
         onChangeText={setName}
         warningText={
@@ -138,7 +139,7 @@ export default function SignUpModal() {
         }
       />
       <CommonInput
-        title={i18n.t("auth.password")}
+        title={t("auth.password")}
         value={password}
         onChangeText={setPassword}
         warningText={
@@ -147,7 +148,7 @@ export default function SignUpModal() {
         secureTextEntry
       />
       <CommonInput
-        title={i18n.t("auth.rePassword")}
+        title={t("auth.rePassword")}
         value={rePassword}
         onChangeText={setRePassword}
         secureTextEntry
@@ -159,11 +160,11 @@ export default function SignUpModal() {
       /> */}
       <View style={{ flexDirection: "row" }}>
         <TextButton
-          title={i18n.t("auth.signup")}
+          title={t("auth.signup")}
           disabled={!email || !name || !password || password !== rePassword}
           onPress={handleSignup}
         />
-        <TextButton title={i18n.t("common.cancel")} onPress={handleCancel} />
+        <TextButton title={t("common.cancel")} onPress={handleCancel} />
       </View>
     </View>
   );

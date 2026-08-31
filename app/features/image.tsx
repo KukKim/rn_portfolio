@@ -1,5 +1,5 @@
-import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
+import { useTranslation } from "@/src/shared/hooks/translation";
 import {
   CommonHeader,
   CommonImage,
@@ -8,12 +8,13 @@ import {
 import { StyleSheet } from "react-native";
 
 export default function ImageScreen() {
+  const { t } = useTranslation();
   const { back } = useNavigation();
   return (
     <SafeAreaContainer>
       <CommonHeader
         left={{
-          title: i18n.t("feature.image"),
+          title: t("feature.image"),
           icon: "back",
           onPress: back,
         }}

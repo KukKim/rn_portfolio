@@ -1,5 +1,5 @@
-import { i18n } from "@/src/i18n";
 import { useNavigation } from "@/src/shared/hooks/navigation";
+import { useTranslation } from "@/src/shared/hooks/translation";
 import { CommonHeader, SafeAreaContainer } from "@kukkim/react-native-ui";
 import { useEvent } from "expo";
 import { useVideoPlayer, VideoView } from "expo-video";
@@ -9,6 +9,7 @@ const videoSource =
   "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
 
 export default function VideoScreen() {
+  const { t } = useTranslation();
   const { back } = useNavigation();
   const player = useVideoPlayer(videoSource, (player) => {
     player.loop = true;
@@ -23,7 +24,7 @@ export default function VideoScreen() {
     <SafeAreaContainer>
       <CommonHeader
         left={{
-          title: i18n.t("feature.video"),
+          title: t("feature.video"),
           icon: "back",
           onPress: back,
         }}
