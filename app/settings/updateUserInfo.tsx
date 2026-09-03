@@ -1,3 +1,4 @@
+import { requestUpdateUserInfo } from "@/src/features/auth";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import { useAppDispatch, useAppSelector } from "@/src/shared/hooks/redux";
 import { useTranslation } from "@/src/shared/hooks/translation";
@@ -22,13 +23,16 @@ export default function UpdateUserInfoScreen() {
   const [imgUri, setImgUri] = useState(userInfo.imgUri);
 
   const onUpdateUserInfo = () => {
-    dispatch(
-      updateUserInfo({
-        email: email,
-        name: name,
-        imgUri: imgUri,
-      }),
-    );
+    requestUpdateUserInfo(userInfo.id, imgUri, name, email).then(() => {
+      dispatch(
+        updateUserInfo({
+          ...userInfo,
+          email: email,
+          name: name,
+          imgUri: imgUri,
+        }),
+      );
+    });
   };
 
   return (

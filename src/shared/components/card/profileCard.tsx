@@ -7,7 +7,7 @@ const ProfileCard = ({
   type = "primary",
   email = "-",
   name = "-",
-  photoUri,
+  profileUri,
   ...props
 }: ProfileCardProps) => {
   const { theme } = useTheme();
@@ -16,10 +16,14 @@ const ProfileCard = ({
       style={[styles.profileContainer, { borderColor: theme.colors.border }]}
     >
       <View style={styles.innerProfileContainer}>
-        <CommonAvatar />
+        <CommonAvatar size="l" source={{ uri: profileUri }} />
         <View>
-          <CommonText style={styles.nameText}>{name}</CommonText>
-          <CommonText style={styles.emailText}>{email}</CommonText>
+          <CommonText style={styles.nameText} size="l">
+            {name}
+          </CommonText>
+          <CommonText style={styles.emailText} size="s">
+            {email}
+          </CommonText>
         </View>
       </View>
     </View>
@@ -34,6 +38,7 @@ const styles = StyleSheet.create({
   },
   innerProfileContainer: {
     flexDirection: "row",
+    alignItems: "center",
     gap: 5,
   },
   nameText: {

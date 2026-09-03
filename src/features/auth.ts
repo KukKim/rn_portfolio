@@ -14,6 +14,13 @@ interface RegisterPushTokenRequest {
   platform: "ios" | "android";
 }
 
+interface UpdateUserInfoRequest {
+  id: string;
+  imgUri?: string;
+  name?: string;
+  email?: string;
+}
+
 export const requestCheckToken = <TResponse>(
   token: string,
 ): Promise<TResponse> => {
@@ -68,6 +75,23 @@ export const registerPushToken = <TResponse>(
       authToken,
       pushToken,
       platform: Platform.OS === "ios" ? "ios" : "android",
+    },
+  });
+};
+
+export const requestUpdateUserInfo = <TResponse>(
+  id: string,
+  imgUri?: string,
+  name?: string,
+  email?: string,
+): Promise<TResponse> => {
+  return apiRequest<TResponse, UpdateUserInfoRequest>("/updateuserinfo", {
+    method: "PATCH",
+    body: {
+      id,
+      imgUri,
+      name,
+      email,
     },
   });
 };

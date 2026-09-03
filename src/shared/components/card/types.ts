@@ -11,5 +11,5 @@ export interface ProfileCardProps extends ViewProps {
   type?: Variant;
   name?: string;
   email?: string;
-  photoUri?: string;
+  profileUri?: string;
 }

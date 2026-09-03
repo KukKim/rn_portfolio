@@ -100,7 +100,7 @@ export default function Settings() {
         <ProfileCard
           email={userInfo.email}
           name={userInfo.name}
-          photoUri={userInfo?.photoUri}
+          profileUri={userInfo?.imgUri}
         />
       </Pressable>
       <FlatList
