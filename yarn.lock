@@ -4857,6 +4857,18 @@ expo-haptics@~57.0.1:
   resolved "https://registry.yarnpkg.com/expo-haptics/-/expo-haptics-57.0.1.tgz#0f30d6b54da4126d552eb53672e8612818ae62b0"
   integrity sha512-8VhbnxlIrfXjP0syZr1JT197nafYicQu9119adOJnX62osU9Cw+PdDnAx/6LxuKJRzQdwxOMq7b7eWjhNL5zAQ==
 
+expo-image-loader@~57.0.1:
+  version "57.0.1"
+  resolved "https://registry.yarnpkg.com/expo-image-loader/-/expo-image-loader-57.0.1.tgz#b031dc3e62ac09004f3e436d7081487236791f53"
+  integrity sha512-uhrZKLT/cTl2mXyR28kPpVkS5O+PK9N1QA/07IFM4f5T4g0lTW1JHT3NEWwEEsGFldPmVX4j7LwUVVZxE+woug==
+
+expo-image-picker@~57.0.15:
+  version "57.0.15"
+  resolved "https://registry.yarnpkg.com/expo-image-picker/-/expo-image-picker-57.0.15.tgz#99b82809ae5425cfbd2f518cd9f2acde9078e5c3"
+  integrity sha512-sTPIlN6v7/PQqOpRp6VFKTpvfFHE5xqkg+Pi5Ccem80HMNPrPtcT/CU9dZRBgM3MntEZ9GOrArDb5eRY5/HIoA==
+  dependencies:
+    expo-image-loader "~57.0.1"
+
 expo-image@~57.0.3:
   version "57.0.3"
   resolved "https://registry.yarnpkg.com/expo-image/-/expo-image-57.0.3.tgz#f6f57208a5107bfee3e4b8674febb6792006c319"

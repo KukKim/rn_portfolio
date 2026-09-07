@@ -51,7 +51,8 @@
       "systemMode": "시스템 모드"
     },
     "profile": {
-      "title": "프로필"
+      "title": "프로필",
+      "getImageFromLibrary": "라이브러리에서 이미지 가져오기"
     }
   },
   "auth": {

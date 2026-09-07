@@ -51,7 +51,8 @@
       "systemMode": "System Mode"
     },
     "profile": {
-      "title": "Profile"
+      "title": "Profile",
+      "getImageFromLibrary": "Get Image from Library"
     }
   },
   "auth": {
