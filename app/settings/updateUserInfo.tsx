@@ -1,4 +1,5 @@
 import { requestUpdateUserInfo } from "@/src/features/auth";
+import { requestUploadUrl } from "@/src/features/file";
 import { useNavigation } from "@/src/shared/hooks/navigation";
 import { useAppDispatch, useAppSelector } from "@/src/shared/hooks/redux";
 import { useTranslation } from "@/src/shared/hooks/translation";
@@ -10,6 +11,7 @@ import {
   SafeAreaContainer,
   TextButton,
 } from "@kukkim/react-native-ui";
+import { File } from "expo-file-system";
 import * as ImagePicker from "expo-image-picker";
 import { useState } from "react";
 import { Alert, StyleSheet } from "react-native";
@@ -59,11 +61,21 @@ export default function UpdateUserInfoScreen() {
         aspect: [4, 3],
         quality: 1,
       });
-
-      console.log(result);
-
       if (!result.canceled) {
-        setImgUri(result.assets[0].uri);
+        const asset = result.assets[0];
+        const file = new File(asset.uri);
+        requestUploadUrl(asset.fileName, asset.type).then((response) => {
+          fetch(response.data.signedUrl, {
+            method: "PUT",
+            headers: {
+              "Content-Type": asset.type,
+            },
+            body: file,
+          }).then((result) => {
+            // Handle successful upload
+            setImgUri(result.url);
+          });
+        });
       }
     } catch (e) {
       console.log(e);
@@ -82,7 +94,7 @@ export default function UpdateUserInfoScreen() {
       <CommonAvatar
         size="l"
         source={{
-          uri: userInfo.imgUri,
+          uri: imgUri,
         }}
       />
       <CommonInput
