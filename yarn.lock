@@ -2045,10 +2045,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@kukkim/react-native-ui@^0.1.12":
-  version "0.1.12"
-  resolved "https://registry.yarnpkg.com/@kukkim/react-native-ui/-/react-native-ui-0.1.12.tgz#b3276fab4316770bfebeb49ae987e2e40185000d"
-  integrity sha512-0vaUi7MPNtvcAKqpjPCe6pcdVU0EyRv//QTSSABzBRfZLDPDUVFo5beXjg6tMbGwt+Y5WnCg8ElZWMTWIzAGlg==
+"@kukkim/react-native-ui@^0.1.13":
+  version "0.1.13"
+  resolved "https://registry.yarnpkg.com/@kukkim/react-native-ui/-/react-native-ui-0.1.13.tgz#7c355a910c1f4316723185d65c0aeb8c5ebbb43e"
+  integrity sha512-eoPLJWkwDUorxHcjOqqsRcLPUKuoAibAwmyPAohZd4fTG5Y4kDTmbdwlkBXYDNsKiAsZInyJAE+8L07qm7HZqw==
 
 "@napi-rs/wasm-runtime@^1.1.4":
   version "1.2.3"

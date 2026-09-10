@@ -52,6 +52,7 @@
     },
     "profile": {
       "title": "프로필",
+      "takePhoto": "사진 찍기",
       "getImageFromLibrary": "라이브러리에서 이미지 가져오기"
     }
   },

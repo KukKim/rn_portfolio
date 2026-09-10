@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { Auth } from "../shared/types/auth";
 
 const initialState: Auth = {
+  id: "",
   name: "",
   email: "",
   imgUri: "",

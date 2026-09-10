@@ -52,6 +52,7 @@
     },
     "profile": {
       "title": "Profile",
+      "takePhoto": "Take Photo",
       "getImageFromLibrary": "Get Image from Library"
     }
   },

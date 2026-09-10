@@ -14,12 +14,13 @@ import {
 import { File } from "expo-file-system";
 import * as ImagePicker from "expo-image-picker";
 import { useState } from "react";
-import { Alert, StyleSheet } from "react-native";
+import { Alert, StyleSheet, View } from "react-native";
 
 export default function UpdateUserInfoScreen() {
   const { t } = useTranslation();
   const { back } = useNavigation();
   const userInfo = useAppSelector((state) => state.userInfo);
+
   const dispatch = useAppDispatch();
   const [name, setName] = useState(userInfo.name);
   const [email, setEmail] = useState(userInfo.email);
@@ -63,23 +64,52 @@ export default function UpdateUserInfoScreen() {
       });
       if (!result.canceled) {
         const asset = result.assets[0];
-        const file = new File(asset.uri);
-        requestUploadUrl(asset.fileName, asset.type).then((response) => {
-          fetch(response.data.signedUrl, {
-            method: "PUT",
-            headers: {
-              "Content-Type": asset.type,
-            },
-            body: file,
-          }).then((result) => {
-            // Handle successful upload
-            setImgUri(result.url);
-          });
-        });
+        await uploadImage(asset);
       }
     } catch (e) {
       console.log(e);
     }
+  };
+  const takePhoto = async () => {
+    // Camera access always requires the user's permission.
+    // Taking a photo also requires a device with a camera. The iOS Simulator
+    // does not have one, so use a physical device to test this button.
+    const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
+
+    if (!permissionResult.granted) {
+      Alert.alert(
+        "Permission required",
+        "Permission to access the camera is required.",
+      );
+      return;
+    }
+
+    let result = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      const asset = result.assets[0];
+      await uploadImage(asset);
+    }
+  };
+
+  const uploadImage = async (asset) => {
+    const { uri, fileName, type } = asset;
+    const file = new File(uri);
+    const singnedUrlResponse = await requestUploadUrl(fileName, type);
+    fetch(singnedUrlResponse.data.uploadUrl, {
+      method: "PUT",
+      headers: {
+        "Content-Type": type,
+      },
+      body: file,
+    }).then(() => {
+      // Handle successful upload
+      setImgUri(singnedUrlResponse.data.imageUrl); // Update the image URI after successful upload
+    });
   };
 
   return (
@@ -91,21 +121,38 @@ export default function UpdateUserInfoScreen() {
           onPress: back,
         }}
       />
-      <CommonAvatar
-        size="l"
-        source={{
-          uri: imgUri,
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
         }}
-      />
-      <CommonInput
-        title={t("common.profileImage")}
-        value={imgUri}
-        onChangeText={setImgUri}
-      />
-      <TextButton
-        title={t("settings.profile.getImageFromLibrary")}
-        onPress={pickImage}
-      />
+      >
+        <CommonAvatar
+          size="l"
+          source={{
+            uri: imgUri,
+          }}
+        />
+        <View
+          style={{
+            flex: 1,
+          }}
+        >
+          <CommonInput
+            title={t("common.profileImage")}
+            value={imgUri}
+            onChangeText={setImgUri}
+          />
+          <TextButton
+            title={t("settings.profile.takePhoto")}
+            onPress={takePhoto}
+          />
+          <TextButton
+            title={t("settings.profile.getImageFromLibrary")}
+            onPress={pickImage}
+          />
+        </View>
+      </View>
       <CommonInput
         title={t("common.name")}
         value={name}
