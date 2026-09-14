@@ -6,7 +6,6 @@ import {
   TextButton,
 } from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
-import { StyleSheet } from "react-native";
 
 export default function UIKit() {
   const { t } = useTranslation();
@@ -67,5 +66,3 @@ export default function UIKit() {
     </ScrollViewContainer>
   );
 }
-
-const styles = StyleSheet.create({});

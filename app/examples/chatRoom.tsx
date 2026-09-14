@@ -74,31 +74,15 @@ export default function ChatRoomScreen() {
         visible={showOverlay}
         onRequestClose={() => setShowOverlay(false)}
       >
-        <View
-          style={{
-            backgroundColor: "white",
-            padding: 20,
-            borderRadius: 10,
-            gap: 10,
-          }}
-        >
+        <View className="bg-white p-5 rounded-lg gap-2">
           <CommonText size="s">Do you want to create a chat room?</CommonText>
           <TextInput
-            style={{
-              borderWidth: 1,
-              borderColor: "gray",
-              padding: 8,
-              marginVertical: 8,
-            }}
+            className="border border-gray-400 p-2 my-2"
             placeholder="Enter chat room title"
             value={chatRoomTitle}
             onChangeText={setChatRoomTitle}
           />
-          <View
-            style={{
-              flexDirection: "row",
-            }}
-          >
+          <View className="flex-row ">
             <TextButton
               title="Create"
               onPress={() => {

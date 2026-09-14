@@ -8,7 +8,6 @@ import {
   SocialLoginButton,
   TextButton,
 } from "@kukkim/react-native-ui";
-import { StyleSheet } from "react-native";
 
 export default function ButtonScreen() {
   const { t } = useTranslation();
@@ -33,5 +32,3 @@ export default function ButtonScreen() {
     </ScrollViewContainer>
   );
 }
-
-const styles = StyleSheet.create({});

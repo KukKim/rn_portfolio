@@ -8,7 +8,6 @@ import {
   ScrollViewContainer,
 } from "@kukkim/react-native-ui";
 import { useState } from "react";
-import { StyleSheet } from "react-native";
 
 export default function CardScreen() {
   const { t } = useTranslation();
@@ -32,5 +31,3 @@ export default function CardScreen() {
     </ScrollViewContainer>
   );
 }
-
-const styles = StyleSheet.create({});

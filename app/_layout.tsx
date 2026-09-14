@@ -1,8 +1,8 @@
 import { i18n, normalizeLanguage } from "@/src/i18n";
-import { useAppSelector } from "@/src/shared/hooks/redux";
 import { SocketProvider } from "@/src/shared/hooks/network";
-import { selectLanguage } from "@/src/store/settingSelector";
+import { useAppSelector } from "@/src/shared/hooks/redux";
 import store from "@/src/store";
+import { selectLanguage } from "@/src/store/settingSelector";
 import { ThemeProvider, useTheme } from "@kukkim/react-native-ui";
 import * as Sentry from "@sentry/react-native";
 import {
@@ -19,6 +19,7 @@ import { KeyboardProvider } from "react-native-keyboard-controller";
 import Toast from "react-native-toast-message";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import "./global.css";
 
 const queryClient = new QueryClient({
   defaultOptions: {

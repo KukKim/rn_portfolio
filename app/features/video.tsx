@@ -41,6 +41,7 @@ export default function VideoScreen() {
 
 const styles = StyleSheet.create({
   video: {
+    backgroundColor: "black",
     width: 350,
     height: 275,
   },

@@ -6,7 +6,6 @@ import {
   TextButton,
   useTheme,
 } from "@kukkim/react-native-ui";
-import { StyleSheet } from "react-native";
 
 export default function ThemeScreen() {
   const { t } = useTranslation();
@@ -36,5 +35,3 @@ export default function ThemeScreen() {
     </SafeAreaContainer>
   );
 }
-
-const styles = StyleSheet.create({});

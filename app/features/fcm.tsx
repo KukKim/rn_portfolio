@@ -5,7 +5,6 @@ import {
   SafeAreaContainer,
   TextButton,
 } from "@kukkim/react-native-ui";
-import { StyleSheet } from "react-native";
 
 export default function FcmScreen() {
   const { t } = useTranslation();
@@ -23,5 +22,3 @@ export default function FcmScreen() {
     </SafeAreaContainer>
   );
 }
-
-const styles = StyleSheet.create({});

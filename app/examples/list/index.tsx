@@ -5,7 +5,6 @@ import {
   TextButton,
 } from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
-import { StyleSheet } from "react-native";
 
 export default function ListScreen() {
   const { back } = useNavigation();
@@ -31,5 +30,3 @@ export default function ListScreen() {
     </SafeAreaContainer>
   );
 }
-
-const styles = StyleSheet.create({});

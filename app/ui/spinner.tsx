@@ -5,7 +5,6 @@ import {
   CommonSpinner,
   ScrollViewContainer,
 } from "@kukkim/react-native-ui";
-import { StyleSheet } from "react-native";
 
 export default function SpinnerScreen() {
   const { t } = useTranslation();
@@ -23,5 +22,3 @@ export default function SpinnerScreen() {
     </ScrollViewContainer>
   );
 }
-
-const styles = StyleSheet.create({});

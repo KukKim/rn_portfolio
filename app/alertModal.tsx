@@ -15,9 +15,9 @@ export default function AlertModal() {
     useLocalSearchParams<AlertModalParams>();
 
   return (
-    <View style={styles.container}>
-      <View style={styles.modalContainer}>
-        <View style={styles.flexDirectionRow}>
+    <View className="flex-1 justify-center">
+      <View className="bg-white rounded-lg border p-4 gap-2 min-w-[200px]">
+        <View className="flex-row">
           <CommonText style={styles.titleText}>{title}</CommonText>
           <TouchableOpacity onPress={() => router.dismiss()}>
             <CommonIcon iconType="close" />
@@ -26,7 +26,7 @@ export default function AlertModal() {
         <View>
           <CommonText style={styles.contentText}>{content}</CommonText>
         </View>
-        <View style={styles.flexDirectionRow}>
+        <View className="flex-1 justify-center">
           {confirm && <TextButton title={confirm} />}
           {enableCancel && (
             <TextButton title="취소" onPress={() => router.dismiss()} />
@@ -38,24 +38,6 @@ export default function AlertModal() {
 }
 
 const styles = StyleSheet.create({
-  flexDirectionRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  modalContainer: {
-    backgroundColor: "#FFFFFF",
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "#000000",
-    padding: 10,
-    gap: 5,
-    minWidth: 200,
-  },
   titleText: {
     fontFamily: "Roboto",
     fontWeight: 700,

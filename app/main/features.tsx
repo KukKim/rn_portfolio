@@ -7,7 +7,6 @@ import {
   TextButton,
 } from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
-import { StyleSheet } from "react-native";
 
 export default function Features() {
   const { t } = useTranslation();
@@ -57,5 +56,3 @@ export default function Features() {
     </SafeAreaContainer>
   );
 }
-
-const styles = StyleSheet.create({});

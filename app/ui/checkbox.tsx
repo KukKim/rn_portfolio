@@ -6,7 +6,6 @@ import {
   ScrollViewContainer,
 } from "@kukkim/react-native-ui";
 import { useState } from "react";
-import { StyleSheet } from "react-native";
 
 export default function CheckboxScreen() {
   const { t } = useTranslation();
@@ -25,5 +24,3 @@ export default function CheckboxScreen() {
     </ScrollViewContainer>
   );
 }
-
-const styles = StyleSheet.create({});

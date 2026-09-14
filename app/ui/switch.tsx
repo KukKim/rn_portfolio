@@ -6,7 +6,6 @@ import {
   ScrollViewContainer,
 } from "@kukkim/react-native-ui";
 import { useState } from "react";
-import { StyleSheet } from "react-native";
 
 export default function SwitchScreen() {
   const { t } = useTranslation();
@@ -28,5 +27,3 @@ export default function SwitchScreen() {
     </ScrollViewContainer>
   );
 }
-
-const styles = StyleSheet.create({});

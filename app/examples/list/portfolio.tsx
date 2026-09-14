@@ -16,7 +16,7 @@ import {
 } from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 export default function PortfolioListScreen() {
   const { t } = useTranslation();
@@ -88,14 +88,10 @@ export default function PortfolioListScreen() {
           onPress: back,
         }}
       />
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
-        <CommonInput value={searchText} onChangeText={setSearchText} />
-
+      <View className="flex-row">
+        <View className="flex-1">
+          <CommonInput value={searchText} onChangeText={setSearchText} />
+        </View>
         <CommonButton
           onPress={() => {
             router.push({
@@ -112,17 +108,15 @@ export default function PortfolioListScreen() {
         refreshing={listLoading}
         data={projectItems}
         renderItem={renderItem}
-        ListFooterComponent={
+        ListEmptyComponent={
           listLoading ? (
             <CommonSpinner />
-          ) : projectItems.length === 0 ? (
+          ) : (
             <CommonText>데이터가 없습니다.</CommonText>
-          ) : null
+          )
         }
         onEndReached={fetchMore}
       />
     </SafeAreaContainer>
   );
 }
-
-const styles = StyleSheet.create({});

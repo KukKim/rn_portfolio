@@ -5,7 +5,6 @@ import {
   CommonText,
   SafeAreaContainer,
 } from "@kukkim/react-native-ui";
-import { StyleSheet } from "react-native";
 
 export default function NotificationScreen() {
   const { t } = useTranslation();
@@ -23,5 +22,3 @@ export default function NotificationScreen() {
     </SafeAreaContainer>
   );
 }
-
-const styles = StyleSheet.create({});

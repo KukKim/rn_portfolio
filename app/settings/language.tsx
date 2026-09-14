@@ -7,7 +7,6 @@ import {
   SafeAreaContainer,
   SelectItem,
 } from "@kukkim/react-native-ui";
-import { StyleSheet } from "react-native";
 
 export default function LanguageScreen() {
   const { back } = useNavigation();
@@ -31,9 +30,3 @@ export default function LanguageScreen() {
     </SafeAreaContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

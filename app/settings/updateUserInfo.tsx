@@ -14,7 +14,7 @@ import {
 import { File } from "expo-file-system";
 import * as ImagePicker from "expo-image-picker";
 import { useState } from "react";
-import { Alert, StyleSheet, View } from "react-native";
+import { Alert, View } from "react-native";
 
 export default function UpdateUserInfoScreen() {
   const { t } = useTranslation();
@@ -36,6 +36,7 @@ export default function UpdateUserInfoScreen() {
           imgUri: imgUri,
         }),
       );
+      back();
     });
   };
 
@@ -121,23 +122,14 @@ export default function UpdateUserInfoScreen() {
           onPress: back,
         }}
       />
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
+      <View className="flex-row items-center">
         <CommonAvatar
           size="l"
           source={{
             uri: imgUri,
           }}
         />
-        <View
-          style={{
-            flex: 1,
-          }}
-        >
+        <View className="flex-1">
           <CommonInput
             title={t("common.profileImage")}
             value={imgUri}
@@ -167,5 +159,3 @@ export default function UpdateUserInfoScreen() {
     </SafeAreaContainer>
   );
 }
-
-const styles = StyleSheet.create({});

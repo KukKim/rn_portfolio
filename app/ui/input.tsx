@@ -5,7 +5,6 @@ import {
   CommonInput,
   ScrollViewContainer,
 } from "@kukkim/react-native-ui";
-import { StyleSheet } from "react-native";
 
 export default function InputScreen() {
   const { t } = useTranslation();
@@ -25,5 +24,3 @@ export default function InputScreen() {
     </ScrollViewContainer>
   );
 }
-
-const styles = StyleSheet.create({});

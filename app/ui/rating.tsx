@@ -6,7 +6,6 @@ import {
   ScrollViewContainer,
 } from "@kukkim/react-native-ui";
 import { useState } from "react";
-import { StyleSheet } from "react-native";
 
 export default function RatingScreen() {
   const { t } = useTranslation();
@@ -29,5 +28,3 @@ export default function RatingScreen() {
     </ScrollViewContainer>
   );
 }
-
-const styles = StyleSheet.create({});

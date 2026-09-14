@@ -8,7 +8,7 @@ import { updateUserInfo } from "@/src/store/userInfoSlice";
 import { CommonInput, CommonText, TextButton } from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Alert, StyleSheet, View } from "react-native";
+import { Alert, View } from "react-native";
 
 const WARNINGTYPE = {
   EMAIL_DUPLICATED: "This email is already in use",
@@ -73,7 +73,6 @@ export default function SignUpModal() {
       requestSignup({
         email: email,
         name: name,
-        imgUri: "imgUri",
         password: password,
         accountType: "EMAIL",
       }).then((response) => {
@@ -120,7 +119,7 @@ export default function SignUpModal() {
   //   },
   // ];
   return (
-    <View style={styles.container}>
+    <View className="flex-1">
       <CommonText size="l">{t("auth.signupTitle")}</CommonText>
       <CommonInput
         title={t("common.email")}
@@ -158,7 +157,7 @@ export default function SignUpModal() {
         renderItem={renderItem}
         horizontal={true}
       /> */}
-      <View style={{ flexDirection: "row" }}>
+      <View className="flex-row">
         <TextButton
           title={t("auth.signup")}
           disabled={!email || !name || !password || password !== rePassword}
@@ -169,9 +168,3 @@ export default function SignUpModal() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

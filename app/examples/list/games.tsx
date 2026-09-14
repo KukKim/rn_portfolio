@@ -17,7 +17,7 @@ import {
 } from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 export default function GamesListScreen() {
   const { back } = useNavigation();
@@ -62,24 +62,12 @@ export default function GamesListScreen() {
           }}
           size="l"
         />
-        <View
-          style={{
-            marginVertical: 4,
-            gap: 4,
-            flexDirection: "row",
-          }}
-        >
+        <View className="flex-row gap-1 my-1">
           {genres?.map(({ name, id }) => {
             return <CommonBadge key={id} typeText={name} type="secondary" />;
           })}
         </View>
-        <View
-          style={{
-            marginVertical: 4,
-            gap: 2,
-            flexDirection: "row",
-          }}
-        >
+        <View className="flex-row gap-1 my-1">
           {platforms?.map(({ name, id }) => {
             return <CommonBadge key={id} typeText={name} type="secondary" />;
           })}
@@ -87,7 +75,7 @@ export default function GamesListScreen() {
         <CommonText size={"s"} isInner={true}>
           {summary}
         </CommonText>
-        <View style={styles.dateComponent}>
+        <View className="flex-row justify-between my-1">
           {created_at && (
             <CommonText size={"s"} isInner={true}>
               {getCommonDateText({ date: new Date(created_at * 1000) })}
@@ -112,7 +100,7 @@ export default function GamesListScreen() {
           onPress: back,
         }}
       />
-      <View style={styles.flexDirectionRow}>
+      <View className="flex-row items-center">
         <CommonInput value={searchText} onChangeText={setSearchText} />
         <CommonButton
           onPress={() => {
@@ -140,15 +128,3 @@ export default function GamesListScreen() {
     </SafeAreaContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  flexDirectionRow: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  dateComponent: {
-    marginVertical: 4,
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-});

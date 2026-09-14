@@ -22,7 +22,7 @@ import {
 } from "@kukkim/react-native-ui";
 import { useLocalSearchParams } from "expo-router";
 import { useMemo, useState } from "react";
-import { Keyboard, StyleSheet, View } from "react-native";
+import { Keyboard, View } from "react-native";
 import {
   KeyboardAvoidingView,
   useReanimatedKeyboardAnimation,
@@ -36,40 +36,22 @@ const ChatMessageComponent = (chat: DisplayChatMessage) => {
   const { id, message, status, timeText, isMyChat, unreadCount } = chat;
   return (
     <View
-      style={[
-        styles.bubbleWrapper,
-        {
-          flexDirection: isMyChat ? "row-reverse" : "row",
-        },
-      ]}
+      className={`gap-[5px] p-[20px] ${
+        isMyChat ? "flex-row-reverse" : "flex-row"
+      }`}
     >
       <View
-        style={[
-          styles.bubble,
-          {
-            backgroundColor: isMyChat ? "#DCF8C6" : "#E5E5EA",
-          },
-        ]}
+        className={`max-w-[70%] rounded-[8px] p-[12px] ${
+          isMyChat ? "bg-[#DCF8C6]" : "bg-[#E5E5EA]"
+        }`}
       >
         <CommonText size="s">{message}</CommonText>
       </View>
 
-      <View
-        style={[
-          styles.sideBubble,
-          {
-            alignItems: isMyChat ? "flex-end" : "flex-start",
-          },
-        ]}
-      >
+      <View className={`justify-end ${isMyChat ? "items-end" : "items-start"}`}>
         <CommonText size="s">{unreadCount}</CommonText>
         <View
-          style={[
-            styles.alignFlexEnd,
-            {
-              flexDirection: isMyChat ? "row" : "row-reverse",
-            },
-          ]}
+          className={`items-end ${isMyChat ? "flex-row" : "flex-row-reverse"}`}
         >
           <View>
             <CommonText size="s">{timeText}</CommonText>
@@ -212,16 +194,15 @@ export default function ChatScreen() {
         onEndReachedThreshold={0.2}
       />
       <KeyboardAvoidingView
+        className="flex-row items-center"
         behavior="padding"
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-        }}
       >
         <CommonButton onPress={openKeyboardModal}>
           <CommonIcon iconType="plus" size="s" />
         </CommonButton>
-        <CommonInput value={text} onChangeText={setText} />
+        <View className="flex-1">
+          <CommonInput value={text} onChangeText={setText} />
+        </View>
         <TextButton title={"Input"} onPress={sendMessage} />
       </KeyboardAvoidingView>
       {keyboardMenu && (
@@ -236,20 +217,3 @@ export default function ChatScreen() {
     </SafeAreaContainer>
   );
 }
-const styles = StyleSheet.create({
-  bubbleWrapper: {
-    padding: 20,
-    gap: 5,
-  },
-  bubble: {
-    maxWidth: "70%",
-    padding: 12,
-    borderRadius: 8,
-  },
-  sideBubble: {
-    justifyContent: "flex-end",
-  },
-  alignFlexEnd: {
-    alignItems: "flex-end",
-  },
-});

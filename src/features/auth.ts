@@ -1,11 +1,11 @@
 import { Platform } from "react-native";
 import { apiRequest } from "../features/network";
-import type { Auth } from "../shared/types/auth";
+import type {
+  RequestCheckToken,
+  RequestSignIn,
+  RequestSignUp,
+} from "../shared/types/auth";
 import { addLog } from "./logging";
-
-interface CheckTokenRequest {
-  token: string;
-}
 
 interface RegisterPushTokenRequest {
   id: string;
@@ -24,7 +24,7 @@ interface UpdateUserInfoRequest {
 export const requestCheckToken = <TResponse>(
   token: string,
 ): Promise<TResponse> => {
-  return apiRequest<TResponse, CheckTokenRequest>("/check", {
+  return apiRequest<TResponse, RequestCheckToken>("/check", {
     method: "POST",
     body: {
       token,
@@ -33,13 +33,12 @@ export const requestCheckToken = <TResponse>(
 };
 
 export const requestSignup = <TResponse>(
-  signupData: Auth,
+  signupData: RequestSignUp,
 ): Promise<TResponse> => {
   addLog({
     title: "Signup Attempt",
   });
-
-  return apiRequest<TResponse, Auth>("/signup", {
+  return apiRequest<TResponse, RequestSignUp>("/signup", {
     method: "POST",
     body: signupData,
   });
@@ -47,7 +46,7 @@ export const requestSignup = <TResponse>(
 
 // TODO: 후에 POST 로 변경 필요. POST에서 SSL로 변경
 export const requestSignin = <TResponse>(
-  signinData: Auth,
+  signinData: RequestSignIn,
 ): Promise<TResponse> => {
   addLog({
     title: "Signin Attempt",

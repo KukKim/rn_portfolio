@@ -5,7 +5,6 @@ import {
   CommonSlider,
   ScrollViewContainer,
 } from "@kukkim/react-native-ui";
-import { StyleSheet } from "react-native";
 
 export default function SliderScreen() {
   const { t } = useTranslation();
@@ -23,5 +22,3 @@ export default function SliderScreen() {
     </ScrollViewContainer>
   );
 }
-
-const styles = StyleSheet.create({});

@@ -12,10 +12,8 @@ const ProfileCard = ({
 }: ProfileCardProps) => {
   const { theme } = useTheme();
   return (
-    <View
-      style={[styles.profileContainer, { borderColor: theme.colors.border }]}
-    >
-      <View style={styles.innerProfileContainer}>
+    <View className="border m-2 p-3 rounded-lg">
+      <View className="flex-row items-center gap-[5px]">
         <CommonAvatar size="l" source={{ uri: profileUri }} />
         <View>
           <CommonText style={styles.nameText} size="l">
@@ -31,16 +29,6 @@ const ProfileCard = ({
 };
 
 const styles = StyleSheet.create({
-  profileContainer: {
-    margin: 5,
-    borderWidth: 1,
-    padding: 5,
-  },
-  innerProfileContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 5,
-  },
   nameText: {
     fontFamily: "Roboto",
     fontWeight: 700,

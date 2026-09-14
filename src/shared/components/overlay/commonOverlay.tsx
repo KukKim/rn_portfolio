@@ -1,5 +1,4 @@
-import { useTheme } from "@kukkim/react-native-ui";
-import { Modal, Pressable, StyleSheet } from "react-native";
+import { Modal, Pressable } from "react-native";
 import { OverlayProps } from "./types";
 
 const CommonOverlay = ({
@@ -9,11 +8,10 @@ const CommonOverlay = ({
   onRequestClose,
   ...props
 }: OverlayProps) => {
-  const { theme } = useTheme();
   return (
     <Modal transparent={true} visible={visible}>
       <Pressable
-        style={[styles.overlayBackground, { borderColor: theme.colors.border }]}
+        className="flex-1 justify-center items-center bg-black/50"
         onPress={onRequestClose}
       >
         {children}
@@ -21,14 +19,5 @@ const CommonOverlay = ({
     </Modal>
   );
 };
-
-const styles = StyleSheet.create({
-  overlayBackground: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-});
 
 export default CommonOverlay;

@@ -11,7 +11,7 @@ import {
 } from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Alert, StyleSheet, View } from "react-native";
+import { Alert, View } from "react-native";
 
 export default function LoginModal() {
   const { t } = useTranslation();
@@ -37,6 +37,7 @@ export default function LoginModal() {
         Alert.alert("Login Failed", "Something wrong");
       });
   };
+
   const handleGuestLogin = () => {
     requestSignup({
       accountType: "GUEST",
@@ -63,7 +64,7 @@ export default function LoginModal() {
     router.push("/signUpModal");
   };
   return (
-    <View style={styles.container}>
+    <View className="flex-1">
       <CommonText>{t("auth.loginTitle")}</CommonText>
       <CommonInput
         title={t("common.email")}
@@ -76,7 +77,7 @@ export default function LoginModal() {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <View style={styles.buttonContainer}>
+      <View className="flex-row">
         <TextButton
           title={t("auth.login")}
           disabled={!email || !password}
@@ -91,12 +92,3 @@ export default function LoginModal() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  buttonContainer: {
-    flexDirection: "row",
-  },
-});

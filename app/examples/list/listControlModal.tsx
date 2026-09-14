@@ -1,7 +1,7 @@
 import { Checkbox, CommonSlider, CommonText } from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 export default function ListControlModal() {
   const router = useRouter();
@@ -23,7 +23,7 @@ export default function ListControlModal() {
     { value: "React native", label: "React native", disabled: false },
   ];
   return (
-    <View style={styles.container}>
+    <View className="flex-1">
       <CommonText>Login Modal screen</CommonText>
       <Checkbox.Group
         value={selectedValues}
@@ -43,9 +43,3 @@ export default function ListControlModal() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

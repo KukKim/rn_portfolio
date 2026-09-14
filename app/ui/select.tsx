@@ -8,7 +8,6 @@ import {
   SelectItem,
 } from "@kukkim/react-native-ui";
 import { useState } from "react";
-import { StyleSheet } from "react-native";
 
 export default function SelectScreen() {
   const { t } = useTranslation();
@@ -34,5 +33,3 @@ export default function SelectScreen() {
     </ScrollViewContainer>
   );
 }
-
-const styles = StyleSheet.create({});

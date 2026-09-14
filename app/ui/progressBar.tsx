@@ -6,7 +6,6 @@ import {
   LinearProgressBar,
   ScrollViewContainer,
 } from "@kukkim/react-native-ui";
-import { StyleSheet } from "react-native";
 
 export default function ProgressBarScreen() {
   const { t } = useTranslation();
@@ -25,5 +24,3 @@ export default function ProgressBarScreen() {
     </ScrollViewContainer>
   );
 }
-
-const styles = StyleSheet.create({});

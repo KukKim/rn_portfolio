@@ -80,7 +80,7 @@ export default function Settings() {
     ({ item }: { item: SettingItem }) => (
       <Pressable
         onPress={() => handlePressItem(item)}
-        style={styles.settingItem}
+        className="border rounded-lg m-2 p-3"
       >
         <CommonText style={styles.menuText}>{item.label}</CommonText>
       </Pressable>
@@ -104,8 +104,8 @@ export default function Settings() {
         />
       </Pressable>
       <FlatList
+        className="flex-1"
         keyExtractor={(item) => item.label}
-        style={styles.settingList}
         data={settingItems}
         renderItem={renderItem}
       />
@@ -114,15 +114,6 @@ export default function Settings() {
 }
 
 const styles = StyleSheet.create({
-  settingList: {
-    flex: 1,
-  },
-  settingItem: {
-    borderWidth: 1,
-    borderRadius: 5,
-    margin: 5,
-    padding: 10,
-  },
   menuText: {
     fontFamily: "Roboto",
     fontWeight: 700,
