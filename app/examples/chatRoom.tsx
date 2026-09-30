@@ -8,6 +8,7 @@ import { ChatRoom } from "@/src/shared/types/chat";
 import {
   CommonCard,
   CommonHeader,
+  CommonInput,
   CommonList,
   CommonText,
   SafeAreaContainer,
@@ -16,7 +17,6 @@ import {
 import { router } from "expo-router";
 import { useState } from "react";
 import { Pressable, View } from "react-native";
-import { TextInput } from "react-native-gesture-handler";
 
 interface ChatRoomProps extends ChatRoom {
   routeChat: () => void;
@@ -36,8 +36,8 @@ const ChatRoomComponent = ({ title, members, routeChat }: ChatRoomProps) => {
 export default function ChatRoomScreen() {
   const { t } = useTranslation();
   const userInfo = useAppSelector((state) => state.userInfo);
-  const { back, push } = useNavigation();
-  const { data: chatRooms, isLoading, isError, refetch } = useChatRooms();
+  const { back } = useNavigation();
+  const { data: chatRooms, refetch } = useChatRooms();
 
   const [showOverlay, setShowOverlay] = useState(false);
   const [chatRoomTitle, setChatRoomTitle] = useState("");
@@ -50,22 +50,21 @@ export default function ChatRoomScreen() {
     });
   };
 
-  const routeChat = (item: any) => {
-    const { title, members, id } = item;
+  const routeChat = async (item: ChatRoom) => {
+    const { members, id, title } = item;
 
-    if (members.some((member: any) => userInfo.id === member.id)) {
-      router.navigate({
-        pathname: "/examples/chat",
-        params: item,
-      });
-    } else {
-      joinChatRoom({ userId: userInfo.id, roomId: id }).then(() => {
-        router.navigate({
-          pathname: "/examples/chat",
-          params: item,
-        });
-      });
+    if (!members.some((member: any) => userInfo.id === member.id)) {
+      //TODO: join했을때 state업데이트 필요
+      await joinChatRoom({ userId: userInfo.id, roomId: id });
     }
+
+    router.navigate({
+      pathname: "/examples/chat",
+      params: {
+        id,
+        title,
+      },
+    });
   };
 
   return (
@@ -76,8 +75,7 @@ export default function ChatRoomScreen() {
       >
         <View className="bg-white p-5 rounded-lg gap-2">
           <CommonText size="s">Do you want to create a chat room?</CommonText>
-          <TextInput
-            className="border border-gray-400 p-2 my-2"
+          <CommonInput
             placeholder="Enter chat room title"
             value={chatRoomTitle}
             onChangeText={setChatRoomTitle}
@@ -109,11 +107,7 @@ export default function ChatRoomScreen() {
         data={chatRooms}
         renderItem={({ item }) => {
           return (
-            <ChatRoomComponent
-              title={item?.title}
-              routeChat={() => routeChat(item)}
-              members={item?.members}
-            />
+            <ChatRoomComponent routeChat={() => routeChat(item)} {...item} />
           );
         }}
         keyExtractor={(item) => item?.id}

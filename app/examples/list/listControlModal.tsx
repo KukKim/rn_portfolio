@@ -1,4 +1,4 @@
-import { Checkbox, CommonSlider, CommonText } from "@kukkim/react-native-ui";
+import { CheckBox, CommonSlider, CommonText } from "@kukkim/react-native-ui";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { View } from "react-native";
@@ -25,20 +25,20 @@ export default function ListControlModal() {
   return (
     <View className="flex-1">
       <CommonText>Login Modal screen</CommonText>
-      <Checkbox.Group
+      <CheckBox.Group
         value={selectedValues}
         onChange={setSelectedValues}
         multiple={true}
       >
         {slectableList.map((item) => (
-          <Checkbox
+          <CheckBox
             key={item.value}
             value={item.value}
             label={item.label}
             disabled={item.disabled}
           />
         ))}
-      </Checkbox.Group>
+      </CheckBox.Group>
       <CommonSlider />
     </View>
   );

@@ -7,7 +7,7 @@ import {
   useSendChat,
 } from "@/src/shared/hooks/chat";
 import { useNavigation } from "@/src/shared/hooks/navigation";
-import { useAppDispatch, useAppSelector } from "@/src/shared/hooks/redux";
+import { useAppSelector } from "@/src/shared/hooks/redux";
 import { DisplayChatMessage } from "@/src/shared/types/chat";
 import {
   CommonButton,
@@ -33,7 +33,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 const ChatMessageComponent = (chat: DisplayChatMessage) => {
-  const { id, message, status, timeText, isMyChat, unreadCount } = chat;
+  const { message, status, timeText, isMyChat, unreadCount } = chat;
   return (
     <View
       className={`gap-[5px] p-[20px] ${
@@ -69,11 +69,11 @@ const ChatMessageComponent = (chat: DisplayChatMessage) => {
 };
 
 export default function ChatScreen() {
-  const { back, push } = useNavigation();
+  const { back } = useNavigation();
   const params = useLocalSearchParams<any>();
   const { id, title } = params;
   const userInfo = useAppSelector((state) => state.userInfo);
-  const { data, isLoading, isError, refetch } = useChats(id);
+  const { data, refetch } = useChats(id);
   const { mutate } = useSendChat();
 
   const { data: readStates = [] } = useChatReadStates(id);
@@ -154,10 +154,6 @@ export default function ChatScreen() {
     setKeyboardMenu(!keyboardMenu);
   };
 
-  // const chatMessageList = useAppSelector(selectDisplayChatMessages);
-  const dispatch = useAppDispatch();
-  // const [chatMessageList, setChatMessageList] = useState<ChatMessage[]>([]);
-
   return (
     <SafeAreaContainer>
       <CommonHeader
@@ -173,16 +169,16 @@ export default function ChatScreen() {
         renderItem={({ item }) => {
           const unreadCount = getUnreadCount({
             messageId: String(item.id),
-            senderId: String(item.sender_id),
-            createdAt: item.created_at.toString(),
+            senderId: String(item.senderId),
+            createdAt: item.createdAt.toString(),
             readStates,
           });
           return (
             <ChatMessageComponent
               {...item}
-              isMyChat={String(userInfo.id) === String(item.sender_id)}
+              isMyChat={String(userInfo.id) === String(item.senderId)}
               timeText={getCommonDateText({
-                date: item.created_at,
+                date: item.createdAt,
                 format: "HH:mm",
               })}
               unreadCount={unreadCount}

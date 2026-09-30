@@ -11,13 +11,13 @@ export const selectDisplayChatMessages = createSelector(
       const prevMessage = messages[index - 1];
 
       const currentTimeText = getCommonDateText({
-        date: message.createDt,
+        date: message.created_at,
         format: "HH:mm",
       });
 
       const prevTimeText = prevMessage
         ? getCommonDateText({
-            date: prevMessage.createDt,
+            date: prevMessage.created_at,
             format: "HH:mm",
           })
         : null;

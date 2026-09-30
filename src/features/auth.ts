@@ -62,6 +62,7 @@ export const requestSignin = <TResponse>(
   });
 };
 
+//TODO: back-end에서 authToken안쓰임
 export const registerPushToken = <TResponse>(
   authToken: string,
   pushToken: string,

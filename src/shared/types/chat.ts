@@ -3,11 +3,11 @@ import { Auth } from "./auth";
 export interface ChatMessage {
   id: string;
   message: string;
-  created_at: Date;
-  updated_at?: Date;
-  room_id: string;
+  createdAt: Date;
+  updatedAt?: Date;
+  roomId: string;
   isRead: boolean;
-  sender_id: string;
+  senderId: string;
   status?: "sending" | "sent" | "failed";
 }
 

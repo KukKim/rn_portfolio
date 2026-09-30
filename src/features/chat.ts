@@ -104,7 +104,10 @@ export const getChats = async ({
   const response = await apiRequest<ApiResponse<ChatMessagePage>>(
     `/getChats?${searchParams.toString()}`,
   );
-  return response.data;
+  return {
+    messages: response.data.messages,
+    nextCursor: response.data.nextCursor,
+  };
 };
 
 export const getChatReadStates = async (
