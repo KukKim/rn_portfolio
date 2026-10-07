@@ -20,11 +20,16 @@ export type DisplayChatMessage = ChatMessage & {
   timeText?: string;
   showTime?: boolean;
   isMyChat: boolean;
-  unreadCount: number;
+  unreadCount: number | null;
 };
 
 export interface ChatMessageState {
   messages: ChatMessage[];
+}
+
+export interface ChatMember extends Auth {
+  joinedAt: Date;
+  lastReadMessageId?: string;
 }
 
 export interface ChatRoom {
@@ -32,5 +37,5 @@ export interface ChatRoom {
   title: string;
   createdAt: string;
   updatedAt: string;
-  members: Auth[];
+  members: ChatMember[];
 }

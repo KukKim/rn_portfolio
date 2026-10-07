@@ -1,9 +1,4 @@
-import {
-  addChat,
-  getChatReadStates,
-  getChatRooms,
-  getChats,
-} from "@/src/features/chat";
+import { addChat, getChatRooms, getChats } from "@/src/features/chat";
 import { socket } from "@/src/features/network";
 import {
   type InfiniteData,
@@ -13,12 +8,7 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { useEffect } from "react";
-import { ChatMessage, ChatMessagePage } from "../types/chat";
-
-export interface ChatReadState {
-  userId: string;
-  lastReadMessageId: string | null;
-}
+import { ChatMessage, ChatMessagePage, ChatRoom } from "../types/chat";
 
 export interface ChatReadEvent {
   roomId: string;
@@ -39,10 +29,9 @@ export const chatQueryKeys = {
   all: ["chat"] as const,
   rooms: () => [...chatQueryKeys.all, "rooms"] as const,
   messages: () => [...chatQueryKeys.all, "messages"] as const,
+  room: (roomId: string) => [...chatQueryKeys.rooms(), roomId] as const,
   roomMessages: (roomId: string) =>
     [...chatQueryKeys.messages(), roomId] as const,
-  readStates: (roomId: string) =>
-    [...chatQueryKeys.all, "readStates", roomId] as const,
 };
 
 export const useChatRooms = () => {
@@ -130,7 +119,7 @@ export function useChatSocket(roomId?: string, userId?: string) {
     });
 
     const handleNewMessage = (newMessage: ChatMessage) => {
-      if (String(newMessage.room_id) !== String(roomId)) {
+      if (String(newMessage.roomId) !== String(roomId)) {
         return;
       }
 
@@ -173,11 +162,13 @@ export function useChatSocket(roomId?: string, userId?: string) {
             };
           }
 
-          socket.emit("chat:read", {
-            roomId: newMessage.room_id,
-            userId: newMessage.sender_id,
-            lastReadMessageId: newMessage.id,
-          });
+          if (userId !== newMessage.senderId) {
+            socket.emit("chat:read", {
+              roomId: newMessage.roomId,
+              userId: newMessage.senderId,
+              lastReadMessageId: newMessage.id,
+            });
+          }
 
           return {
             ...oldData,
@@ -198,71 +189,55 @@ export function useChatSocket(roomId?: string, userId?: string) {
         return;
       }
 
-      queryClient.setQueryData<ChatReadState[]>(
-        chatQueryKeys.readStates(roomId),
-        (oldData = []) => {
-          const existingState = oldData.find(
-            (state) => String(state.userId) === String(event.userId),
-          );
+      const receivedId = BigInt(event.lastReadMessageId);
 
-          if (!existingState) {
-            return [
-              ...oldData,
-              {
-                userId: String(event.userId),
-                lastReadMessageId: String(event.lastReadMessageId),
-              },
-            ];
+      queryClient.setQueryData<ChatRoom[]>(
+        chatQueryKeys.rooms(),
+        (oldRooms) => {
+          if (!oldRooms) {
+            return oldRooms;
           }
-
-          return oldData.map((state) => {
-            if (String(state.userId) !== String(event.userId)) {
-              return state;
+          return oldRooms.map((room) => {
+            if (String(room.id) !== String(event.roomId)) {
+              return room;
             }
 
-            /*
-             * BIGINT를 Number로 변환하지 않고 BigInt로 비교합니다.
-             */
+            let changed = false;
 
-            const previousId = state.lastReadMessageId
-              ? BigInt(state.lastReadMessageId)
-              : 0n;
-            const receivedId = BigInt(event.lastReadMessageId);
-            if (receivedId <= previousId) {
-              return state;
-            }
-            return {
-              ...state,
-              lastReadMessageId: String(event.lastReadMessageId),
-            };
+            const members = room.members.map((member) => {
+              const previousId =
+                member.lastReadMessageId == null
+                  ? null
+                  : BigInt(member.lastReadMessageId);
+
+              if (previousId !== null && receivedId <= previousId) {
+                return member;
+              }
+
+              changed = true;
+
+              return {
+                ...member,
+                lastReadMessageId: String(event.lastReadMessageId),
+              };
+            });
+
+            return changed ? { ...room, members } : room;
           });
         },
       );
     };
 
-    socket.on("chat:message", handleNewMessage);
-    socket.on("chat:read", handleRead);
+    socket.on(`chat:message`, handleNewMessage);
+    socket.on(`chat:read`, handleRead);
 
     return () => {
       socket.emit("chat:leave", {
         roomId,
       });
 
-      socket.off("chat:message", handleNewMessage);
+      socket.off(`chat:message`, handleNewMessage);
+      socket.off(`chat:read`, handleRead);
     };
   }, [roomId, userId, queryClient]);
 }
-
-export const useChatReadStates = (roomId?: string) => {
-  return useQuery({
-    queryKey: chatQueryKeys.readStates(roomId ?? ""),
-    queryFn: () => {
-      if (!roomId) {
-        throw new Error("roomId is required");
-      }
-      return getChatReadStates(roomId);
-    },
-    enabled: Boolean(roomId),
-    staleTime: Infinity,
-  });
-};

@@ -10,6 +10,7 @@ import {
   CommonHeader,
   CommonInput,
   CommonList,
+  CommonSpinner,
   CommonText,
   SafeAreaContainer,
   TextButton,
@@ -38,10 +39,18 @@ export default function ChatRoomScreen() {
   const userInfo = useAppSelector((state) => state.userInfo);
   const { back } = useNavigation();
   const { data: chatRooms, refetch } = useChatRooms();
-
   const [showOverlay, setShowOverlay] = useState(false);
   const [chatRoomTitle, setChatRoomTitle] = useState("");
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  const refresh = () => {
+    setIsLoading(true);
+    refetch().finally(() => {
+      setIsLoading(false);
+    });
+    refetch();
+  };
   const fetchMore = () => {};
   const addChatRoom = () => {
     createChatRoom({ title: chatRoomTitle, userId: userInfo.id }).then(() => {
@@ -52,10 +61,10 @@ export default function ChatRoomScreen() {
 
   const routeChat = async (item: ChatRoom) => {
     const { members, id, title } = item;
-
     if (!members.some((member: any) => userInfo.id === member.id)) {
       //TODO: join했을때 state업데이트 필요
       await joinChatRoom({ userId: userInfo.id, roomId: id });
+      // await refetch();
     }
 
     router.navigate({
@@ -111,6 +120,14 @@ export default function ChatRoomScreen() {
           );
         }}
         keyExtractor={(item) => item?.id}
+        ListHeaderComponent={() => {
+          return (
+            <View className="items-center ">
+              {isLoading && <CommonSpinner size={"l"} />}
+            </View>
+          );
+        }}
+        onStartReached={refresh}
         onEndReached={fetchMore}
         onEndReachedThreshold={0.2}
       />

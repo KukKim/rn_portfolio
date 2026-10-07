@@ -38,12 +38,6 @@ interface GetChatsParams {
   limit?: number;
 }
 
-export interface ChatReadState {
-  userId: string;
-  joinedAt: string;
-  lastReadMessageId: string | null;
-}
-
 export const createChatRoom = async (
   request: CreateChatRoomRequest,
 ): Promise<CreateChatRoomData> => {
@@ -108,18 +102,4 @@ export const getChats = async ({
     messages: response.data.messages,
     nextCursor: response.data.nextCursor,
   };
-};
-
-export const getChatReadStates = async (
-  roomId: string,
-): Promise<ChatReadState[]> => {
-  const searchParams = new URLSearchParams({
-    roomId,
-  });
-
-  const response = await apiRequest<ApiResponse<ChatReadState[]>>(
-    `/getChatReadStates?${searchParams.toString()}`,
-  );
-
-  return response.data;
 };
