@@ -10,7 +10,6 @@ import {
   CommonHeader,
   CommonInput,
   CommonList,
-  CommonSpinner,
   CommonText,
   SafeAreaContainer,
   TextButton,
@@ -41,15 +40,18 @@ export default function ChatRoomScreen() {
   const { data: chatRooms, refetch } = useChatRooms();
   const [showOverlay, setShowOverlay] = useState(false);
   const [chatRoomTitle, setChatRoomTitle] = useState("");
+  const [refreshing, setRefreshing] = useState(false);
 
-  const [isLoading, setIsLoading] = useState(false);
+  const refresh = async () => {
+    if (refreshing) return;
 
-  const refresh = () => {
-    setIsLoading(true);
-    refetch().finally(() => {
-      setIsLoading(false);
-    });
-    refetch();
+    setRefreshing(true);
+
+    try {
+      await refetch();
+    } finally {
+      setRefreshing(false);
+    }
   };
   const fetchMore = () => {};
   const addChatRoom = () => {
@@ -120,14 +122,9 @@ export default function ChatRoomScreen() {
           );
         }}
         keyExtractor={(item) => item?.id}
-        ListHeaderComponent={() => {
-          return (
-            <View className="items-center ">
-              {isLoading && <CommonSpinner size={"l"} />}
-            </View>
-          );
-        }}
-        onStartReached={refresh}
+        refreshing={refreshing}
+        onRefresh={refresh} // TODO: refresh control 커스텀
+        alwaysBounceVertical
         onEndReached={fetchMore}
         onEndReachedThreshold={0.2}
       />
