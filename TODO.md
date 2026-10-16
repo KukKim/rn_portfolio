@@ -1,10 +1,6 @@
-- mobile 기능
-  - camera
-  - fcm
-- 상태관리
-  - redux
-  - zustand
-- 스플래쉬 스크린 적용
-- i18n 적용
-- animation
-- component
+- 기능 추가
+  - FCM 구현
+    - FCM구현을 위해선 apple 개발자 등록이 필요함.
+  - Animation 예제 구현
+  - Auth
+    - Oauth 적용
