@@ -9,9 +9,21 @@ import {
   SocialLoginButton,
   TextButton,
 } from "@kukkim/react-native-ui";
+import { makeRedirectUri, useAuthRequest } from "expo-auth-session";
 import { useRouter } from "expo-router";
-import { useState } from "react";
+import * as WebBrowser from "expo-web-browser";
+import { useEffect, useState } from "react";
 import { Alert, View } from "react-native";
+
+WebBrowser.maybeCompleteAuthSession();
+
+// Endpoint
+const discovery = {
+  authorizationEndpoint: "https://github.com/login/oauth/authorize",
+  tokenEndpoint: "https://github.com/login/oauth/access_token",
+  revocationEndpoint:
+    "https://github.com/settings/connections/applications/Ov23lijV25sOirDe3M6k",
+};
 
 export default function LoginModal() {
   const { t } = useTranslation();
@@ -63,6 +75,35 @@ export default function LoginModal() {
     router.dismiss();
     router.push("/signUpModal");
   };
+
+  const [request, response, promptAsync] = useAuthRequest(
+    {
+      clientId: "Ov23lijV25sOirDe3M6k",
+      scopes: ["identity"],
+      redirectUri: makeRedirectUri({
+        scheme: "rnportfolio",
+        path: "auth/github",
+      }),
+    },
+    discovery,
+  );
+
+  const handleSocialLogin = (provider: string) => {
+    if (provider === "github") {
+      promptAsync();
+    } else if (provider === "google") {
+    } else {
+      console.log("Provider login attempt for:", provider);
+    }
+  };
+
+  useEffect(() => {
+    if (response?.type === "success") {
+      const { code } = response.params;
+      console.log("response:", response);
+    }
+  }, [response]);
+
   return (
     <View className="flex-1">
       <CommonText>{t("auth.loginTitle")}</CommonText>
@@ -89,6 +130,11 @@ export default function LoginModal() {
       <SocialLoginButton provider="apple" />
       <SocialLoginButton provider="facebook" />
       <SocialLoginButton provider="google" />
+      <SocialLoginButton provider="naver" />
+      <SocialLoginButton
+        provider="github"
+        onPress={() => handleSocialLogin("github")}
+      />
     </View>
   );
 }

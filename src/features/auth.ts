@@ -95,3 +95,20 @@ export const requestUpdateUserInfo = <TResponse>(
     },
   });
 };
+
+export const requestSocialSignin = <TResponse>(
+  signinData: RequestSignIn,
+): Promise<TResponse> => {
+  addLog({
+    title: "Social Signin Attempt",
+  });
+
+  const params = new URLSearchParams({
+    email: signinData.email,
+    password: signinData.password,
+  });
+
+  return apiRequest<TResponse>(`/signin?${params.toString()}`, {
+    method: "GET",
+  });
+};
