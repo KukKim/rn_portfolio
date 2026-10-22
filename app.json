@@ -13,7 +13,8 @@
         "CFBundleLocalizations": ["en", "ko", "en", "ko"],
         "ITSAppUsesNonExemptEncryption": false
       },
-      "bundleIdentifier": "com.anonymous.rn-portfolio"
+      "bundleIdentifier": "com.anonymous.rn-portfolio",
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
@@ -95,7 +96,10 @@
           "supportsOpeningDocumentsInPlace": true,
           "enableFileSharing": true
         }
-      ]
+      ],
+      "expo-dev-client",
+      "react-native-nitro-google-signin",
+      "expo-build-properties"
     ],
     "experiments": {
       "typedRoutes": true,

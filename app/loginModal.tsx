@@ -14,7 +14,13 @@ import { useRouter } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import { useEffect, useState } from "react";
 import { Alert, View } from "react-native";
+import {
+  GoogleOneTapSignIn,
+  isNoSavedCredentialFoundResponse,
+  isSuccessResponse,
+} from "react-native-nitro-google-signin";
 
+GoogleOneTapSignIn.configure({ webClientId: "autoDetect" });
 WebBrowser.maybeCompleteAuthSession();
 
 // Endpoint
@@ -22,7 +28,8 @@ const discovery = {
   authorizationEndpoint: "https://github.com/login/oauth/authorize",
   tokenEndpoint: "https://github.com/login/oauth/access_token",
   revocationEndpoint:
-    "https://github.com/settings/connections/applications/Ov23lijV25sOirDe3M6k",
+    "https://github.com/settings/connections/applications/" +
+    process.env.EXPO_PUBLIC_GITHUB_CLIENT_ID,
 };
 
 export default function LoginModal() {
@@ -78,7 +85,7 @@ export default function LoginModal() {
 
   const [request, response, promptAsync] = useAuthRequest(
     {
-      clientId: "Ov23lijV25sOirDe3M6k",
+      clientId: process.env.EXPO_PUBLIC_GITHUB_CLIENT_ID,
       scopes: ["identity"],
       redirectUri: makeRedirectUri({
         scheme: "rnportfolio",
@@ -88,10 +95,26 @@ export default function LoginModal() {
     discovery,
   );
 
-  const handleSocialLogin = (provider: string) => {
+  const handleSocialLogin = async (provider: string) => {
     if (provider === "github") {
       promptAsync();
     } else if (provider === "google") {
+      await GoogleOneTapSignIn.checkPlayServices();
+
+      let response = await GoogleOneTapSignIn.signIn();
+
+      if (isNoSavedCredentialFoundResponse(response)) {
+        response = await GoogleOneTapSignIn.createAccount();
+      }
+      if (isNoSavedCredentialFoundResponse(response)) {
+        response = await GoogleOneTapSignIn.presentExplicitSignIn();
+      }
+
+      if (isSuccessResponse(response)) {
+        const { user, idToken } = response.data;
+        // Send idToken to your backend for verification
+        console.log(user.email, idToken);
+      }
     } else {
       console.log("Provider login attempt for:", provider);
     }
@@ -129,7 +152,10 @@ export default function LoginModal() {
       <TextButton title={t("auth.guestLogin")} onPress={handleGuestLogin} />
       <SocialLoginButton provider="apple" />
       <SocialLoginButton provider="facebook" />
-      <SocialLoginButton provider="google" />
+      <SocialLoginButton
+        provider="google"
+        onPress={() => handleSocialLogin("google")}
+      />
       <SocialLoginButton provider="naver" />
       <SocialLoginButton
         provider="github"

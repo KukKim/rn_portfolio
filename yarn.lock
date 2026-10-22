@@ -1052,7 +1052,7 @@
   dependencies:
     node-forge "^1.4.0"
 
-"@expo/config-plugins@~58.0.9":
+"@expo/config-plugins@>=9.0.0", "@expo/config-plugins@~58.0.9":
   version "58.0.9"
   resolved "https://registry.yarnpkg.com/@expo/config-plugins/-/config-plugins-58.0.9.tgz#30f0794f83c07962dde5e5e917ec0fd0d2fa4159"
   integrity sha512-HyP7V1QgDxeHcOEh4qQH7cfK7cI7wNp0y9lszAu98SRYCshhDbwB9gWpFfnpX1GQUtgiqG4Hvgh1z3ntcGwAjw==
@@ -5188,6 +5188,15 @@ expo-auth-session@~58.0.13:
     expo-web-browser "~58.0.6"
     invariant "^2.2.4"
 
+expo-build-properties@~58.0.11:
+  version "58.0.11"
+  resolved "https://registry.yarnpkg.com/expo-build-properties/-/expo-build-properties-58.0.11.tgz#8a0ee43b7732fe4c70f610def1ae38e110b50812"
+  integrity sha512-8vjp+RSD7VW/VeEpG9l1YON4ZqOqQXPmtMYFqmh41I7cBGwELRYybHFrh2P3uBgzWlRBuQrRLO5UAtAYfT7HLg==
+  dependencies:
+    "@expo/schema-utils" "^58.0.2"
+    resolve-from "^5.0.0"
+    semver "^7.7.4"
+
 expo-constants@~58.0.12:
   version "58.0.12"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-58.0.12.tgz#770aa72bd5c518baed2090730b9585005231a4e5"
@@ -5201,7 +5210,7 @@ expo-crypto@~58.0.7:
   resolved "https://registry.yarnpkg.com/expo-crypto/-/expo-crypto-58.0.7.tgz#c3fba328a04585a3e74437672cd5ed79ab36af1b"
   integrity sha512-g+4i4UpqQ5jNy1VPRvVVvr9aIdh8WwvxbpwL2ntiSESDRsXyVSeb8JM6tHVdC3b9J2nGxjtrhrsaWOo0jbSxlA==
 
-expo-dev-client@~58.0.14:
+expo-dev-client@^58.0.14:
   version "58.0.14"
   resolved "https://registry.yarnpkg.com/expo-dev-client/-/expo-dev-client-58.0.14.tgz#626882ed196695559a3227f00a4499260406c2c6"
   integrity sha512-gyzONNNS/SLZdxFdDshgzc0Uxxt2i+MjYwOQX3LNvr3pXFtYHYM9kza8MpdYOqhqGvWnA4BebeBWq3T1hjt9nQ==
@@ -8460,6 +8469,18 @@ react-native-keyboard-controller@1.22.7:
   integrity sha512-IBR9z6Nl/iDLRfiv1zN9QQroOXAwYMugeAjVDb+CFbRBNC8fayXlHTBbshVcWc4j95Itsv+1/FgwfxKnIn1Vmg==
   dependencies:
     react-native-is-edge-to-edge "^1.2.1"
+
+react-native-nitro-google-signin@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-nitro-google-signin/-/react-native-nitro-google-signin-2.3.0.tgz#8a905867960579017949b22f7e4d3c33acc1465d"
+  integrity sha512-B0G85j6IT502FfFlAfQ02PA3ADtAKgptrZ7y5J8b3dahVrFI6awHrRITrRsUM9jYrI9Yak0GTniNqWbaC6OMIw==
+  dependencies:
+    "@expo/config-plugins" ">=9.0.0"
+
+react-native-nitro-modules@^0.37.1:
+  version "0.37.1"
+  resolved "https://registry.yarnpkg.com/react-native-nitro-modules/-/react-native-nitro-modules-0.37.1.tgz#368bda3038ebe796b219d98e0a364f9166e2cc7c"
+  integrity sha512-KpW6EQVQ/bfegpCGxN9Be+ndvsfj56t4IESEvCASu9gWpJa/NDfHpIeIwCOvZQ3eXmLEj6YD4wCLqcC1FJPr2w==
 
 react-native-reanimated@4.7.1:
   version "4.7.1"
