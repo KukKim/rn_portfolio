@@ -14,7 +14,8 @@
         "ITSAppUsesNonExemptEncryption": false
       },
       "bundleIdentifier": "com.anonymous.rn-portfolio",
-      "googleServicesFile": "./GoogleService-Info.plist"
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "usesAppleSignIn": true
     },
     "android": {
       "adaptiveIcon": {
@@ -99,7 +100,8 @@
       ],
       "expo-dev-client",
       "react-native-nitro-google-signin",
-      "expo-build-properties"
+      "expo-build-properties",
+      "expo-apple-authentication"
     ],
     "experiments": {
       "typedRoutes": true,

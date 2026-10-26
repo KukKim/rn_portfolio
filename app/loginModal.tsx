@@ -9,11 +9,12 @@ import {
   SocialLoginButton,
   TextButton,
 } from "@kukkim/react-native-ui";
+import * as AppleAuthentication from "expo-apple-authentication";
 import { makeRedirectUri, useAuthRequest } from "expo-auth-session";
 import { useRouter } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import { useEffect, useState } from "react";
-import { Alert, View } from "react-native";
+import { Alert, Platform, View } from "react-native";
 import {
   GoogleOneTapSignIn,
   isNoSavedCredentialFoundResponse,
@@ -150,7 +151,29 @@ export default function LoginModal() {
         <TextButton title={t("auth.signup")} onPress={showSignupModal} />
       </View>
       <TextButton title={t("auth.guestLogin")} onPress={handleGuestLogin} />
-      <SocialLoginButton provider="apple" />
+      {Platform.OS === "ios" && (
+        <SocialLoginButton
+          provider="apple"
+          onPress={async () => {
+            try {
+              const credential = await AppleAuthentication.signInAsync({
+                requestedScopes: [
+                  AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                  AppleAuthentication.AppleAuthenticationScope.EMAIL,
+                ],
+              });
+              // signed in
+            } catch (e) {
+              console.log("Apple sign-in error:", e);
+              if (e.code === "ERR_REQUEST_CANCELED") {
+                // handle that the user canceled the sign-in flow
+              } else {
+                // handle other errors
+              }
+            }
+          }}
+        />
+      )}
       <SocialLoginButton provider="facebook" />
       <SocialLoginButton
         provider="google"
