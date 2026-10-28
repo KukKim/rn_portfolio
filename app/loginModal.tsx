@@ -15,6 +15,7 @@ import { useRouter } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import { useEffect, useState } from "react";
 import { Alert, Platform, View } from "react-native";
+import { LoginManager } from "react-native-fbsdk-next";
 import {
   GoogleOneTapSignIn,
   isNoSavedCredentialFoundResponse,
@@ -174,7 +175,26 @@ export default function LoginModal() {
           }}
         />
       )}
-      <SocialLoginButton provider="facebook" />
+      <SocialLoginButton
+        provider="facebook"
+        onPress={() => {
+          LoginManager.logInWithPermissions(["public_profile"]).then(
+            function (result) {
+              if (result.isCancelled) {
+                console.log("Login cancelled");
+              } else {
+                console.log(
+                  "Login success with permissions: " +
+                    result.grantedPermissions.toString(),
+                );
+              }
+            },
+            function (error) {
+              console.log("Login fail with error: " + error);
+            },
+          );
+        }}
+      />
       <SocialLoginButton
         provider="google"
         onPress={() => handleSocialLogin("google")}

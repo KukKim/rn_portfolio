@@ -101,7 +101,20 @@
       "expo-dev-client",
       "react-native-nitro-google-signin",
       "expo-build-properties",
-      "expo-apple-authentication"
+      "expo-apple-authentication",
+      [
+        "react-native-fbsdk-next",
+        {
+          "appID": "1128336646275859",
+          "clientToken": "ea6d20f7515a4d4c9145f9983080e381",
+          "displayName": "portfolio",
+          "scheme": "fb1128336646275859",
+          "advertiserIDCollectionEnabled": false,
+          "autoLogAppEventsEnabled": false,
+          "isAutoInitEnabled": true,
+          "iosUserTrackingPermission": "This identifier will be used to deliver personalized ads to you."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,
